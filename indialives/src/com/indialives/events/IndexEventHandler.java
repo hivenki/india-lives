@@ -19,13 +19,11 @@ import com.easymvc.eventhandler.NonAuthenticatedHandler;
  */
 public class IndexEventHandler implements NonAuthenticatedHandler, EventHandler{
 
-	@Override
 	public void forward(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		RequestDispatcher dispatcher=request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 	}
 
