@@ -19,7 +19,7 @@ public class BlockDO  implements java.io.Serializable, com.easymvc.persistence.R
      private String name;
      private String description;
      private Integer noOfFloors;
-     private Set flatDOs = new HashSet(0);
+     private Set<FlatDO> flatDOs = new HashSet<FlatDO>(0);
 
     public BlockDO() {
     }
@@ -32,7 +32,7 @@ public class BlockDO  implements java.io.Serializable, com.easymvc.persistence.R
         this.description = description;
         this.noOfFloors = noOfFloors;
     }
-    public BlockDO(Integer id, CommunityDO communityDO, String name, String description, Integer noOfFloors, Set flatDOs) {
+    public BlockDO(Integer id, CommunityDO communityDO, String name, String description, Integer noOfFloors, Set<FlatDO> flatDOs) {
        this.id = id;
        this.communityDO = communityDO;
        this.name = name;
@@ -76,11 +76,11 @@ public class BlockDO  implements java.io.Serializable, com.easymvc.persistence.R
     public void setNoOfFloors(Integer noOfFloors) {
         this.noOfFloors = noOfFloors;
     }
-    public Set getFlatDOs() {
+    public Set<FlatDO> getFlatDOs() {
         return this.flatDOs;
     }
     
-    public void setFlatDOs(Set flatDOs) {
+    public void setFlatDOs(Set<FlatDO> flatDOs) {
         this.flatDOs = flatDOs;
     }
 

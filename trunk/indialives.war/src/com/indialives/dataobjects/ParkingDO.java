@@ -18,7 +18,7 @@ public class ParkingDO  implements java.io.Serializable, com.easymvc.persistence
      private CommunityDO communityDO;
      private String name;
      private String description;
-     private Set parkingSlotDOs = new HashSet(0);
+     private Set<ParkingSlotDO> parkingSlotDOs = new HashSet<ParkingSlotDO>(0);
 
     public ParkingDO() {
     }
@@ -30,7 +30,7 @@ public class ParkingDO  implements java.io.Serializable, com.easymvc.persistence
         this.name = name;
         this.description = description;
     }
-    public ParkingDO(Integer id, CommunityDO communityDO, String name, String description, Set parkingSlotDOs) {
+    public ParkingDO(Integer id, CommunityDO communityDO, String name, String description, Set<ParkingSlotDO> parkingSlotDOs) {
        this.id = id;
        this.communityDO = communityDO;
        this.name = name;
@@ -66,11 +66,11 @@ public class ParkingDO  implements java.io.Serializable, com.easymvc.persistence
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getParkingSlotDOs() {
+    public Set<ParkingSlotDO> getParkingSlotDOs() {
         return this.parkingSlotDOs;
     }
     
-    public void setParkingSlotDOs(Set parkingSlotDOs) {
+    public void setParkingSlotDOs(Set<ParkingSlotDO> parkingSlotDOs) {
         this.parkingSlotDOs = parkingSlotDOs;
     }
 

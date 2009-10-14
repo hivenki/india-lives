@@ -20,8 +20,8 @@ public class FlatDO  implements java.io.Serializable, com.easymvc.persistence.Ro
      private String flatNo;
      private Integer flatTypeId;
      private Integer noOfBedRooms;
-     private Set propertyOwnerDOs = new HashSet(0);
-     private Set complaintDOs = new HashSet(0);
+     private Set<PropertyOwnerDO> propertyOwnerDOs = new HashSet<PropertyOwnerDO>(0);
+     private Set<ComplaintDO> complaintDOs = new HashSet<ComplaintDO>(0);
 
     public FlatDO() {
     }
@@ -35,7 +35,7 @@ public class FlatDO  implements java.io.Serializable, com.easymvc.persistence.Ro
         this.flatTypeId = flatTypeId;
         this.noOfBedRooms = noOfBedRooms;
     }
-    public FlatDO(Integer id, BlockDO blockDO, Integer floor, String flatNo, Integer flatTypeId, Integer noOfBedRooms, Set propertyOwnerDOs, Set complaintDOs) {
+    public FlatDO(Integer id, BlockDO blockDO, Integer floor, String flatNo, Integer flatTypeId, Integer noOfBedRooms, Set<PropertyOwnerDO> propertyOwnerDOs, Set<ComplaintDO> complaintDOs) {
        this.id = id;
        this.blockDO = blockDO;
        this.floor = floor;
@@ -88,18 +88,18 @@ public class FlatDO  implements java.io.Serializable, com.easymvc.persistence.Ro
     public void setNoOfBedRooms(Integer noOfBedRooms) {
         this.noOfBedRooms = noOfBedRooms;
     }
-    public Set getPropertyOwnerDOs() {
+    public Set<PropertyOwnerDO> getPropertyOwnerDOs() {
         return this.propertyOwnerDOs;
     }
     
-    public void setPropertyOwnerDOs(Set propertyOwnerDOs) {
+    public void setPropertyOwnerDOs(Set<PropertyOwnerDO> propertyOwnerDOs) {
         this.propertyOwnerDOs = propertyOwnerDOs;
     }
-    public Set getComplaintDOs() {
+    public Set<ComplaintDO> getComplaintDOs() {
         return this.complaintDOs;
     }
     
-    public void setComplaintDOs(Set complaintDOs) {
+    public void setComplaintDOs(Set<ComplaintDO> complaintDOs) {
         this.complaintDOs = complaintDOs;
     }
 

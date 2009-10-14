@@ -20,7 +20,7 @@ public class AdTypeDO  implements java.io.Serializable, com.easymvc.persistence.
      private Integer width;
      private Integer height;
      private String fileFormat;
-     private Set advertisementDOs = new HashSet(0);
+     private Set<AdvertisementDO> advertisementDOs = new HashSet<AdvertisementDO>(0);
 
     public AdTypeDO() {
     }
@@ -34,7 +34,7 @@ public class AdTypeDO  implements java.io.Serializable, com.easymvc.persistence.
         this.height = height;
         this.fileFormat = fileFormat;
     }
-    public AdTypeDO(Integer id, String name, String description, Integer width, Integer height, String fileFormat, Set advertisementDOs) {
+    public AdTypeDO(Integer id, String name, String description, Integer width, Integer height, String fileFormat, Set<AdvertisementDO> advertisementDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -86,11 +86,11 @@ public class AdTypeDO  implements java.io.Serializable, com.easymvc.persistence.
     public void setFileFormat(String fileFormat) {
         this.fileFormat = fileFormat;
     }
-    public Set getAdvertisementDOs() {
+    public Set<AdvertisementDO> getAdvertisementDOs() {
         return this.advertisementDOs;
     }
     
-    public void setAdvertisementDOs(Set advertisementDOs) {
+    public void setAdvertisementDOs(Set<AdvertisementDO> advertisementDOs) {
         this.advertisementDOs = advertisementDOs;
     }
 

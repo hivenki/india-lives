@@ -17,7 +17,7 @@ public class ComplaintTypeEnumDO  implements java.io.Serializable, com.easymvc.p
      private Integer id;
      private String name;
      private String description;
-     private Set complaintDOs = new HashSet(0);
+     private Set<ComplaintDO> complaintDOs = new HashSet<ComplaintDO>(0);
 
     public ComplaintTypeEnumDO() {
     }
@@ -28,7 +28,7 @@ public class ComplaintTypeEnumDO  implements java.io.Serializable, com.easymvc.p
         this.name = name;
         this.description = description;
     }
-    public ComplaintTypeEnumDO(Integer id, String name, String description, Set complaintDOs) {
+    public ComplaintTypeEnumDO(Integer id, String name, String description, Set<ComplaintDO> complaintDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -56,11 +56,11 @@ public class ComplaintTypeEnumDO  implements java.io.Serializable, com.easymvc.p
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getComplaintDOs() {
+    public Set<ComplaintDO> getComplaintDOs() {
         return this.complaintDOs;
     }
     
-    public void setComplaintDOs(Set complaintDOs) {
+    public void setComplaintDOs(Set<ComplaintDO> complaintDOs) {
         this.complaintDOs = complaintDOs;
     }
 

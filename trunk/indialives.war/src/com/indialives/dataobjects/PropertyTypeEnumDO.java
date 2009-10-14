@@ -17,7 +17,7 @@ public class PropertyTypeEnumDO  implements java.io.Serializable, com.easymvc.pe
      private Integer id;
      private String name;
      private String description;
-     private Set propertyOwnerDOs = new HashSet(0);
+     private Set<PropertyOwnerDO> propertyOwnerDOs = new HashSet<PropertyOwnerDO>(0);
 
     public PropertyTypeEnumDO() {
     }
@@ -28,7 +28,7 @@ public class PropertyTypeEnumDO  implements java.io.Serializable, com.easymvc.pe
         this.name = name;
         this.description = description;
     }
-    public PropertyTypeEnumDO(Integer id, String name, String description, Set propertyOwnerDOs) {
+    public PropertyTypeEnumDO(Integer id, String name, String description, Set<PropertyOwnerDO> propertyOwnerDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -56,11 +56,11 @@ public class PropertyTypeEnumDO  implements java.io.Serializable, com.easymvc.pe
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getPropertyOwnerDOs() {
+    public Set<PropertyOwnerDO> getPropertyOwnerDOs() {
         return this.propertyOwnerDOs;
     }
     
-    public void setPropertyOwnerDOs(Set propertyOwnerDOs) {
+    public void setPropertyOwnerDOs(Set<PropertyOwnerDO> propertyOwnerDOs) {
         this.propertyOwnerDOs = propertyOwnerDOs;
     }
 

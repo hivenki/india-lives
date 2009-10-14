@@ -17,7 +17,7 @@ public class CityDO  implements java.io.Serializable, com.easymvc.persistence.Ro
      private Integer id;
      private StateDO stateDO;
      private String name;
-     private Set communityDOs = new HashSet(0);
+     private Set<CommunityDO> communityDOs = new HashSet<CommunityDO>(0);
 
     public CityDO() {
     }
@@ -28,7 +28,7 @@ public class CityDO  implements java.io.Serializable, com.easymvc.persistence.Ro
         this.stateDO = stateDO;
         this.name = name;
     }
-    public CityDO(Integer id, StateDO stateDO, String name, Set communityDOs) {
+    public CityDO(Integer id, StateDO stateDO, String name, Set<CommunityDO> communityDOs) {
        this.id = id;
        this.stateDO = stateDO;
        this.name = name;
@@ -56,11 +56,11 @@ public class CityDO  implements java.io.Serializable, com.easymvc.persistence.Ro
     public void setName(String name) {
         this.name = name;
     }
-    public Set getCommunityDOs() {
+    public Set<CommunityDO> getCommunityDOs() {
         return this.communityDOs;
     }
     
-    public void setCommunityDOs(Set communityDOs) {
+    public void setCommunityDOs(Set<CommunityDO> communityDOs) {
         this.communityDOs = communityDOs;
     }
 
