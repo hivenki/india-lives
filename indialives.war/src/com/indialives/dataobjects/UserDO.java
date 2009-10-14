@@ -20,12 +20,12 @@ public class UserDO  implements java.io.Serializable, com.easymvc.persistence.Ro
      private String mobileNo;
      private String firstName;
      private String lastName;
-     private Set complaintDOs = new HashSet(0);
-     private Set roleContextDOs = new HashSet(0);
-     private Set noticeDOs = new HashSet(0);
-     private Set advertisementDOs = new HashSet(0);
-     private Set propertyOwnerDOs = new HashSet(0);
-     private Set amenityBookingDOs = new HashSet(0);
+     private Set<ComplaintDO> complaintDOs = new HashSet<ComplaintDO>(0);
+     private Set<RoleContextDO> roleContextDOs = new HashSet<RoleContextDO>(0);
+     private Set<NoticeDO> noticeDOs = new HashSet<NoticeDO>(0);
+     private Set<AdvertisementDO> advertisementDOs = new HashSet<AdvertisementDO>(0);
+     private Set<PropertyOwnerDO> propertyOwnerDOs = new HashSet<PropertyOwnerDO>(0);
+     private Set<AmenityBookingDO> amenityBookingDOs = new HashSet<AmenityBookingDO>(0);
 
     public UserDO() {
     }
@@ -39,7 +39,7 @@ public class UserDO  implements java.io.Serializable, com.easymvc.persistence.Ro
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public UserDO(Integer id, String emailId, String password, String mobileNo, String firstName, String lastName, Set complaintDOs, Set roleContextDOs, Set noticeDOs, Set advertisementDOs, Set propertyOwnerDOs, Set amenityBookingDOs) {
+    public UserDO(Integer id, String emailId, String password, String mobileNo, String firstName, String lastName, Set<ComplaintDO> complaintDOs, Set<RoleContextDO> roleContextDOs, Set<NoticeDO> noticeDOs, Set<AdvertisementDO> advertisementDOs, Set<PropertyOwnerDO> propertyOwnerDOs, Set<AmenityBookingDO> amenityBookingDOs) {
        this.id = id;
        this.emailId = emailId;
        this.password = password;
@@ -96,46 +96,46 @@ public class UserDO  implements java.io.Serializable, com.easymvc.persistence.Ro
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public Set getComplaintDOs() {
+    public Set<ComplaintDO> getComplaintDOs() {
         return this.complaintDOs;
     }
     
-    public void setComplaintDOs(Set complaintDOs) {
+    public void setComplaintDOs(Set<ComplaintDO> complaintDOs) {
         this.complaintDOs = complaintDOs;
     }
-    public Set getRoleContextDOs() {
+    public Set<RoleContextDO> getRoleContextDOs() {
         return this.roleContextDOs;
     }
     
-    public void setRoleContextDOs(Set roleContextDOs) {
+    public void setRoleContextDOs(Set<RoleContextDO> roleContextDOs) {
         this.roleContextDOs = roleContextDOs;
     }
-    public Set getNoticeDOs() {
+    public Set<NoticeDO> getNoticeDOs() {
         return this.noticeDOs;
     }
     
-    public void setNoticeDOs(Set noticeDOs) {
+    public void setNoticeDOs(Set<NoticeDO> noticeDOs) {
         this.noticeDOs = noticeDOs;
     }
-    public Set getAdvertisementDOs() {
+    public Set<AdvertisementDO> getAdvertisementDOs() {
         return this.advertisementDOs;
     }
     
-    public void setAdvertisementDOs(Set advertisementDOs) {
+    public void setAdvertisementDOs(Set<AdvertisementDO> advertisementDOs) {
         this.advertisementDOs = advertisementDOs;
     }
-    public Set getPropertyOwnerDOs() {
+    public Set<PropertyOwnerDO> getPropertyOwnerDOs() {
         return this.propertyOwnerDOs;
     }
     
-    public void setPropertyOwnerDOs(Set propertyOwnerDOs) {
+    public void setPropertyOwnerDOs(Set<PropertyOwnerDO> propertyOwnerDOs) {
         this.propertyOwnerDOs = propertyOwnerDOs;
     }
-    public Set getAmenityBookingDOs() {
+    public Set<AmenityBookingDO> getAmenityBookingDOs() {
         return this.amenityBookingDOs;
     }
     
-    public void setAmenityBookingDOs(Set amenityBookingDOs) {
+    public void setAmenityBookingDOs(Set<AmenityBookingDO> amenityBookingDOs) {
         this.amenityBookingDOs = amenityBookingDOs;
     }
 

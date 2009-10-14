@@ -17,7 +17,7 @@ public class PrivilegeDO  implements java.io.Serializable, com.easymvc.persisten
      private Integer id;
      private String name;
      private String description;
-     private Set rolePrivilegeDOs = new HashSet(0);
+     private Set<RolePrivilegeDO> rolePrivilegeDOs = new HashSet<RolePrivilegeDO>(0);
 
     public PrivilegeDO() {
     }
@@ -28,7 +28,7 @@ public class PrivilegeDO  implements java.io.Serializable, com.easymvc.persisten
         this.name = name;
         this.description = description;
     }
-    public PrivilegeDO(Integer id, String name, String description, Set rolePrivilegeDOs) {
+    public PrivilegeDO(Integer id, String name, String description, Set<RolePrivilegeDO> rolePrivilegeDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -56,11 +56,11 @@ public class PrivilegeDO  implements java.io.Serializable, com.easymvc.persisten
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getRolePrivilegeDOs() {
+    public Set<RolePrivilegeDO> getRolePrivilegeDOs() {
         return this.rolePrivilegeDOs;
     }
     
-    public void setRolePrivilegeDOs(Set rolePrivilegeDOs) {
+    public void setRolePrivilegeDOs(Set<RolePrivilegeDO> rolePrivilegeDOs) {
         this.rolePrivilegeDOs = rolePrivilegeDOs;
     }
 

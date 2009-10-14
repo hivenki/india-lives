@@ -17,7 +17,7 @@ public class NoticeBoardEnumDO  implements java.io.Serializable, com.easymvc.per
      private Integer id;
      private String name;
      private String description;
-     private Set noticeDOs = new HashSet(0);
+     private Set<NoticeDO> noticeDOs = new HashSet<NoticeDO>(0);
 
     public NoticeBoardEnumDO() {
     }
@@ -28,7 +28,7 @@ public class NoticeBoardEnumDO  implements java.io.Serializable, com.easymvc.per
         this.name = name;
         this.description = description;
     }
-    public NoticeBoardEnumDO(Integer id, String name, String description, Set noticeDOs) {
+    public NoticeBoardEnumDO(Integer id, String name, String description, Set<NoticeDO> noticeDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -56,11 +56,11 @@ public class NoticeBoardEnumDO  implements java.io.Serializable, com.easymvc.per
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getNoticeDOs() {
+    public Set<NoticeDO> getNoticeDOs() {
         return this.noticeDOs;
     }
     
-    public void setNoticeDOs(Set noticeDOs) {
+    public void setNoticeDOs(Set<NoticeDO> noticeDOs) {
         this.noticeDOs = noticeDOs;
     }
 

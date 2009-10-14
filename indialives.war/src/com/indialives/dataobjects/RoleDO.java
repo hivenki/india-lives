@@ -17,8 +17,8 @@ public class RoleDO  implements java.io.Serializable, com.easymvc.persistence.Ro
      private Integer id;
      private String name;
      private String description;
-     private Set roleContextDOs = new HashSet(0);
-     private Set rolePrivilegeDOs = new HashSet(0);
+     private Set<RoleContextDO> roleContextDOs = new HashSet<RoleContextDO>(0);
+     private Set<RolePrivilegeDO> rolePrivilegeDOs = new HashSet<RolePrivilegeDO>(0);
 
     public RoleDO() {
     }
@@ -29,7 +29,7 @@ public class RoleDO  implements java.io.Serializable, com.easymvc.persistence.Ro
         this.name = name;
         this.description = description;
     }
-    public RoleDO(Integer id, String name, String description, Set roleContextDOs, Set rolePrivilegeDOs) {
+    public RoleDO(Integer id, String name, String description, Set<RoleContextDO> roleContextDOs, Set<RolePrivilegeDO> rolePrivilegeDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -58,18 +58,18 @@ public class RoleDO  implements java.io.Serializable, com.easymvc.persistence.Ro
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getRoleContextDOs() {
+    public Set<RoleContextDO> getRoleContextDOs() {
         return this.roleContextDOs;
     }
     
-    public void setRoleContextDOs(Set roleContextDOs) {
+    public void setRoleContextDOs(Set<RoleContextDO> roleContextDOs) {
         this.roleContextDOs = roleContextDOs;
     }
-    public Set getRolePrivilegeDOs() {
+    public Set<RolePrivilegeDO> getRolePrivilegeDOs() {
         return this.rolePrivilegeDOs;
     }
     
-    public void setRolePrivilegeDOs(Set rolePrivilegeDOs) {
+    public void setRolePrivilegeDOs(Set<RolePrivilegeDO> rolePrivilegeDOs) {
         this.rolePrivilegeDOs = rolePrivilegeDOs;
     }
 

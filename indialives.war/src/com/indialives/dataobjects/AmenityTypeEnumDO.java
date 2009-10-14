@@ -17,8 +17,8 @@ public class AmenityTypeEnumDO  implements java.io.Serializable, com.easymvc.per
      private Integer id;
      private String name;
      private String description;
-     private Set amenityBookingDOs = new HashSet(0);
-     private Set amenityDOs = new HashSet(0);
+     private Set<AmenityBookingDO> amenityBookingDOs = new HashSet<AmenityBookingDO>(0);
+     private Set<AmenityDO> amenityDOs = new HashSet<AmenityDO>(0);
 
     public AmenityTypeEnumDO() {
     }
@@ -29,7 +29,7 @@ public class AmenityTypeEnumDO  implements java.io.Serializable, com.easymvc.per
         this.name = name;
         this.description = description;
     }
-    public AmenityTypeEnumDO(Integer id, String name, String description, Set amenityBookingDOs, Set amenityDOs) {
+    public AmenityTypeEnumDO(Integer id, String name, String description, Set<AmenityBookingDO> amenityBookingDOs, Set<AmenityDO> amenityDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -58,18 +58,18 @@ public class AmenityTypeEnumDO  implements java.io.Serializable, com.easymvc.per
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getAmenityBookingDOs() {
+    public Set<AmenityBookingDO> getAmenityBookingDOs() {
         return this.amenityBookingDOs;
     }
     
-    public void setAmenityBookingDOs(Set amenityBookingDOs) {
+    public void setAmenityBookingDOs(Set<AmenityBookingDO> amenityBookingDOs) {
         this.amenityBookingDOs = amenityBookingDOs;
     }
-    public Set getAmenityDOs() {
+    public Set<AmenityDO> getAmenityDOs() {
         return this.amenityDOs;
     }
     
-    public void setAmenityDOs(Set amenityDOs) {
+    public void setAmenityDOs(Set<AmenityDO> amenityDOs) {
         this.amenityDOs = amenityDOs;
     }
 

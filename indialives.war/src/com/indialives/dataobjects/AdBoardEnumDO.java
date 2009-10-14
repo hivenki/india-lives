@@ -17,7 +17,7 @@ public class AdBoardEnumDO  implements java.io.Serializable, com.easymvc.persist
      private Integer id;
      private String name;
      private String description;
-     private Set advertisementDOs = new HashSet(0);
+     private Set<AdvertisementDO> advertisementDOs = new HashSet<AdvertisementDO>(0);
 
     public AdBoardEnumDO() {
     }
@@ -28,7 +28,7 @@ public class AdBoardEnumDO  implements java.io.Serializable, com.easymvc.persist
         this.name = name;
         this.description = description;
     }
-    public AdBoardEnumDO(Integer id, String name, String description, Set advertisementDOs) {
+    public AdBoardEnumDO(Integer id, String name, String description, Set<AdvertisementDO> advertisementDOs) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -56,11 +56,11 @@ public class AdBoardEnumDO  implements java.io.Serializable, com.easymvc.persist
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getAdvertisementDOs() {
+    public Set<AdvertisementDO> getAdvertisementDOs() {
         return this.advertisementDOs;
     }
     
-    public void setAdvertisementDOs(Set advertisementDOs) {
+    public void setAdvertisementDOs(Set<AdvertisementDO> advertisementDOs) {
         this.advertisementDOs = advertisementDOs;
     }
 
