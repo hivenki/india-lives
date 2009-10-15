@@ -26,13 +26,13 @@ public class LoginEventHandler implements NonAuthenticatedHandler,EventHandler,P
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if(validationFlag){
-			RequestDispatcher dispatcher=request.getRequestDispatcher("eventhandler?event=memberList");
+			RequestDispatcher dispatcher=request.getRequestDispatcher("eventhandler?event=memberHome");
 			dispatcher.forward(request,response);
 		}else{
 			Properties properties=PropertyLoader.getProperties(MESSAGE_PROPERTIES_FILE_NAME);
 			String message=properties.getProperty(INVALID_USER);
 			request.setAttribute(AUTH_ERROR_MSG,message);
-			response.sendRedirect(INDEX);
+			response.sendRedirect(INDEX+"?AUTH_ERROR_MSG="+message);
 		}
 		
 	}
