@@ -81,12 +81,12 @@
 	</tr>
 	<tr>
 		<td>Email/Mobile</td>
-		<td><input type="text" name="username"></td>
+		<td><input type="text" name="username" value="test@test.com"></td>
 
 	</tr>
 	<tr>
 		<td>Password</td>
-		<td><input type="password" name="password"></td>
+		<td><input type="password" name="password" value="test"></td>
 	</tr>
 	<tr>
 		<td>Remember</td>

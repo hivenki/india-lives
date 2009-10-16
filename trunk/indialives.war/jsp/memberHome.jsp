@@ -7,10 +7,9 @@
 <%@page import="com.indialives.dataobjects.CommunityDO"%>
 <%@page import="com.easymvc.session.SessionFactory"%><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
 </head>
-<%@include file="index.jspf"%>
+<%@include file="memberHome.jspf"%>
 <body>
 <%
 	List communityList=(List)request.getAttribute(SetAttributeConstants.COMMUNITY_LIST);
@@ -19,7 +18,7 @@
 
 
 %>
-<form name="memberHome" action="/indialives/eventhandler" method="post">
+<form name="memberHome" action="/indialives/eventhandler" method="get">
 <table border="0" width="100%">
 	<tr>
 		<td width="25%" style="font-family: calibri;font-size: x-large;">IndiaLives</td>

@@ -11,10 +11,11 @@ import com.indialives.dataobjects.PropertyTypeEnumDO;
 
 public class PropertyOwnerDOFactory implements SQLConstants{
 
-	public static List<RowObject> getPropertiesList(String communityId) {
+	public static List<RowObject> getPropertiesList(String communityId,int userId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(communityId);
+		paramList.add(userId);
 		List<RowObject> propertyList=persistenceManager.findCollection(PropertyTypeEnumDO.class,GET_PROPERTIES_LIST, paramList);
 		return propertyList;
 	}
