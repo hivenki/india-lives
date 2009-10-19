@@ -8,6 +8,9 @@
 <title>Welcome to IndiaLives</title>
 </head>
 <%@include file="index.jspf"%>
+<%@include file="indialives_css.jspf"%>
+
+
 <body 
 	onload="errorMsg('<%=request.getParameter(SetAttributeConstants.AUTH_ERROR_MSG)%>')">
 <form name="loginFrm" action="/indialives/eventhandler" method="post">
@@ -15,7 +18,7 @@
 <tr>
 <td width="75%" height="100%"  valign="top" >
 	<table border="0" width="100%" height="100%">
-	<tr  style="font-family: calibri;font-size:xx-large;">
+	<tr class="indiaLivesFonts" style="font-size:xx-large;">
 		<td >Indialives</td>
 	</tr>
 	<tr>
@@ -24,46 +27,46 @@
 	<tr>
 	<td height="100%">
 		<table border="0" style="margin-left: 200px;" width="70%" height="50%">
-			<tr height="100%" style="font-family: calibri;font-size:14px;">
+			<tr height="100%" class="indiaLivesFonts" style="font-size:14px;">
 				<td style="font-size:14px;"; height="100%" >
 				<ul>			
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Pay community bills</a></li>
+					<li type="square">Pay community bills</li>
 				
 				</ul>
 				</td>
 			</tr>
-			<tr style="font-family: calibri;font-size:14px;">
+			<tr class="indiaLivesFonts" style="font-size:14px;">
 				<td>	
 				<ul>		
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Raise complaints</a></li>
+					<li type="square"> Raise complaints</li>
 				</ul>
 				</td>
 			</tr>
-			<tr style="font-family: calibri;font-size:14px;">
+			<tr class="indiaLivesFonts" style="font-size:14px;">
 				<td>
 				<ul>
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Book Amenities</a></li>
+					<li type="square">Book Amenities</li>
 				</ul>
 				</td>
 			</tr>
-			<tr style="font-family: calibri;font-size:14px;">
+			<tr class="indiaLivesFonts" style="font-size:14px;">
 				<td style="font-size:14px;";>
 				 <ul>		
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Manage the community</a></li>
+					<li type="square">Manage the community</li>
 				 </ul>	
 				</td>
 			</tr>
-			<tr style="font-family: calibri;font-size:14px;">
+			<tr class="indiaLivesFonts" style="font-size:14px;">
 			<td>
 				<ul>
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Manage the visitors</a></li>
+					<li type="square">Manage the visitors</li>
 				</ul>
 			</td>
 			</tr>
-			<tr style="font-family: calibri;font-size:14px;">
+			<tr class="indiaLivesFonts" style="font-size:14px;">
 			<td>
 				<ul>
-					<li type="square"><a href="paycommunitybils" style="text-decoration: none; "> Complete online Solutions</a></li>
+					<li type="square">Complete online solutions</li>
 				</ul>
 			</td>
 			</tr>			
@@ -75,7 +78,7 @@
 
 <td valign="top">
 <div style="border-style:ridge;border-width:2px;width: 25%;float: right;" >
-<table border="0" align="right" cellpadding="2" cellspacing="2" style="font-family: calibri;font-size:16px;">
+<table border="0" align="right" cellpadding="2" cellspacing="2" class="indiaLivesFonts" style="font-size:16px;">
 	<tr>
 		<td colspan="2"  >Sign In</td>
 	</tr>
@@ -123,36 +126,8 @@
 
 
 </table>
+<%@include file="footer.jsp" %>
 
-<table border="0" width="100%" align="right">
-	<tr align="right" style="font-family: calibri;font-size:14px;">
-		<td width="70%">
-			AboutIL |	
-		</td>
-		<td>
-			Terms |
-		</td>
-		<td>
-			Press |	
-		</td>
-		<td>
-			Partners |
-		</td>
-		<td>
-			Careers |
-		</td>
-		<td>
-			Customers
-		</td>
-	
-	</tr>
-	<tr style="font-family: calibri;font-size:14px;">
-		<td align="right" colspan="6">
-			copyright 2009 IndiaLives all rights reserved.
-		</td>
-	</tr>
-
-</table>
 <input type="hidden" name="event" value="login"> <input
 	type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"
 	value="<%=LoginUser.class.getName()%>">

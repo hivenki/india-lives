@@ -1,6 +1,8 @@
 package com.indialives.events;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,9 +16,12 @@ import com.easymvc.session.Session;
 import com.easymvc.session.SessionFactory;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
+import com.indialives.dataobjects.PropertyTypeEnumDO;
 import com.indialives.dofactory.PropertyOwnerDOFactory;
+import com.indialives.voobjects.PropertiesVO;
 
 public class CommunityHomeEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
+	
 	
 	private List<RowObject> propertyList=null;
 	public void forward(HttpServletRequest request, HttpServletResponse response)
@@ -30,13 +35,47 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String communityId=request.getParameter("gatedCommunityId");
-		System.out.println(communityId);
+		String communityId=request.getParameter("gatedCommunityId");		
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
 		propertyList=PropertyOwnerDOFactory.getPropertiesList(communityId,userId);
-		request.setAttribute(PROPERTY_LIST,propertyList);
+		HashMap<Integer,List<PropertiesVO>> propertyMap=new HashMap<Integer,List<PropertiesVO>>();
+		for(int i=0;i<propertyList.size();i++){
+			PropertiesVO propertiesVO=(PropertiesVO) propertyList.get(i);
+			Integer propertTypeId=propertiesVO.getPropertyTypeId();
+			List<PropertiesVO> list = propertyMap.get(propertTypeId);
+			if(list==null){
+				list = new ArrayList<PropertiesVO>();
+			}
+	        list.add(propertiesVO);
+	        propertyMap.put(propertTypeId,list);
+		}		
 		
+		List<PropertyTypeEnumDO> propertyEnumList=getPropertyEnumList();
+		
+				
+		request.setAttribute(PROPERTY_LIST,propertyMap);
+		request.setAttribute(PROPERTY_ENUM_LIST,propertyEnumList);
+	
+		
+		
+	}
+
+	private List<PropertyTypeEnumDO> getPropertyEnumList() {
+		List<PropertyTypeEnumDO> propertyEnumList=new ArrayList<PropertyTypeEnumDO>();
+		PropertyTypeEnumDO propertyTypeEnumDO=new  PropertyTypeEnumDO();
+		propertyTypeEnumDO.setId(1);
+		propertyTypeEnumDO.setName("Flat");
+		PropertyTypeEnumDO propertyTypeEnumDO1=new  PropertyTypeEnumDO();
+		propertyTypeEnumDO1.setId(2);
+		propertyTypeEnumDO1.setName("Villa");
+		PropertyTypeEnumDO propertyTypeEnumDO2=new  PropertyTypeEnumDO();
+		propertyTypeEnumDO2.setId(3);
+		propertyTypeEnumDO2.setName("Parking");
+	   propertyEnumList.add(propertyTypeEnumDO);
+	   propertyEnumList.add(propertyTypeEnumDO1);
+	   propertyEnumList.add(propertyTypeEnumDO2);
+	   return propertyEnumList;
 	}
 
 }

@@ -10,19 +10,21 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="com.indialives.voobjects.PropertiesVO"%><html>
+<%@page import="com.indialives.voobjects.PropertiesVO"%>
+<%@page import="com.indialives.dataobjects.FlatDO"%>
+<%@page import="com.indialives.dataobjects.VillaDO"%>
+<%@page import="com.indialives.voobjects.FlatVO"%>
+<%@page import="com.indialives.dataobjects.ParkingSlotDO"%>
+<%@page import="com.indialives.voobjects.ParkingSlotVO"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
 </head>
-<%@include file="propertyHome.jspf"%>
 <%@include file="indialives_css.jspf"%>
 
 <body>
 <%
-	HashMap propertyMap=(HashMap)request.getAttribute(SetAttributeConstants.PROPERTY_LIST);
-	List propertyEnumList=(List) request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
-
+	Object object=request.getAttribute(SetAttributeConstants.PROPERTY_OBJ);
 
 
 
@@ -56,48 +58,77 @@
 	 <td valign="top" width="65%">	
 	  <div class="indiaLivesFonts" style="border-style: ridge;border-width: 2px;font-size: 16px;width=92%;height: 100%" >
 		<table border="0" width="100%" style="margin-left: 50px">
-		<tr class="indiaLivesFonts" style="font-size:18px;">
-			<td>
-				Properties List,				
-			</td>
-		</tr>
-			<%				
-				for(int i=0;i<propertyEnumList.size();i++){				
+		
+			<%if(object instanceof FlatDO){
 				
-					 PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertyEnumList.get(i);
-					 
-					List propertyList=(List)propertyMap.get(propertyTypeEnumDO.getId());;	
-						
-				%>
-				<tr>
-				<td>
-				<fieldset>
-					<legend><%=propertyTypeEnumDO.getName()%></legend>
-						<table>						
-								<%
-								if(propertyList!=null){
-									for(int j=0;j<propertyList.size();j++){
-										PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(j);
-										String propertyName=propertiesVO.getPropertyName();
-								%>
-								<% %>
-								<tr>
-								<td><%=j+1%>.</td>
-								<td><a href="#" class="propertyLink" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
-								
-								</tr>
-							<%}}else{ %>
-								<tr>
-								 <td>
-									There is no property.
-								</td>
-								</tr>
-							<%}%>
-							</table>	
-				</fieldset>
-				</td>
-				</tr>				
-		<%}%>
+				FlatVO flatVO=(FlatVO)object;
+				
+				
+		%>
+		<tr class="indiaLivesFonts" style="font-size:18px;">
+			<td>Block Name </td>
+			<td><%=flatVO.getBlockName()%></td>
+		</tr>
+		<tr>
+			<td>Floor</td>
+			<td><%=flatVO.getFloor()%></td>
+		</tr>
+		<tr>
+			<td>Flat No</td>
+			<td><%=flatVO.getFlatNo()%></td>
+		</tr>
+		<tr>
+			<td>Flat Type Name</td>
+			<td><%=flatVO.getFlatTypeName()%></td>
+		</tr>
+		<tr>
+			<td>No of Bedroom</td>
+			<td><%=flatVO.getNoOfBedRooms()%></td>
+		</tr>
+		
+		<%	}else if(object instanceof VillaDO){
+				VillaDO villaDO=(VillaDO) object;				
+	%>			
+			<tr class="indiaLivesFonts" style="font-size:18px;">
+			<td>Plot No </td>
+			<td><%=villaDO.getPlotNo()%></td>
+		</tr>
+		<tr>
+			<td>No of Floor</td>
+			<td><%=villaDO.getNoOfFloors()%></td>
+		</tr>
+		<tr>
+			<td>Villa Name</td>
+			<td><%=villaDO.getName()%></td>
+		</tr>
+		<tr>
+			<td>No of Bedroom</td>
+			<td><%=villaDO.getNoOfBedRooms()%></td>
+		</tr>
+		<tr>
+			<td>No of parkings</td>
+			<td><%=villaDO.getNoOfParkings()%></td>
+		</tr>
+	
+	<%}else{
+	
+		ParkingSlotVO parkingSlotVO=(ParkingSlotVO)object;
+	%>
+	
+		<tr>
+			<td>Parking Name</td>
+			<td><%=parkingSlotVO.getParkingSlotName()%></td>
+		</tr>
+		<tr>
+			<td>Parking Location</td>
+			<td><%=parkingSlotVO.getLocation()%></td>
+		</tr>
+		
+				
+	<%}%>
+			
+				
+				
 		</table>
 	</div>
 	</td>
@@ -105,10 +136,12 @@
 		<div style="border-style: ridge;border-width: 2px;height: 100%;width: 100%">
 			<table border="0">
 				<tr>
-					<td>Adv Borad</td>
+					<td>Adv Board</td>
 				</tr>
-			</table>		
-		</div>	
+			</table>
+		
+		</div>
+	
 	</td>
 	</tr>
 </table>

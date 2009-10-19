@@ -13,6 +13,8 @@ public class PropertyOwnerDO  implements java.io.Serializable, com.easymvc.persi
 	private static final long serialVersionUID = 1L;
 
      private Integer id;
+     private Integer propertyId;
+     private Integer propertyTypeId;    
      private FlatDO flatDO;
      private UserDO userDO;
      private PropertyTypeEnumDO propertyTypeEnumDO;
@@ -60,6 +62,22 @@ public class PropertyOwnerDO  implements java.io.Serializable, com.easymvc.persi
 	
 	public String getTableName() {
 		return null;
+	}
+
+	public Integer getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(Integer propertyId) {
+		this.propertyId = propertyId;
+	}
+
+	public Integer getPropertyTypeId() {
+		return propertyTypeId;
+	}
+
+	public void setPropertyTypeId(Integer propertyTypeId) {
+		this.propertyTypeId = propertyTypeId;
 	}
 
 
