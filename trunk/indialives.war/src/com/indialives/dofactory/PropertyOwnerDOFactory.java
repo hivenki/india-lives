@@ -7,7 +7,7 @@ import com.easymvc.persistence.PersistenceManager;
 import com.easymvc.persistence.PersistenceManagerFactory;
 import com.easymvc.persistence.RowObject;
 import com.indialives.SQLConstants;
-import com.indialives.dataobjects.PropertyTypeEnumDO;
+import com.indialives.voobjects.PropertiesVO;
 
 public class PropertyOwnerDOFactory implements SQLConstants{
 
@@ -16,7 +16,7 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(communityId);
 		paramList.add(userId);
-		List<RowObject> propertyList=persistenceManager.findCollection(PropertyTypeEnumDO.class,GET_PROPERTIES_LIST, paramList);
+		List<RowObject> propertyList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES_LIST, paramList);
 		return propertyList;
 	}
 
