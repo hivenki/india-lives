@@ -1,3 +1,5 @@
 function  submitCommunity(){
-	document.memberHome.submit();
+	
+		document.memberHome.submit();
+	
 }

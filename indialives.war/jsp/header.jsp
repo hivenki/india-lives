@@ -5,14 +5,27 @@
 <title>Welcome to IndiaLives</title>
 </head>
 <%@ include file="header.jspf" %>
+
+<script type="text/css">
+
+
+</script>
 <body>
 <form name="headerFrm" action="/indialives/eventhandler" method="post">
 <table border="0" width="100%">
 	<tr>
-		<td width="25%" style="font-family: calibri;font-size: x-large;">IndiaLives</td>
+		<td width="20%" style="font-size: large;text-indent: 40px">
+		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+	    <div class="contentb">
+		IndiaLives
+		</div>
+		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+		
+		</td>
 		<td>
-		<div style="border-style: ridge;border-width:2px">
-			<table width="90%">
+		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+	    <div class="contentb">
+		<table width="90%">
 			 <tr style="font-family: calibri;font-size:16px;">
 				<td><a href="eventhandler?event=memberHome" style="text-decoration: none ">Home</a></td>
 				<td><a href="#" style="text-decoration: none ">Profile</a></td>
@@ -22,6 +35,7 @@
 			</tr>
 			</table>
 		</div>
+		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
 		</td>
 	</tr>
 	<tr>

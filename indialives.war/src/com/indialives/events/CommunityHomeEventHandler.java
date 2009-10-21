@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -57,6 +58,8 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		request.setAttribute(PROPERTY_LIST,propertyMap);
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyEnumList);
 	
+		HttpSession httpSession=request.getSession();
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		
 		
 	}

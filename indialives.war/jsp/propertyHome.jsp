@@ -23,39 +23,26 @@
 	HashMap propertyMap=(HashMap)request.getAttribute(SetAttributeConstants.PROPERTY_LIST);
 	List propertyEnumList=(List) request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
 
-
+//	String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
 
 %>
 <%@include file="header.jsp" %>
-<form name="propertyHome" action="/indialives/eventhandler" method="post">
+
 
 <table border="0" width="100%" height="76%">
 
-	<tr>
-	
-	<td valign="top" width="20%">
-		<div class="indiaLivesFonts" style="border-style: ridge;border-width: 2px;height: 100%;font-size: 16px">
-		<table border="0" width="100%" height="50%">
-		
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Properties</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Complaints</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Notice Board</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Parking</a></td>
-			</tr>			
-		</table>
-		</div>
+	<tr>	
+	<td width="20%">
+		<%@include file="contentPage.jsp"%>
 	</td>	
-	 <td valign="top" width="65%">	
-	  <div class="indiaLivesFonts" style="border-style: ridge;border-width: 2px;font-size: 16px;width=92%;height: 100%" >
-		<table border="0" width="100%" style="margin-left: 50px">
+	 <td  valign="top"  width="65%" height="100%">	
+	   <fieldset style="height: 98%" >
+	  <legend class="indiaLivesFonts" style="font-size:16px ">Properties</legend>
+	 	<form name="propertyHome" action="/indialives/eventhandler" method="post">
+	 
+	
+		<table border="0" width="90%" height="80%" style="margin-left: 50px">
 		<tr class="indiaLivesFonts" style="font-size:18px;">
 			<td>
 				Properties List,				
@@ -69,9 +56,9 @@
 					List propertyList=(List)propertyMap.get(propertyTypeEnumDO.getId());;	
 						
 				%>
-				<tr>
+				<tr class="indiaLivesFonts">
 				<td>
-				<fieldset>
+				<fieldset style="width: 95%;height: 20%">
 					<legend><%=propertyTypeEnumDO.getName()%></legend>
 						<table>						
 								<%
@@ -99,23 +86,21 @@
 				</tr>				
 		<%}%>
 		</table>
-	</div>
+	
+	<input type="hidden" name="event" value="propertyProfile">
+	<input type="hidden" name="propertyId">
+	<input type="hidden" name="propertyTypeId" >
+	</form>
+	</fieldset>
 	</td>
 	<td valign="top" width="20%" class="indiaLivesFonts">
-		<div style="border-style: ridge;border-width: 2px;height: 100%;width: 100%">
-			<table border="0">
-				<tr>
-					<td>Adv Borad</td>
-				</tr>
-			</table>		
-		</div>	
+		 <fieldset style="height: 98%" >
+	    	<legend>Adv Board</legend>			
+		</fieldset>
 	</td>
 	</tr>
 </table>
 <%@include file="footer.jsp" %>
-<input type="hidden" name="event" value="propertyProfile">
-<input type="hidden" name="propertyId">
-<input type="hidden" name="propertyTypeId" >
-</form>
+
 </body>
 </html>
