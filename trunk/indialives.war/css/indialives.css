@@ -32,4 +32,22 @@ a.propertyLink:active
 	    font-size: 14px;
 	   
 	}
-	
+
+.b1, .b2, .b3, .b4{font-size:1px; overflow:hidden; display:block;}
+.b1 {height:1px; background:#888; margin:0 5px;}
+.b2 {height:1px; background:#ddd; border-right:2px solid #888; border-left:2px solid #888; margin:0 3px;}
+.b3 {height:1px; background:#ddd; border-right:1px solid #888; border-left:1px solid #888; margin:0 2px;}
+.b4 {height:2px; background:#ddd; border-right:1px solid #888; border-left:1px solid #888; margin:0 1px;}
+.contentb {background: #ddd; border-right:1px solid #888; border-left:1px solid #888;}
+.contentb div {margin-left: 5px;}
+
+
+.a1, .a2, .a3, .a4{font-size:1px; overflow:hidden; display:block;}
+.a1 {height:1px; background:#888; margin:0 5px;}
+.a2 {height:1px; background:#ddd; border-right:2px solid #888; border-left:2px solid #888; margin:0 3px;}
+.a3 {height:1px; background:#fff; border-right:1px solid #888; border-left:1px solid #888; margin:0 2px;}
+.a4 {height:2px; background:#fff; border-right:1px solid #888; border-left:1px solid #888; margin:0 1px;}
+.contenta {background: #fff; border-right:1px solid #888; border-left:1px solid #888;}
+.contenta div {margin-left: 5px;}
+
+

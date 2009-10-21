@@ -14,6 +14,8 @@ public class ComplaintDO  implements java.io.Serializable, com.easymvc.persisten
 	private static final long serialVersionUID = 1L;
 
      private Integer id;
+     private Integer propertyContextId;
+     private Integer severityId;
      private FlatDO flatDO;
      private UserDO userDO;
      private ComplaintTypeEnumDO complaintTypeEnumDO;
@@ -22,6 +24,7 @@ public class ComplaintDO  implements java.io.Serializable, com.easymvc.persisten
      private String description;
      private Date availableStartTime;
      private Date availableEndTime;
+     private Integer raisedBy;
 
     public ComplaintDO() {
     }
@@ -108,7 +111,29 @@ public class ComplaintDO  implements java.io.Serializable, com.easymvc.persisten
 		return null;
 	}
 
+	public Integer getPropertyContextId() {
+		return propertyContextId;
+	}
 
+	public void setPropertyContextId(Integer propertyContextId) {
+		this.propertyContextId = propertyContextId;
+	}
+
+	public Integer getSeverityId() {
+		return severityId;
+	}
+
+	public void setSeverityId(Integer severityId) {
+		this.severityId = severityId;
+	}
+
+	public Integer getRaisedBy() {
+		return raisedBy;
+	}
+	public void setRaisedBy(Integer raisedBy) {
+		this.raisedBy = raisedBy;
+	}
+	
 
 
 

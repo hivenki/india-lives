@@ -25,7 +25,7 @@
 <body>
 <%
 	Object object=request.getAttribute(SetAttributeConstants.PROPERTY_OBJ);
-
+//	String gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
 
 %>
@@ -35,54 +35,45 @@
 <table border="0" width="100%" height="76%">
 
 	<tr>
+	<td width="20%">
+		<%@include file="contentPage.jsp" %>
+	</td>
 	
-	<td valign="top" width="20%">
-		<div class="indiaLivesFonts" style="border-style: ridge;border-width: 2px;height: 100%;font-size: 16px">
-		<table border="0" width="100%" height="50%">
-		
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Properties</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Complaints</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Notice Board</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Parking</a></td>
-			</tr>			
-		</table>
-		</div>
-	</td>	
-	 <td valign="top" width="65%">	
-	  <div class="indiaLivesFonts" style="border-style: ridge;border-width: 2px;font-size: 16px;width=92%;height: 100%" >
-		<table border="0" width="100%" style="margin-left: 50px">
-		
+	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
+	  <fieldset style="height: 98%;">
+	   <legend style="font-size:16px;">Property  Profile</legend>
+	   	  <fieldset style="margin-top: 50px;" >	
+	    	<table border="0" width="50%" align="center" style="margin-left: 50px;ma">
+			
 			<%if(object instanceof FlatDO){
 				
 				FlatVO flatVO=(FlatVO)object;
 				
 				
 		%>
-		<tr class="indiaLivesFonts" style="font-size:18px;">
+		<tr class="indiaLivesFonts">
 			<td>Block Name </td>
+			<td>:</td>
 			<td><%=flatVO.getBlockName()%></td>
 		</tr>
 		<tr>
 			<td>Floor</td>
+			<td>:</td>
 			<td><%=flatVO.getFloor()%></td>
 		</tr>
 		<tr>
 			<td>Flat No</td>
+			<td>:</td>
 			<td><%=flatVO.getFlatNo()%></td>
 		</tr>
 		<tr>
 			<td>Flat Type Name</td>
+			<td>:</td>
 			<td><%=flatVO.getFlatTypeName()%></td>
 		</tr>
 		<tr>
 			<td>No of Bedroom</td>
+			<td>:</td>
 			<td><%=flatVO.getNoOfBedRooms()%></td>
 		</tr>
 		
@@ -91,22 +82,27 @@
 	%>			
 			<tr class="indiaLivesFonts" style="font-size:18px;">
 			<td>Plot No </td>
+			<td>:</td>
 			<td><%=villaDO.getPlotNo()%></td>
 		</tr>
 		<tr>
 			<td>No of Floor</td>
+			<td>:</td>
 			<td><%=villaDO.getNoOfFloors()%></td>
 		</tr>
 		<tr>
 			<td>Villa Name</td>
+			<td>:</td>
 			<td><%=villaDO.getName()%></td>
 		</tr>
 		<tr>
 			<td>No of Bedroom</td>
+			<td>:</td>
 			<td><%=villaDO.getNoOfBedRooms()%></td>
 		</tr>
 		<tr>
 			<td>No of parkings</td>
+			<td>:</td>
 			<td><%=villaDO.getNoOfParkings()%></td>
 		</tr>
 	
@@ -117,10 +113,12 @@
 	
 		<tr>
 			<td>Parking Name</td>
+			<td>:</td>
 			<td><%=parkingSlotVO.getParkingSlotName()%></td>
 		</tr>
 		<tr>
 			<td>Parking Location</td>
+			<td>:</td>
 			<td><%=parkingSlotVO.getLocation()%></td>
 		</tr>
 		
@@ -130,18 +128,13 @@
 				
 				
 		</table>
-	</div>
+		</fieldset>	
+	</fieldset>
 	</td>
 	<td valign="top" width="20%" class="indiaLivesFonts">
-		<div style="border-style: ridge;border-width: 2px;height: 100%;width: 100%">
-			<table border="0">
-				<tr>
-					<td>Adv Board</td>
-				</tr>
-			</table>
-		
-		</div>
-	
+		<fieldset style="height: 98%" >
+	    	<legend>Adv Board</legend>			
+		</fieldset>
 	</td>
 	</tr>
 </table>

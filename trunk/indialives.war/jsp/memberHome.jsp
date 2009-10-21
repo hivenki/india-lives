@@ -14,17 +14,29 @@
 <body>
 <%
 	List communityList=(List)request.getAttribute(SetAttributeConstants.COMMUNITY_LIST);
-
-
-
-
 %>
 <%@include file="header.jsp" %>
 <form name="memberHome" action="/indialives/eventhandler" method="post">
 <table border="0" width="100%" height="76%">
 	<tr>
+	<td valign="top" width="20%" class="indiaLivesFonts">
+	<!-- 	<b class="a1"></b><b class="a2"></b><b class="a3"></b><b class="a4"></b>
+	    <div class="contenta" style="height: 96%"> -->
+	    <fieldset style="height: 98%" >
+	    <legend>Adv Board</legend>
+			
+		</fieldset>
+			
+	<!--	</div>
+	 	<b class="a4"></b><b class="a3"></b><b class="a2"></b><b class="a1"></b>
+	 -->
+		</td>
+	
+	
 	 <td colspan="2" valign="top">	
-		<table border="0" width="50%" style="margin-left: 240px" >
+	 <fieldset style="height: 98%" >
+	  <legend class="indiaLivesFonts" style="font-size:16px ">Communities</legend>
+		<table border="0" width="65%" style="margin-left: 120px;margin-top: 80px" >
 		<tr class="indiaLivesFonts" style="font-size:18px;">
 			<td>
 				You are part of the following gated communities,				
@@ -39,17 +51,18 @@
 				<%		
 					CommunityDO communityDO=(CommunityDO)communityList.get(i);
 				%>
-				<td><input type="radio" name="gatedCommunityId" value="<%=communityDO.getId()%>"><%=communityDO.getName()%></td>
+				<td><input type="radio" checked="checked" name="gatedCommunityId" value="<%=communityDO.getId()%>"><%=communityDO.getName()%></td>
 				</tr>
 				<% }}%>	
 			
 		
 		<tr class="indiaLivesFonts" style="font-size:16px;">
-			<td>
-				<input type="button" name="getIn" value="Get In" onclick="submitCommunity()">
+			<td> 
+				<input style="margin-left: 310px;" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
 			</td>
 		</tr>
 	</table>
+	</fieldset>
 	</td>	
 	</tr>
 	
