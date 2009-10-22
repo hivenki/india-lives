@@ -14,9 +14,9 @@
 <body 
 	onload="errorMsg('<%=request.getParameter(SetAttributeConstants.AUTH_ERROR_MSG)%>')">
 <form name="loginFrm" action="/indialives/eventhandler" method="post">
-<table border="1" height="92%">
+<table border="1" height="92%" width="100%">
 <tr>
-<td width="75%" height="100%"  valign="top" >
+<td width="85%" height="100%"  valign="top" >
 	<table border="0" width="100%" height="100%">
 	<tr class="indiaLivesFonts" style="font-size:xx-large;">
 		<td >Indialives</td>
@@ -84,12 +84,12 @@
 	</tr>
 	<tr>
 		<td>Email/Mobile</td>
-		<td><input type="text" name="username" value="test@test.com"></td>
+		<td><input type="text" name="username" value="gopinath.dhanapal@gmail.com"></td>
 
 	</tr>
 	<tr>
 		<td>Password</td>
-		<td><input type="password" name="password" value="test"></td>
+		<td><input type="password" name="password" value="il@123"></td>
 	</tr>
 	<tr>
 		<td>Remember</td>

@@ -12,6 +12,5 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="var" path="JBOSS_SERVER/lib/javax.servlet.jar"/>
 	<classpathentry kind="var" path="JBOSS_SERVER/lib/javax.servlet.jsp.jar"/>
-	<classpathentry kind="var" path="JBOSS_SERVER/lib/mysql-connector-java-5.1.8-bin.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

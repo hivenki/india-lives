@@ -1,4 +1,4 @@
--- MySQL Administrator dump 1.4
+﻿-- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
 -- Server version	5.0.18-nt
@@ -744,9 +744,9 @@ CREATE TABLE `users` (
 --
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`ID`,`EMAIL_ID`,`PASSWORD`,`MOBILE_NO`,`FIRST_NAME`,`LAST_NAME`) VALUES 
- (1,'test@test.com','test','9916958269','test','test'),
- (2,'t@t.com','t','9877766688','first','last');
+INSERT INTO `users` (`ID`,`EMAIL_ID`,`PASSWORD`,`MOBILE_NO`,`FIRST_NAME`,`LAST_NAME`) VALUES
+ (1,'gopinath.dhanapal@gmail.com','il@123','9916958269','Gopinath','Dhanapal'),
+ (2,'vijayan.srinivasan@gmail.com','vijayan$786','9986508767','Vijayan','Srinivasan');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
