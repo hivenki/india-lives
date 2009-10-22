@@ -51,7 +51,7 @@
 				<%		
 					CommunityDO communityDO=(CommunityDO)communityList.get(i);
 				%>
-				<td><input type="radio" checked="checked" name="gatedCommunityId" value="<%=communityDO.getId()%>"><%=communityDO.getName()%></td>
+				<td><input type="radio"  name="gatedCommunityId" value="<%=communityDO.getId()%>"><%=communityDO.getName()%></td>
 				</tr>
 				<% }}%>	
 			
