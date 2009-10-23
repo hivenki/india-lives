@@ -30,7 +30,7 @@
 
 %>
 <%@include file="header.jsp" %>
-<form name="propertyHome" action="/indialives/eventhandler" method="post">
+
 
 <table border="0" width="100%" height="76%">
 
@@ -43,6 +43,7 @@
 	  <fieldset style="height: 98%;">
 	   <legend style="font-size:16px;">Property  Profile</legend>
 	   	  <fieldset style="margin-top: 50px;" >	
+	   	  <form name="propertyHome" action="/indialives/eventhandler" method="post">
 	    	<table border="0" width="50%" align="center" style="margin-left: 50px;ma">
 			
 			<%if(object instanceof FlatDO){
@@ -128,6 +129,7 @@
 				
 				
 		</table>
+		</form>
 		</fieldset>	
 	</fieldset>
 	</td>
