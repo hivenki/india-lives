@@ -27,10 +27,11 @@ public class ComplaintDOFactory implements SQLConstants {
 		persistenceManager.create(ADD_COMPLAINTS, paramList);		
 	}
 
-	public static List<RowObject> getComplaintsList(int userId) {
+	public static List<RowObject> getComplaintsList(int userId, String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();		
 		paramList.add(userId);
+		paramList.add(communityId);
 		List<RowObject> list=persistenceManager.findCollection(ComplaintsVO.class,GET_COMPLIANTS_LIST, paramList);
 		return list;
 	}

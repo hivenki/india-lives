@@ -20,11 +20,12 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		return propertyList;
 	}
 
-	public static List<RowObject> getPropertiesNameList(int userId, Integer propertyType) {
+	public static List<RowObject> getPropertiesNameList(int userId, Integer propertyType, String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(userId);
 		paramList.add(propertyType);
+		paramList.add(communityId);
 		List<RowObject> propertyNameList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES__NAME_LIST, paramList);
 		return propertyNameList;
 		
