@@ -36,7 +36,16 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String communityId=request.getParameter("gatedCommunityId");		
+		
+		HttpSession httpSession=request.getSession();
+		String communityId=request.getParameter("gatedCommunityId");
+	
+		if(communityId==null){
+			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		}
+	
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
+		
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
 		propertyList=PropertyOwnerDOFactory.getPropertiesList(communityId,userId);
@@ -58,9 +67,6 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		request.setAttribute(PROPERTY_LIST,propertyMap);
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyEnumList);
 	
-		HttpSession httpSession=request.getSession();
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-		
 		
 	}
 
