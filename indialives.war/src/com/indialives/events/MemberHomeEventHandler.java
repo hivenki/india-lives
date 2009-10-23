@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -22,7 +23,7 @@ public class MemberHomeEventHandler implements EventHandler,PageNameConstants,Se
 	private List<RowObject> gatedCommunityList=null;
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		RequestDispatcher dispatcher=request.getRequestDispatcher(MEMBER_HOME);
 		dispatcher.forward(request, response);
 	}
@@ -34,6 +35,8 @@ public class MemberHomeEventHandler implements EventHandler,PageNameConstants,Se
 		int userId=session.getUser().getId();
 		gatedCommunityList=UserDOFactory.getCommunitiesBasedOnId(userId);
 		
+		HttpSession httpSession=request.getSession();
+		httpSession.setAttribute(COMMUNITY_ID,null);
 		request.setAttribute(COMMUNITY_LIST,gatedCommunityList);
 		
 	}

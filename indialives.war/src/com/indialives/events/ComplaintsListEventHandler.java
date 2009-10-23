@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -32,7 +33,16 @@ public class ComplaintsListEventHandler implements  EventHandler,SetAttributeCon
 		
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
-		complaintsList=ComplaintDOFactory.getComplaintsList(userId);
+		HttpSession httpSession=request.getSession();
+		String communityId=request.getParameter("gatedCommunityId");
+
+		if(communityId==null){
+			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		}
+	
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
+		
+		complaintsList=ComplaintDOFactory.getComplaintsList(userId,communityId);
 		request.setAttribute(GET_COMPLAINTS_LIST,complaintsList);
 		
 	}

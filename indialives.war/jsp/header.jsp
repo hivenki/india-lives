@@ -6,10 +6,6 @@
 </head>
 <%@ include file="header.jspf" %>
 
-<script type="text/css">
-
-
-</script>
 <body>
 <form name="headerFrm" action="/indialives/eventhandler" method="post">
 <table border="0" width="100%">
@@ -27,7 +23,7 @@
 	    <div class="contentb">
 		<table width="90%">
 			 <tr style="font-family: calibri;font-size:16px;">
-				<td><a href="eventhandler?event=memberHome" style="text-decoration: none ">Home</a></td>
+				<td><a href="#" onclick="submitHome()" style="text-decoration: none ">Home</a></td>
 				<td><a href="#" style="text-decoration: none ">Profile</a></td>
 				
 				<td align="right"><%=SessionFactory.getSession(request).getUser().getFirstName()+" "+ SessionFactory.getSession(request).getUser().getLastName()%></td>				
@@ -42,7 +38,7 @@
 		<td colspan="2"></br></td>
 	</tr>
 </table>
-<input type="hidden" name="event" value="signOut">
+<input type="hidden" name="event">
 </form>
 </body>
 </html>

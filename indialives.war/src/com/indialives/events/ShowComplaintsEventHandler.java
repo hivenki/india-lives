@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -47,8 +48,17 @@ public class ShowComplaintsEventHandler implements EventHandler,SetAttributeCons
 		else{
 			propertyType=Integer.parseInt(propertyTypeId);
 		}
+		HttpSession httpSession=request.getSession();
+		String communityId=request.getParameter("gatedCommunityId");
+
+		if(communityId==null){
+			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		}
+	
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		
-		propertyNameList=PropertyOwnerDOFactory.getPropertiesNameList(userId,propertyType);
+		
+		propertyNameList=PropertyOwnerDOFactory.getPropertiesNameList(userId,propertyType,communityId);
 		
 		compliantTypeEnumList=ComplaintTypeEnumDOFactory.getComplaintTypes();
 		severityTypeList=SeverityEnumDOFactory.getSeverityTypeList();

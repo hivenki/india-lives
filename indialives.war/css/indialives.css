@@ -51,3 +51,24 @@ a.propertyLink:active
 .contenta div {margin-left: 5px;}
 
 
+tr.even {
+	background-color: #ddd;
+}
+
+tr.odd {
+background-color: #fff;
+}
+
+.T1{
+	font-family: "Calibri";
+	font-size: 14px;
+	font-weight: normal;
+    background-color:none;	
+}
+.T2{
+	font-family: "Calibri";
+	font-size: 14px;
+	font-weight: normal;
+    background-color:none;	
+}
+
