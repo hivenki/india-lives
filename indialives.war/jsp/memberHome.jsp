@@ -5,39 +5,29 @@
 <%@page import="com.indialives.formbean.LoginUser"%>
 <%@page import="java.util.List"%>
 <%@page import="com.indialives.dataobjects.CommunityDO"%>
-<%@page import="com.easymvc.session.SessionFactory"%><html>
+<%@page import="com.easymvc.session.SessionFactory"%>
+<%@page import="com.indialives.voobjects.CommunityVO"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
-</head>
+<%@ include file="header.jspf" %>
 <%@include file="memberHome.jspf"%>
 <%@include file="indialives_css.jspf"%>
+</head>
 <body>
 <%
 	List communityList=(List)request.getAttribute(SetAttributeConstants.COMMUNITY_LIST);
 %>
 <%@include file="header.jsp" %>
-<form name="memberHome" action="/indialives/eventhandler" method="post">
-<table border="0" width="100%" height="76%">
+
+<table border="0" width="100%" height="84%" style="margin-top: 5px" >
 	<tr>
-	<td valign="top" width="20%" class="indiaLivesFonts">
-	<!-- 	<b class="a1"></b><b class="a2"></b><b class="a3"></b><b class="a4"></b>
-	    <div class="contenta" style="height: 96%"> -->
-	    <fieldset style="height: 98%" >
-	    <legend>Adv Board</legend>
-			
-		</fieldset>
-			
-	<!--	</div>
-	 	<b class="a4"></b><b class="a3"></b><b class="a2"></b><b class="a1"></b>
-	 -->
-		</td>
-	
-	
-	 <td colspan="2" valign="top">	
-	 <fieldset style="height: 98%" >
-	  <legend class="indiaLivesFonts" style="font-size:16px ">Communities</legend>
-		<table border="0" width="65%" style="margin-left: 120px;margin-top: 80px" >
-		<tr class="indiaLivesFonts" style="font-size:18px;">
+	 <td colspan="2" >	
+	 
+	 <fieldset style="height:50 %" >
+	  <legend class="indiaLivesFonts" >Communities</legend>
+	  	<form name="memberHome" action="/indialives/eventhandler" method="post">
+		<table border="0" width="65%" style="margin-left: 170px;margin-top: 80px" >
+		<tr class="indiaLivesFonts" style="font-size:16px;">
 			<td>
 				You are part of the following gated communities,				
 			</td>
@@ -47,29 +37,54 @@
 				if(communityList!=null){
 					for(int i=0;i<communityList.size();i++){
 				%>
-				<tr class="indiaLivesFonts" style="font-size:16px;">
+				<tr class="indiaLivesFonts">
 				<%		
-					CommunityDO communityDO=(CommunityDO)communityList.get(i);
+					CommunityVO communityVO=(CommunityVO)communityList.get(i);
 				%>
-				<td><input type="radio"  name="gatedCommunityId" value="<%=communityDO.getId()%>"><%=communityDO.getName()%></td>
+				<td class="indiaLivesFonts" ><input type="radio"  name="gatedCommunityId" value="<%=communityVO.getId()%>" ><%=communityVO.getName()%></td>
 				</tr>
 				<% }}%>	
 			
 		
-		<tr class="indiaLivesFonts" style="font-size:16px;">
+		<tr class="indiaLivesFonts">
 			<td> 
-				<input style="margin-left: 310px;" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
+				<input style="margin-left: 310px;font-size:14px" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
 			</td>
 		</tr>
 	</table>
+	<input type="hidden" name="event" value="communityHome">
+	</form>
 	</fieldset>
+	<fieldset style="height: 49%;margin-top: 3px"  >	   		
+			<table align="center" class="indiaLivesFonts" border="0" width="60%" style="margin-left: 20px;margin-top: 80px;"  >
+				<tr>
+					<td align="center">Search for a Gated Community </td>
+					<td><input type="text" name="searchCommnity" > </td>
+					<td style="font-size:14px"><input type="button" name="search" value="Go"></td>
+				</tr>
+			</table>	
+	</fieldset>
+	
 	</td>	
+	
+	<td valign="top" width="20%" class="indiaLivesFonts">
+	<!-- 	<b class="a1"></b><b class="a2"></b><b class="a3"></b><b class="a4"></b>
+	    <div class="contenta" style="height: 96%"> -->
+	    <fieldset style="height: 100%" >
+	    <legend>Adv Board</legend>
+			
+		</fieldset>
+			
+	<!--	</div>
+	 	<b class="a4"></b><b class="a3"></b><b class="a2"></b><b class="a1"></b>
+	 -->
+		</td>
 	</tr>
 	
 </table>
 
 <%@include file="footer.jsp" %>
-<input type="hidden" name="event" value="communityHome">
+
 </form>
 </body>
 </html>

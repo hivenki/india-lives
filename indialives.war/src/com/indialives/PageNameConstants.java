@@ -7,4 +7,8 @@ public interface PageNameConstants {
 	String PROPERTY_INFO="jsp/propertyProfile.jsp";
 	String SHOW_COMPLAINTS="jsp/showComplaints.jsp";
 	String COMPLAINTS_LIST="jsp/complaintsList.jsp";
+	String COMMUNITY_ADMIN="jsp/communityAdmin.jsp";
+	String ADD_FLATS="jsp/addFlat.jsp";
+	String ADD_VILLAS="jsp/addVilla.jsp";
+	String ADD_BLOCKS="jsp/addBlock.jsp";
 }

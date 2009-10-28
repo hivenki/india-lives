@@ -13,9 +13,10 @@
 <%@page import="com.indialives.dataobjects.SeverityEnumDO"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
-</head>
-<%@include file="showComplaints.jspf"%>
 <%@include file="indialives_css.jspf"%>
+<%@include file="showComplaints.jspf"%>
+<%@ include file="header.jspf" %>
+</head>
 <body>
 <%
 
@@ -42,132 +43,133 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 <%@include file="header.jsp" %>
 
 
-<table border="0" width="100%" height="76%">
+<table border="0" width="100%" height="84%"  style="margin-top: 5px">
 
 	<tr>
-	<td width="20%">
+	<td width="15%">
 		<%@include file="contentPage.jsp"%>
 	</td>	
-	<td  valign="top"  width="65%" height="100%">		
-	 <fieldset style="height: 98%" >
+	<td  valign="top"  height="100%">		
+	 <fieldset style="height: 98%;" >
 	  <legend class="indiaLivesFonts" style="font-size:16px ">Create Complaint</legend>
 	  <form name="showComplaintFrm" action="/indialives/eventhandler" method="post">
 		<table border="0" width="100%" height="76%">
 				
-		<tr class="indiaLivesFonts" style="font-size:14px">
-			
-			<td width="50%" align="right">Property Type			
-			<select name="propertyTypeId">
-				<%
-					if(propertyEnumlist!=null){
-						for(int i=0;i<propertyEnumlist.size();i++){
-							PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertyEnumlist.get(i);
-							%>
-					
-					<%if(propertyType==propertyTypeEnumDO.getId().intValue()){ %>
-					<option value="<%=propertyTypeEnumDO.getId()%>" selected="selected"><%=propertyTypeEnumDO.getName()%></option>
-					<%}else{%>
-					<option value="<%=propertyTypeEnumDO.getId()%>" ><%=propertyTypeEnumDO.getName()%></option>
-					<%}%>
-									
-		<%}}%>	
-		</select>	
-		</td>	
-			
-		<td><input type="button" name="create" value="Generate" onclick="createComplaint()"></td>
-	
-		</tr>
-		</fieldset>	
-		<tr>
-		<td colspan="2"></br></td>
-		</tr>
-		
-		<tr>
-		
-		 <td colspan="2" valign="top" align="center">	
-		 <fieldset style="width: 80%">
-			<table style="font-size:14px;" class="indiaLivesFonts" border="0" width="60%" style="margin-left:40px" >
-			
-			
-			<tr>
-				<td>Property Name</td>
-				<td>
-				<select name="propertyId">
-				<option>--Select--</option>
+			<tr class="indiaLivesFonts" style="font-size:14px">
 				
+				<td width="50%" align="right">Property Type			
+				<select name="propertyTypeId" style="width: 150px">
 					<%
-						if(propertyNameList!=null){
-							for(int i=0;i<propertyNameList.size();i++){
-								PropertiesVO propertiesVO=(PropertiesVO)propertyNameList.get(i);
-						%>
-						<option value="<%=propertiesVO.getId()%>"><%=propertiesVO.getPropertyName()%></option>
-								
-					<%}}%>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Complaint Type</td>
-				<td>
-				<select name="typeId">
+						if(propertyEnumlist!=null){
+							for(int i=0;i<propertyEnumlist.size();i++){
+								PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertyEnumlist.get(i);
+								%>
+						
+						<%if(propertyType==propertyTypeEnumDO.getId().intValue()){ %>
+						<option value="<%=propertyTypeEnumDO.getId()%>" selected="selected"><%=propertyTypeEnumDO.getName()%></option>
+						<%}else{%>
+						<option value="<%=propertyTypeEnumDO.getId()%>" ><%=propertyTypeEnumDO.getName()%></option>
+						<%}%>
+										
+						<%}}%>	
+				</select>	
+				</td>	
+				
+				<td><input type="button" name="create" value="Generate" onclick="createComplaint()"></td>
 		
-				<option>--Select--</option>
-				
-				<%
-					if(complaintTypeEnumlist!=null){
-						for(int i=0;i<complaintTypeEnumlist.size();i++){
-							ComplaintTypeEnumDO complaintTypeEnumDO=(ComplaintTypeEnumDO)complaintTypeEnumlist.get(i);
-					%>
-					<option value="<%=complaintTypeEnumDO.getId()%>"><%=complaintTypeEnumDO.getName()%></option>
-							
-				<%}}%>
-				</select>
-				</td>
-				
 			</tr>
+		
+			<tr>
+			<td colspan="2"></br></td>
+			</tr>
+		
+			<tr>
 			
-			<tr>
-				<td>Description</td>
-				<td><input type="text" name="description"></td>
-			</tr>
-			<tr>
-				<td>Severity</td>
-				<td>
-				<select name="severityId">
-				<option>--Select--</option>
+			 <td colspan="2" valign="top" align="center">	
+			 <fieldset style="width: 98%;">
+				<table style="font-size:14px;" class="indiaLivesFonts" border="0" width="60%" style="margin-left:40px" >
+				 <tr>
+					<td>Property Name</td>
+					<td>
+					<select name="propertyId" style="width: 150px">
+					<option>--Select--</option>
+					
+						<%
+							if(propertyNameList!=null){
+								for(int i=0;i<propertyNameList.size();i++){
+									PropertiesVO propertiesVO=(PropertiesVO)propertyNameList.get(i);
+							%>
+							<option value="<%=propertiesVO.getId()%>"><%=propertiesVO.getPropertyName()%></option>
+										
+							<%}}%>
+						</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Complaint Type</td>
+						<td>
+						<select name="typeId" style="width: 150px">
 				
-				<%
-					if(severityTypeList!=null){
-						for(int i=0;i<severityTypeList.size();i++){
-							SeverityEnumDO severityEnumDO=(SeverityEnumDO)severityTypeList.get(i);
-					%>
-					<option value="<%=severityEnumDO.getId()%>"><%=severityEnumDO.getName()%></option>
-							
-				<%}}%>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Available Start Time</td>
-				<td><input type="text" name="availableStartTime"></td>
-			</tr>
-			<tr>
-				<td>Available End Time</td>
-				<td><input type="text" name="availableEndTime"></td>
-			</tr>
-							
-			<tr>
-				<td colspan="2">
-					<input type="button" name="create" value="Create" onclick="addComplaint()">
-				</td>
-			</tr>
+						<option>--Select--</option>
+						
+						<%
+							if(complaintTypeEnumlist!=null){
+								for(int i=0;i<complaintTypeEnumlist.size();i++){
+									ComplaintTypeEnumDO complaintTypeEnumDO=(ComplaintTypeEnumDO)complaintTypeEnumlist.get(i);
+							%>
+							<option value="<%=complaintTypeEnumDO.getId()%>"><%=complaintTypeEnumDO.getName()%></option>
+									
+						<%}}%>
+						</select>
+						</td>
+						
+					</tr>
+				
+					<tr>
+						<td>Description</td>
+						<td><textarea rows="3" cols="16" name="description"></textarea>
+						</td>
+						
+					</tr>
+					<tr>
+						<td>Severity</td>
+						<td>
+						<select name="severityId" style="width: 150px">
+						<option>--Select--</option>
+						
+						<%
+							if(severityTypeList!=null){
+								for(int i=0;i<severityTypeList.size();i++){
+									SeverityEnumDO severityEnumDO=(SeverityEnumDO)severityTypeList.get(i);
+							%>
+							<option value="<%=severityEnumDO.getId()%>"><%=severityEnumDO.getName()%></option>
+									
+						<%}}%>
+						</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Available Start Time</td>
+						<td><input type="text" size="21" name="availableStartTime">(DD-MM-YYYY)</td>
+					</tr>
+					<tr>
+						<td>Available End Time</td>
+						<td><input type="text" size="21" name="availableEndTime">(DD-MM-YYYY)</td>
+					</tr>
+									
+					<tr>
+						<td colspan="2">
+							<input type="button" name="create" value="Create" onclick="addComplaint()">
+						</td>
+					</tr>
 		
-		</table>
-		</fieldset>
+				</table>
+			
+				</fieldset>
 	
-		</td>	
+				</td>	
 		
-		</tr>
+			</tr>
 		
 		
 	</table>
@@ -177,8 +179,8 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 	</form>
 	</fieldset>
 	</td>
-	<td valign="top" width="20%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%" >
+	<td valign="top" width="15%" class="indiaLivesFonts">
+		 <fieldset style="height: 98%;" >
 	    	<legend>Adv Board</legend>			
 		</fieldset>
 	</td>
