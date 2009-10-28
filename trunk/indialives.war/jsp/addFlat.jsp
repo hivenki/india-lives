@@ -47,14 +47,13 @@
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 98%;">
 	   <legend style="font-size:16px;">Create Flat</legend>
-	   	  <div style="margin-top: 100px;width:90%;margin-left:100px;border-style:ridge;border-width:2px;" >	
 	   	  <form name="addFlatFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;">
+	    	<table border="0" width="53%" align="center" style="margin-left: 50px;margin-top: 120px">
 					
 		<tr>
 			<td>Block Name</td>
 			<td>
-			<select name="blockId" style="width: 150px">
+			<select name="blockId" style="width: 235px" >
 			<option>--Select--</option>
 			<%if(blockList!=null){
 			for(int i=0;i<blockList.size();i++){
@@ -67,16 +66,16 @@
 		</tr>
 		<tr>
 			<td>Floor </td>
-			<td><input type="text" name="floor"></td>
+			<td><input type="text" name="floor" size="35"></td>
 		</tr>
 		<tr>
 			<td>Flat No </td>
-			<td><input type="text" name="flatNo"></td>
+			<td><input type="text" name="flatNo" size="35"></td>
 		</tr>		
 		<tr>	
 			<td>Flat Type</td>
 			<td>
-			<select name="flatTypeId" style="width: 150px">
+			<select name="flatTypeId" style="width: 235px" >
 			<option>--Select--</option>
 			<%if(list!=null){
 			for(int i=0;i<list.size();i++){
@@ -89,18 +88,17 @@
 		</tr>	
 		<tr>
 			<td>No of Bedrooms </td>
-			<td><input type="text" name="noOfBedRooms" ></td>
+			<td><input type="text" name="noOfBedRooms" size="35"></td>
 		</tr>
 		<tr>
-		<td>
-			<input type="button" name="add" value="Add Flat" onclick="addFlat()">
+		<td colspan="2"  align="right">
+			<input type="button" name="add" value="Add" onclick="addFlat()">
 		</td>		
 		</tr>
 		</table>
 		<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Flats.class.getName()%>">
 		<input type="hidden" name="event" value="addFlat">
 		</form>
-		</div>	
 	</fieldset>	
 	</td>
 	<td valign="top" width="15%" class="indiaLivesFonts">

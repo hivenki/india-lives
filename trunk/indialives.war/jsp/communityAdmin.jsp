@@ -3,7 +3,10 @@
 <%@page import="com.indialives.voobjects.FlatVO"%>
 <%@page import="com.indialives.dataobjects.VillaDO"%>
 <%@page import="com.indialives.dataobjects.BlockDO"%>	
-<html>			
+
+<%@page import="com.indialives.dataobjects.FlatTypeEnumDO"%>
+<%@page import="com.indialives.dataobjects.ParkingDO"%>
+<%@page import="com.indialives.voobjects.ParkingSlotVO"%><html>			
 <head>
 <title>Welcome to IndiaLives</title>
 <%@include file="complaintsList.jspf"%>
@@ -20,6 +23,10 @@
 	List flatsList=(List)request.getAttribute(SetAttributeConstants.FLATS_LIST);
 	List villasList=(List)request.getAttribute(SetAttributeConstants.VILLA_LIST);
 	List blockList=(List)request.getAttribute(SetAttributeConstants.BLOCK_LIST);
+
+	List flatTypeList=(List)request.getAttribute(SetAttributeConstants.FLAT_TYPE_LIST);
+	List parkingList=(List)request.getAttribute(SetAttributeConstants.PARKING_LIST);
+	List parkingSlotList=(List)request.getAttribute(SetAttributeConstants.PARKING_SLOT_LIST);
 
 %>
 <%@include file="header.jsp" %>
@@ -91,6 +98,61 @@
 		    
 		  </div>
 			
+			<div class="tabbertab" title="Flat Type" style="height: 418px">
+		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
+		    <legend>Flat Type</legend>
+		    <table border="0" width="100%">
+		    	<tr>
+				<td align="right"><input type="button" name="block" value="Add" onclick="addFlatType()"></td>
+			</tr>
+		    </table>
+		   <table width="100%" border="1" cellpadding="0" cellspacing="0" >
+		   
+			 <tr class="indiaLivesFonts">
+				<th>S.No</th>
+				<th>Flat Type Name</th>
+				<th>Description</th>				
+			</tr>
+			<%
+			if(flatTypeList!=null){
+				
+				int size=0;
+				int rowSize=12;
+				   if(flatTypeList.size()< rowSize){
+					   size=rowSize;
+				   }
+				   else{
+						size=flatTypeList.size();   
+				   }
+				
+			for(int j=0;j<size;j++){
+					 if(j%2==0){%>
+						<tr class="T1" style="height:  20px;color: black;" style="text-indent: 4px">
+						<%}else{%>
+						<tr class="T2" style="height:  20px;color: black;" style="text-indent: 4px">
+				<%}%>	
+		    <%if(j<flatTypeList.size()){
+		    //	 for(int i=0;i<blockList.size();i++){
+		    	 FlatTypeEnumDO flatTypeEnumDO=(FlatTypeEnumDO)flatTypeList.get(j); %>
+		    
+				<td><%=j+1%></td>
+				<td><%=flatTypeEnumDO.getName()%></td>
+				<td><%=flatTypeEnumDO.getDescription() %></td>				
+				    			
+		    <%}else{%>		    
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>					
+				<%} %>
+				</tr>
+				<%}} %>
+		    </table>
+		    
+		     </fieldset>
+		         
+		    
+		  </div>
+				
 		  <div class="tabbertab" title="Flats" id="flatTab" style="height: 418px">
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Flats</legend>
@@ -211,6 +273,109 @@
 		    </fieldset>
 		    
 		  </div>
+		  
+		   <div class="tabbertab" title="Parking" id="villaTab" style="height: 418px" >
+		    <fieldset style="height: 100%" class="indiaLivesFonts" >
+		    <legend>Parking</legend>
+		   <table border="0" width="100%"> 
+		    <tr>
+				<td colspan="6" align="right"><input type="button" name="parking" value="Add" onclick="addParking()"></td>
+			</tr>
+			</table>
+		    <table width="100%" border="1" cellpadding="0" cellspacing="0" >
+		    <tr class="indiaLivesFonts">
+				<th>S.No</th>
+				<th>Name</th>
+				<th>Description</th>				
+			</tr>	
+		    <%	if(parkingList!=null){
+		    	int size=0;
+				int rowSize=12;
+				   if(parkingList.size()< rowSize){
+					   size=rowSize;
+				   }
+				   else{
+						size=parkingList.size();   
+				   }
+				
+		    	
+		    		for(int i=0;i<size;i++){	    			
+		    			if(i%2==0){%>
+						<tr class="T1" style="height:  20px;color: black;" style="text-indent: 4px">
+						<%}else{%>
+						<tr class="T2" style="height:  20px;color: black;" style="text-indent: 4px">
+				<%}%>	
+		    	 <%if(i<parkingList.size()){		
+		    			ParkingDO parkingDO=(ParkingDO)parkingList.get(i); %>
+		    <tr style="text-indent: 4px">
+				<td><%=i+1%></td>
+				<td><%=parkingDO.getName()%></td>
+				<td><%=parkingDO.getDescription()%></td>
+				<%}else{%>		    
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>								
+					<%}%>
+					</tr>
+					<%}} %>   
+			    </table>
+			    
+		    </fieldset>
+		    
+		  </div>
+		  
+		  
+		   <div class="tabbertab" title="Parking Slot" id="villaTab" style="height: 418px" >
+		    <fieldset style="height: 100%" class="indiaLivesFonts" >
+		    <legend>Parking Slot</legend>
+		   <table border="0" width="100%"> 
+		    <tr>
+				<td colspan="6" align="right"><input type="button" name="parkingSlot" value="Add" onclick="addParkingSlot()"></td>
+			</tr>
+			</table>
+		    <table width="100%" border="1" cellpadding="0" cellspacing="0" >
+		    <tr class="indiaLivesFonts">
+				<th>S.No</th>
+				<th>Name</th>
+				<th>Description</th>				
+			</tr>	
+		    <%	if(parkingSlotList!=null){
+		    	int size=0;
+				int rowSize=12;
+				   if(parkingSlotList.size()< rowSize){
+					   size=rowSize;
+				   }
+				   else{
+						size=parkingSlotList.size();   
+				   }
+				
+		    	
+		    		for(int i=0;i<size;i++){	    			
+		    			if(i%2==0){%>
+						<tr class="T1" style="height:  20px;color: black;" style="text-indent: 4px">
+						<%}else{%>
+						<tr class="T2" style="height:  20px;color: black;" style="text-indent: 4px">
+				<%}%>	
+		    	 <%if(i<parkingSlotList.size()){		
+		    			ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotList.get(i); %>
+		    <tr style="text-indent: 4px">
+				<td><%=i+1%></td>
+				<td><%=parkingSlotVO.getParkingSlotName()%></td>
+				<td><%=parkingSlotVO.getLocation()%></td>
+				<%}else{%>		    
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>								
+					<%}%>
+					</tr>
+					<%}} %>   
+			    </table>
+			    
+		    </fieldset>
+		    
+		  </div>
+		  
+		  
 		
 	</div>
 	<form name="communityAdmin" action="/indialives/eventhandler" method="post">

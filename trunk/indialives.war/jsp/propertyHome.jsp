@@ -79,10 +79,11 @@
 								<td><a href="#" class="propertyLink" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
 								
 								</tr>
-							
-							</table>	
+							<%}%>
+							</table>
+								
 				</fieldset>
-				<%}}%>
+				<%}%>
 				</td>
 				</tr>				
 		<%}}%>

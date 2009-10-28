@@ -47,24 +47,24 @@
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 98%;width: 100%">
 	   <legend style="font-size:16px;">Create Block</legend>
-	   	  <fieldset style="margin-top: 100px;">	
+	   	  
 	   	  <form name="addBlockFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;">
+	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
 					
 		<tr>
 			<td>Block Name</td>
-			<td><input type="text" name="name"></td>
+			<td><input type="text" name="name" size="35"></td>
 		</tr>
 		<tr>
 			<td>Description </td>
-			<td><input type="text" name="description"></td>
+			<td><input type="text" name="description" size="35"></td>
 		</tr>		
 		<tr>
 			<td>No of Floors </td>
-			<td><input type="text" name="noOfFloors" ></td>
+			<td><input type="text" name="noOfFloors" size="35"></td>
 		</tr>
 		<tr>
-		<td colspan="2" align="right">
+		<td colspan="2"  align="right" >
 			<input type="button" name="add" value="Add" onclick="addBlock()">
 		</td>		
 		</tr>
@@ -72,8 +72,7 @@
 		<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Blocks.class.getName()%>">
 		<input type="hidden" name="event" value="addBlock">
 		</form>
-		</fieldset>
-	</fieldset>	
+		</fieldset>	
 	</td>
 	<td valign="top" width="15%" class="indiaLivesFonts">
 		<fieldset style="height: 98%;" >

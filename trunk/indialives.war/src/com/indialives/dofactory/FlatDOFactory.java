@@ -47,4 +47,13 @@ public class FlatDOFactory implements SQLConstants {
 		persistenceManager.create(ADD_FLAT, paramList);		
 	}
 
+	public static void addFlatType(String name, String description) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(name);
+		paramList.add(description);
+		persistenceManager.create(ADD_FLAT_TYPE, paramList);	
+		
+	}
+
 }

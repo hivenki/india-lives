@@ -11,4 +11,7 @@ public interface PageNameConstants {
 	String ADD_FLATS="jsp/addFlat.jsp";
 	String ADD_VILLAS="jsp/addVilla.jsp";
 	String ADD_BLOCKS="jsp/addBlock.jsp";
+	String ADD_FLAT_TYPE="jsp/addFlatType.jsp";
+	String ADD_PARKING="jsp/addParking.jsp";
+	String ADD_PARKING_SLOT="jsp/addParkingSlot.jsp";
 }
