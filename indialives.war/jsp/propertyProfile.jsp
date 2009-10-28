@@ -43,9 +43,9 @@
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 98%;">
 	   <legend style="font-size:16px;">Property  Profile</legend>
-	   	  <div style="margin-top: 100px;width:90%;margin-left:100px;border-style:ridge;border-width:2px;" >	
+	   	  	
 	   	  <form name="propertyHome" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;">
+	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 100px">
 			
 			<%if(object instanceof FlatDO){
 				
@@ -112,7 +112,7 @@
 	
 		</table>
 		</form>
-		</div>	
+		
 	</fieldset>
 	</td>
 	<td valign="top" width="15%" class="indiaLivesFonts">

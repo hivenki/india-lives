@@ -18,6 +18,9 @@ public interface SetAttributeConstants {
 	String VILLA_LIST="VILLA_LIST";
 	String FLATS_TYPE_LIST="FLATS_TYPE_LIST";
 	String BLOCK_LIST="BLOCK_LIST";
+	String FLAT_TYPE_LIST="FLAT_TYPE_LIST";
+	String PARKING_LIST="PARKING_LIST";
+	String PARKING_SLOT_LIST="PARKING_SLOT_LIST";
 	
 	
 }

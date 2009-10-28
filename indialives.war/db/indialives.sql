@@ -716,8 +716,8 @@ CREATE TABLE `villas` (
 --
 
 INSERT INTO `villas` (`ID`,`COMMUNITY_ID`,`PLOT_NO`,`NO_OF_FLOORS`,`NAME`,`NO_OF_BED_ROOMS`,`NO_OF_PARKINGS`) VALUES
- (1,1,'3',5,'Poorvika',3,2),
- (2,1,'4',4,'Muruga Villas',4,3),
+ (1,1,'3',5,'Villa G',3,2),
+ (2,1,'4',4,'Muruga Villa',4,3),
  (3,2,'8',3,'Villa A',2,2);
 
 

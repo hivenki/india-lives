@@ -16,7 +16,7 @@
 <body 
 	onload="fillLastLogin();errorMsg('<%=request.getParameter(SetAttributeConstants.AUTH_ERROR_MSG)%>')">
 <form name="loginFrm" action="/indialives/eventhandler" method="post">
-<table border="1" height="92%" width="100%">
+<table border="1" height="92%" width="100%" cellpadding="0" cellspacing="0">
 <tr>
 <td width="70%" height="100%"  valign="top" >
 	<table border="0" width="100%" height="100%">
@@ -81,18 +81,18 @@
 
 <td valign="top" >
 <div style="border-style:ridge;border-width:2px;width: 100%;float: right;" >
-<table border="0" width="100%" align="right" cellpadding="2" cellspacing="2" class="indiaLivesFonts">
+<table border="0" width="100%" align="right" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
 	<tr>
 		<td colspan="2"  >Sign In</td>
 	</tr>
 	<tr>
 		<td>Email/Mobile</td>
-		<td><input  type="text" name="username" value="gopinath.dhanapal@gmail.com"></td>
+		<td><input  type="text" name="username" value=""></td>
 
 	</tr>
 	<tr>
 		<td>Password</td>
-		<td><input type="password" name="password" value="il@123"></td>
+		<td><input type="password" name="password" value=""></td>
 	</tr>
 	<tr>
 		<td>Remember Me</td>

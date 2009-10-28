@@ -14,6 +14,7 @@ public class ParkingSlotDO  implements java.io.Serializable, com.easymvc.persist
 
      private Integer id;
      private ParkingDO parkingDO;
+     private Integer parkingId;
      private String location;
 
     public ParkingSlotDO() {
@@ -51,6 +52,14 @@ public class ParkingSlotDO  implements java.io.Serializable, com.easymvc.persist
 	
 	public String getTableName() {
 		return null;
+	}
+
+	public Integer getParkingId() {
+		return parkingId;
+	}
+
+	public void setParkingId(Integer parkingId) {
+		this.parkingId = parkingId;
 	}
 
 

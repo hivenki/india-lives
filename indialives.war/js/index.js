@@ -4,7 +4,8 @@ function  submitLogin(){
 	
 	if(username!="null"  && password!="null" ){
 		if(document.getElementById("remember").checked==true){			
-			setCookie();	
+			setCookie('username',username,1,"localhost");
+			setCookie('password',password,1,"localhost");
 		}		
 		document.loginFrm.submit();
 		
@@ -20,7 +21,7 @@ function errorMsg(msg){
 }
 
 
-
+/*
 function set_cookie ( uname, uvalue,pname,pvalue,exp_y, exp_m, exp_d, path, domain, secure )
 {
 	
@@ -57,6 +58,8 @@ function setCookie(){
 	var domainName="http://localhost:8080/indialives";
 	set_cookie("username",username);
 	set_cookie("password",password);
+	
+	set_cookie ( "", "", 2009, 09, 30, "","localhost", "secure" );
 }
 
 function get_cookie ( cookie_name )
@@ -67,13 +70,48 @@ function get_cookie ( cookie_name )
     return ( unescape ( results[2] ) );
   else
     return null;
+}*/
+
+
+function setCookie(c_name,value,expiredays,domain)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate()+expiredays);
+	document.cookie=c_name+ "=" +escape(value)+
+	((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+ "; domain=" + escape (domain);
+	alert(document.cookie);
 }
 
-function fillLastLogin(){
-	var username=get_cookie("username");
-	var password=get_cookie("password");
-	if(username!=null){
-	document.getElementById("username").value=username;
-	document.getElementById("password").value=password;
-	}	
+
+
+function getCookie(uName)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(uName + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + uName.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
 }
+
+
+function fillLastLogin(){
+	var username=getCookie("username");
+	var password=getCookie("password");
+	if(username!=null){
+		document.getElementById("username").value=username;
+		document.getElementById("password").value=password;
+	}
+}
+
+
+
+
+
+
