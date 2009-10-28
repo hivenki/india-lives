@@ -35,15 +35,34 @@ public class ComplaintsListEventHandler implements  EventHandler,SetAttributeCon
 		int userId=session.getUser().getId();
 		HttpSession httpSession=request.getSession();
 		String communityId=request.getParameter("gatedCommunityId");
-
+		
 		if(communityId==null){
 			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		}
 	
 		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		
-		complaintsList=ComplaintDOFactory.getComplaintsList(userId,communityId);
+		String noRecords="18";
+		
+		/*if(request.getParameter(noRecords)!=null){
+			noRecords=request.getParameter(noRecords);
+		}*/
+		httpSession.setAttribute(NO_RECORDS, noRecords);
+		int roleId=session.getUser().getRoleId();
+		
+		if(roleId==1){
+			complaintsList=ComplaintDOFactory.getComplaintsListBasedOnAdmin(communityId);
+		
+		}else{
+			complaintsList=ComplaintDOFactory.getComplaintsList(userId, communityId);
+		
+		}
+		
 		request.setAttribute(GET_COMPLAINTS_LIST,complaintsList);
+		
+		
+		
+		
 		
 	}
 

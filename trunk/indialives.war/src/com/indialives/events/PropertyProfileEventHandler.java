@@ -12,10 +12,8 @@ import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dataobjects.VillaDO;
 import com.indialives.dofactory.FlatDOFactory;
-import com.indialives.dofactory.ParkingSlotDOFactory;
 import com.indialives.dofactory.VillaDOFactory;
 import com.indialives.voobjects.FlatVO;
-import com.indialives.voobjects.ParkingSlotVO;
 
 public class PropertyProfileEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
 
@@ -42,10 +40,10 @@ public class PropertyProfileEventHandler implements EventHandler,SetAttributeCon
 		else if(propertyTypeId.equals("2")){
 			VillaDO villaDO=VillaDOFactory.getVillaDetails(propertyId);
 			request.setAttribute(PROPERTY_OBJ, villaDO);
-		}else{
+		}/*else{
 			ParkingSlotVO parkingSlotVO=ParkingSlotDOFactory.getParkingDetails(propertyId);
 			request.setAttribute(PROPERTY_OBJ, parkingSlotVO);
-		}		
+		}*/		
 	}
 
 }

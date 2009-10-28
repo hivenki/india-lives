@@ -17,10 +17,11 @@
 <%@page import="com.indialives.dataobjects.ParkingSlotDO"%>
 <%@page import="com.indialives.voobjects.ParkingSlotVO"%><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
-</head>
+<%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
+</head>
+
 
 <body>
 <%
@@ -32,19 +33,19 @@
 <%@include file="header.jsp" %>
 
 
-<table border="0" width="100%" height="76%">
+<table border="0" width="100%" height="84%" style="margin-top: 5px">
 
 	<tr>
-	<td width="20%">
+	<td width="15%">
 		<%@include file="contentPage.jsp" %>
 	</td>
 	
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 98%;">
 	   <legend style="font-size:16px;">Property  Profile</legend>
-	   	  <fieldset style="margin-top: 50px;" >	
+	   	  <div style="margin-top: 100px;width:90%;margin-left:100px;border-style:ridge;border-width:2px;" >	
 	   	  <form name="propertyHome" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;ma">
+	    	<table border="0" width="50%" align="center" style="margin-left: 50px;">
 			
 			<%if(object instanceof FlatDO){
 				
@@ -52,7 +53,7 @@
 				
 				
 		%>
-		<tr class="indiaLivesFonts">
+		<tr>
 			<td>Block Name </td>
 			<td>:</td>
 			<td><%=flatVO.getBlockName()%></td>
@@ -81,7 +82,7 @@
 		<%	}else if(object instanceof VillaDO){
 				VillaDO villaDO=(VillaDO) object;				
 	%>			
-			<tr class="indiaLivesFonts" style="font-size:18px;">
+			<tr>
 			<td>Plot No </td>
 			<td>:</td>
 			<td><%=villaDO.getPlotNo()%></td>
@@ -107,34 +108,15 @@
 			<td><%=villaDO.getNoOfParkings()%></td>
 		</tr>
 	
-	<%}else{
-	
-		ParkingSlotVO parkingSlotVO=(ParkingSlotVO)object;
-	%>
-	
-		<tr>
-			<td>Parking Name</td>
-			<td>:</td>
-			<td><%=parkingSlotVO.getParkingSlotName()%></td>
-		</tr>
-		<tr>
-			<td>Parking Location</td>
-			<td>:</td>
-			<td><%=parkingSlotVO.getLocation()%></td>
-		</tr>
-		
-				
 	<%}%>
-			
-				
-				
+	
 		</table>
 		</form>
-		</fieldset>	
+		</div>	
 	</fieldset>
 	</td>
-	<td valign="top" width="20%" class="indiaLivesFonts">
-		<fieldset style="height: 98%" >
+	<td valign="top" width="15%" class="indiaLivesFonts">
+		<fieldset style="height: 98%;" >
 	    	<legend>Adv Board</legend>			
 		</fieldset>
 	</td>

@@ -18,9 +18,11 @@
 <%@page import="java.text.SimpleDateFormat"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
-</head>
+<%@ include file="header.jspf" %>
 <%@include file="complaintsList.jspf"%>
 <%@include file="indialives_css.jspf"%>
+</head>
+
 
 <script type="text/javascript" src="/indialives/js/jquery-latest.js"></script>
 <script type="text/javascript" src="/indialives/js/jquery.tablesorter.js"></script>
@@ -43,76 +45,46 @@
 
 List complaintsList=(List)request.getAttribute(SetAttributeConstants.GET_COMPLAINTS_LIST);
 
+String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 
+int rowSize=Integer.parseInt(noRecords);
 //String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
 %>
 
-<form name="headerFrm" action="/indialives/eventhandler" method="post">
-<table border="0" width="100%">
-	<tr>
-		<td width="13%" style="font-size: large;text-indent: 10px">
-		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
-	    <div class="contentb">
-		IndiaLives
-		</div>
-		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
-		
-		</td>
-		<td>
-		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
-	    <div class="contentb">
-		<table width="90%">
-			 <tr style="font-family: calibri;font-size:16px;">
-				<td><a href="#" onclick="submitHome()" style="text-decoration: none ">Home</a></td>
-				<td><a href="#" style="text-decoration: none ">Profile</a></td>
-				
-				<td align="right"><%=SessionFactory.getSession(request).getUser().getFirstName()+" "+ SessionFactory.getSession(request).getUser().getLastName()%></td>				
-				<td align="right"><a href="#" style="text-decoration: none " onclick="submitSignOut()">Sign Out</a></td>
-			</tr>
-			</table>
-		</div>
-		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"></br></td>
-	</tr>
-</table>
-<input type="hidden" name="event">
-</form>
-
-<table border="0" width="100%" height="77%">
+<%@include file="header.jsp" %>
+<table border="0" width="100%" height="84%" style="margin-top: 5px">
 
 	<tr>
-	<td width="13%" valign="top" height="100%" >
+	<td width="15%" valign="top" height="100%" >
 		<%@include file="contentPage.jsp"%>
 	</td>	
 	
-	 <td  valign="top"  width="65%" height="100%">
+	 <td  valign="top"  height="100%">
 	  <fieldset style="height: 98%;"  >
 	  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
-		<form name="complaintListFrm" action="/indialives/eventhandler" method="post">	
-	  
-	 	<table class="complaint" border="1" width="100%" style="margin-top: 15px" height="10%" id="complaintsTable">
+			
+	  	<table border="0" width="100%">
+			<tr>
+				<td colspan="8" align="right" ><input  type="button" name="create" value="Create"  onclick="createComplaint()"></td>
+			</tr>
+		</table>	
+	 	<table class="complaint" border="1" width="100%" cellpadding="0" cellspacing="0"   height="10%" id="complaintsTable">
 		<thead class="indiaLivesFonts" style="font-size: 14px"> 
 			<tr id="complaintListOdd">
-				<th  align="left">Pro Type</th>			
+				<th>S.No</th>
+				<th>Pro Type</th>			
 				<th>Raised By</th>
 				<th>Raised Time</th>
-				<th>Comp Type</th>
-				<th>Description</th>
+				<th>Comp Type</th>				
 				<th>Severity</th>
-				<th>Avl Start Time</th>
-				<th>Avl End Time</th>		
-			</tr>
+				</tr>
 		</thead>
 			<tbody class="indiaLivesFonts" style="font-size: 14px">
 			
 		 	
 			
-			<%if(complaintsList!=null){
-				int rowSize=10;
+			<%if(complaintsList!=null){				
 				int size=0;
 				   if(complaintsList.size()< rowSize){
 					   size=rowSize;
@@ -123,9 +95,9 @@ List complaintsList=(List)request.getAttribute(SetAttributeConstants.GET_COMPLAI
 				
 				for(int i=0;i<size;i++){
 					 if(i%2==0){%>
-						<tr class="T1" style="height:  20px;color: black;">
+						<tr class="T1" style="height:  20px;color: black;" style="text-indent: 4px">
 						<%}else{%>
-						<tr class="T2" style="height:  20px;color: black;">
+						<tr class="T2" style="height:  20px;color: black;" style="text-indent: 4px">
 				<%}%>	
 				<%if(i<complaintsList.size()){
 					ComplaintsVO complaintsVO=(ComplaintsVO)complaintsList.get(i);
@@ -133,29 +105,24 @@ List complaintsList=(List)request.getAttribute(SetAttributeConstants.GET_COMPLAI
 					Date date=complaintsVO.getRaisedTime();	
 					Date availStart=complaintsVO.getAvailableStartTime();
 					Date availEnd=complaintsVO.getAvailableEndTime();
-					SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yy hh:mm:ss");
+					SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 					String raisedTime=dateFormat.format(date);
 					String availStartTime=dateFormat.format(availStart);
 					String availEndTime=dateFormat.format(availEnd); %>
-				
+				<td><%=i+1%></td>
 				<td><%=complaintsVO.getPropertyName()%></td>
 				<td><%=complaintsVO.getRaisedByName()%></td>
 				<td nowrap="nowrap"><%=raisedTime%></td>
-				<td><%=complaintsVO.getComplaintTypeName()%></td>					
-				<td><%=complaintsVO.getDescription()%></td>
+				<td><%=complaintsVO.getComplaintTypeName()%></td>				
 				<td><%=complaintsVO.getSeverityName() %></td>
-				<td nowrap="nowrap"><%=availStartTime%></td>
-				<td nowrap="nowrap"><%=availEndTime%></td>
-				<%}else{ %>
+					<%}else{ %>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				<%} %>
+					<%} %>
 				</tr>
 				<%}} %>
 			
@@ -168,14 +135,9 @@ List complaintsList=(List)request.getAttribute(SetAttributeConstants.GET_COMPLAI
 		
 		
 		</table>
+		<form name="complaintListFrm" action="/indialives/eventhandler" method="post">
 			<input type="hidden" name="event" value="showComplaints" >
-		</form>
-		<table border="0" width="100%">
-			<tr>
-				<td colspan="8" ><input  type="button" name="create" value="Create"  onclick="createComplaint()"></td>
-			</tr>
-		</table>
-		
+		</form>		
 	</fieldset>
 		
 	

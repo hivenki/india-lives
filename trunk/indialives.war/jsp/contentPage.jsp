@@ -1,41 +1,43 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-   <html>
+ 
+<%@page import="com.indialives.voobjects.RolePrivilegesVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.easymvc.session.Session"%>
+<%@page import="com.easymvc.session.SessionFactory"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
 </head>
 <%@page import="com.indialives.SetAttributeConstants"%>
 <%@ include file="contentPage.jspf" %>
 <body>
-<form name="contentFrm" action="/indialives/eventhandler" method="post">
-<table border="0" width="100%" height="100%">
-	<tr class="indiaLivesFonts">
+<%
+Session easyMVCSession=SessionFactory.getSession(request);
+List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRIVILEGES_LIST);
 
-	<td width="20%">
+%>
+<form name="contentFrm" action="/indialives/eventhandler" method="post">
+<table border="0" width="98%" height="100%">
+	<tr class="indiaLivesFonts">
+	<td width="25%">
 		<fieldset style="height: 98%;">
 		<legend>Contents</legend>
 		<table border="0" width="100%" height="50%">
-		
-			<tr>
-				<td><a href="#"  style="text-decoration: none;" onclick="submitPropertyPage()">Properties</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;" onclick="submitComplaintPage()">Complaints</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Notice Board</a></td>
-			</tr>
-			<tr>
-				<td><a href="#" style="text-decoration: none;">Parking</a></td>
-			</tr>			
+			
+			<%if(rolePrivilegesList!=null){				
+				for(int i=0;i<rolePrivilegesList.size();i++){
+				 RolePrivilegesVO privilegesVO=(RolePrivilegesVO)rolePrivilegesList.get(i);
+			%>
+				<tr class="indiaLivesFonts">			
+				<td><a style="text-decoration: none;" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
+				</tr>					
+			
+		<%}}%>		
 		</table>
-		</fieldset>
+		
+		</fieldset>		
 	</td>
 	</tr>
 
 </table>
-
 	<input type="hidden" name="event">
 </form>
 </body>

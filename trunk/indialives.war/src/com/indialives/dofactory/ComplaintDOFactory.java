@@ -9,6 +9,7 @@ import com.easymvc.persistence.PersistenceManagerFactory;
 import com.easymvc.persistence.RowObject;
 import com.indialives.SQLConstants;
 import com.indialives.formbean.Compliants;
+import com.indialives.util.DateUtil;
 import com.indialives.voobjects.ComplaintsVO;
 
 public class ComplaintDOFactory implements SQLConstants {
@@ -21,10 +22,20 @@ public class ComplaintDOFactory implements SQLConstants {
 		paramList.add(new Date());
 		paramList.add(compliants.getTypeId());		
 		paramList.add(compliants.getDescription());
-		paramList.add(compliants.getAvailableStartTime());
-		paramList.add(compliants.getAvailableEndTime());
+		Date avialStartTime=DateUtil.getDateFromString(compliants.getAvailableStartTime(),"dd-MM-yyyy");
+		Date avialEndTime=DateUtil.getDateFromString(compliants.getAvailableEndTime(),"dd-MM-yyyy");		
+		paramList.add(avialStartTime);
+		paramList.add(avialEndTime);
 		paramList.add(compliants.getSeverityId());	
 		persistenceManager.create(ADD_COMPLAINTS, paramList);		
+	}
+	
+	public static List<RowObject> getComplaintsListBasedOnAdmin(String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();		
+		paramList.add(communityId);
+		List<RowObject> list=persistenceManager.findCollection(ComplaintsVO.class,GET_COMPLIANTS_LIST_BY_ADMIN, paramList);
+		return list;
 	}
 
 	public static List<RowObject> getComplaintsList(int userId, String communityId) {

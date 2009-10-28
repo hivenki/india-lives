@@ -1,11 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<head>
-<title>Welcome to IndiaLives</title>
-</head>
-<body>
 <table border="0" width="100%" align="right">
-	<tr align="right"  class="indiaLivesFonts" style="font-size:14px;">
+	<tr align="right"  class="indiaLivesFonts" style="font-size:12px;">
 		<td width="70%">
 			AboutIL |	
 		</td>
@@ -26,12 +20,10 @@
 		</td>
 	
 	</tr>
-	<tr  class="indiaLivesFonts" style="font-size:14px;">
+	<tr  class="indiaLivesFonts" style="font-size:10px;">
 		<td align="right" colspan="6">
 			copyright 2009 IndiaLives all rights reserved.
 		</td>
 	</tr>
 
 </table>
-</body>
-</html>

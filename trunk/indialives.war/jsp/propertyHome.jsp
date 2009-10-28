@@ -10,18 +10,22 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="com.indialives.voobjects.PropertiesVO"%><html>
+<%@page import="com.indialives.voobjects.PropertiesVO"%>
+<%@page import="com.indialives.voobjects.RolePrivilegesVO"%><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
-</head>
+<%@ include file="header.jspf" %>
 <%@include file="propertyHome.jspf"%>
 <%@include file="indialives_css.jspf"%>
+</head>
+
 
 <body>
 <%
 	HashMap propertyMap=(HashMap)request.getAttribute(SetAttributeConstants.PROPERTY_LIST);
 	List propertyEnumList=(List) request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
+	
+//	List rolePrivilegesList=(List) request.getAttribute(SetAttributeConstants.ROLE_PRIVILEGES_LIST);
 
 //	String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
@@ -30,25 +34,26 @@
 <%@include file="header.jsp" %>
 
 
-<table border="0" width="100%" height="76%">
+<table border="0" width="100%" height="84%" style="margin-top: 5px">
 
 	<tr>	
-	<td width="20%">
-		<%@include file="contentPage.jsp"%>
+	<td width="15%">
+	<%@include file="contentPage.jsp" %>	
 	</td>	
-	 <td  valign="top"  width="65%" height="100%">	
-	   <fieldset style="height: 98%" >
-	  <legend class="indiaLivesFonts" style="font-size:16px ">Properties</legend>
+	 <td  valign="top"  height="100%">	
+	   <fieldset style="height: 98%;" >
+	  <legend class="indiaLivesFonts" >Properties</legend>
 	 	<form name="propertyHome" action="/indialives/eventhandler" method="post">
 	 
 	
 		<table border="0" width="90%" height="80%" style="margin-left: 50px">
-		<tr class="indiaLivesFonts" style="font-size:18px;">
+		<tr class="indiaLivesFonts" valign="top">
 			<td>
 				Properties List,				
 			</td>
 		</tr>
-			<%				
+			<%		
+				if(propertyEnumList!=null){
 				for(int i=0;i<propertyEnumList.size();i++){				
 				
 					 PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertyEnumList.get(i);
@@ -58,11 +63,12 @@
 				%>
 				<tr class="indiaLivesFonts">
 				<td>
-				<fieldset style="width: 95%;height: 20%">
+				<%
+					if(propertyList!=null){ %>
+				<fieldset style="width: 95%;height: 100%;">
 					<legend><%=propertyTypeEnumDO.getName()%></legend>
-						<table>						
-								<%
-								if(propertyList!=null){
+						<table class="indiaLivesFonts">						
+								<%							
 									for(int j=0;j<propertyList.size();j++){
 										PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(j);
 										String propertyName=propertiesVO.getPropertyName();
@@ -73,18 +79,13 @@
 								<td><a href="#" class="propertyLink" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
 								
 								</tr>
-							<%}}else{ %>
-								<tr>
-								 <td>
-									There is no property.
-								</td>
-								</tr>
-							<%}%>
+							
 							</table>	
 				</fieldset>
+				<%}}%>
 				</td>
 				</tr>				
-		<%}%>
+		<%}}%>
 		</table>
 	
 	<input type="hidden" name="event" value="propertyProfile">
@@ -93,8 +94,8 @@
 	</form>
 	</fieldset>
 	</td>
-	<td valign="top" width="20%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%" >
+	<td valign="top" width="15%" class="indiaLivesFonts">
+		 <fieldset style="height: 98%;" >
 	    	<legend>Adv Board</legend>			
 		</fieldset>
 	</td>

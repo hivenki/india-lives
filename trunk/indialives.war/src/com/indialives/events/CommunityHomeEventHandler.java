@@ -15,11 +15,13 @@ import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
 import com.easymvc.session.Session;
 import com.easymvc.session.SessionFactory;
+import com.easymvc.session.UserImpl;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dataobjects.PropertyTypeEnumDO;
 import com.indialives.dofactory.PropertyOwnerDOFactory;
 import com.indialives.voobjects.PropertiesVO;
+import com.indialives.voobjects.RolePrivilegesVO;
 
 public class CommunityHomeEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
 	
@@ -39,14 +41,21 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		
 		HttpSession httpSession=request.getSession();
 		String communityId=request.getParameter("gatedCommunityId");
+		
 	
 		if(communityId==null){
 			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		}
-	
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-		
 		Session session=SessionFactory.getSession(request);
+		Integer roleId=(Integer) session.get(new Integer(communityId));
+		UserImpl userImpl=(UserImpl) session.getUser();
+		userImpl.setRoleId(roleId);	    
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
+		HashMap<Integer, List<RolePrivilegesVO>> rolePrivilegesMap=(HashMap<Integer, List<RolePrivilegesVO>>) session.get(ROLE_PRIVILEGE_MAP);
+		List<RolePrivilegesVO> rolePrivilegesList=rolePrivilegesMap.get(roleId);
+		
+		session.put(ROLE_PRIVILEGES_LIST,rolePrivilegesList);
+		
 		int userId=session.getUser().getId();
 		propertyList=PropertyOwnerDOFactory.getPropertiesList(communityId,userId);
 		HashMap<Integer,List<PropertiesVO>> propertyMap=new HashMap<Integer,List<PropertiesVO>>();
@@ -78,12 +87,12 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		PropertyTypeEnumDO propertyTypeEnumDO1=new  PropertyTypeEnumDO();
 		propertyTypeEnumDO1.setId(2);
 		propertyTypeEnumDO1.setName("Villa");
-		PropertyTypeEnumDO propertyTypeEnumDO2=new  PropertyTypeEnumDO();
+	/*	PropertyTypeEnumDO propertyTypeEnumDO2=new  PropertyTypeEnumDO();
 		propertyTypeEnumDO2.setId(3);
-		propertyTypeEnumDO2.setName("Parking");
+		propertyTypeEnumDO2.setName("Parking");*/
 	   propertyEnumList.add(propertyTypeEnumDO);
 	   propertyEnumList.add(propertyTypeEnumDO1);
-	   propertyEnumList.add(propertyTypeEnumDO2);
+  //   propertyEnumList.add(propertyTypeEnumDO2);
 	   return propertyEnumList;
 	}
 

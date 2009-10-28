@@ -1,6 +1,13 @@
-.indiaLivesFonts{
-	font-family: calibri,Arial;
+.indiaLivesFontsForHeader{
+	font-family:calibri,Arial;	
 }
+
+.indiaLivesFonts{
+	font-family:calibri,Arial;
+	font-size: 16px;
+}
+
+
 
 a.propertyLink:link {
 		
@@ -39,7 +46,7 @@ a.propertyLink:active
 .b3 {height:1px; background:#ddd; border-right:1px solid #888; border-left:1px solid #888; margin:0 2px;}
 .b4 {height:2px; background:#ddd; border-right:1px solid #888; border-left:1px solid #888; margin:0 1px;}
 .contentb {background: #ddd; border-right:1px solid #888; border-left:1px solid #888;}
-.contentb div {margin-left: 5px;}
+.contentb div {margin-left: 5px; margin-top: 0px;}
 
 
 .a1, .a2, .a3, .a4{font-size:1px; overflow:hidden; display:block;}

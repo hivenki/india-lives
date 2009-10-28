@@ -7,9 +7,10 @@ function  submitCommunity(){
 		}		
 	}	
 	
+	
 	if(!radioChecked){
 		alert("Please check any one of the radio button");	
-	}else{
+	}else{		
 		document.memberHome.submit();		
 	}	
 }
