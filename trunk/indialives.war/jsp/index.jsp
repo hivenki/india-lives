@@ -28,13 +28,12 @@
 			<td colspan="2"><hr/></td>
 		</tr>
 		<tr>
-		<td height="100%" colspan="2" >
-			<table border="0" style="margin-left: 200px;" width="70%" height="50%">
-				<tr height="100%" class="indiaLivesFonts" >
-					<td  height="100%" >
+		<td height="100%" colspan="2" align="center">
+			<table border="0" width="70%" height="50%">
+				<tr class="indiaLivesFonts" >
+					<td>
 					<ul>			
 						<li type="square">Pay community bills</li>
-					
 					</ul>
 					</td>
 				</tr>
@@ -79,46 +78,51 @@
 	</table>
 </td>
 
-<td valign="top" >
-<div style="border-style:ridge;border-width:2px;width: 100%;float: right;" >
-<table border="0" width="100%" align="right" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
-	<tr>
-		<td colspan="2"  >Sign In</td>
-	</tr>
+<td valign="top" align="center">
+
+<fieldset style="width:300px">
+<legend class="indiaLivesFonts"><b>Sign In</b></legend>
+<table border="0" align="left" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
 	<tr>
 		<td>Email/Mobile</td>
 		<td><input  type="text" name="username" value=""></td>
-
+		<td colspan="1">&nbsp;</td>
 	</tr>
 	<tr>
 		<td>Password</td>
 		<td><input type="password" name="password" value=""></td>
+		<td colspan="1">&nbsp;</td>
 	</tr>
 	<tr>
 		<td>Remember Me</td>
 		<td><input type="checkbox" name="remember" ></td>
-	
+		<td colspan="1">&nbsp;</td>
 	</tr>
 	<tr>
-		<td align="right" colspan="2"><input type="button"
-			value="Sign In" name="signIn" onclick="submitLogin()"></td>		
+		<td colspan="1">&nbsp;</td>
+		<td align="right" colspan="1"><input type="button"
+			value="Sign In" onclick="submitLogin()"><input type="reset"
+			value="Clear"></td>
+		<td colspan="1">&nbsp;</td>	
 	</tr>
 	<tr>
-		<td align="right" colspan="2">Sign In Problems</td>
-	</tr>
-	<tr>
-		<td colspan="2"></td>
-	</tr>
-	<tr>
-		<td colspan="2">Don't have IL Account</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="right"><input type="button" name="newUser" value="Start Here"></td>
+		<td colspan="1">&nbsp;</td>
+		<td align="right" colspan="1"><a href="#">Sign In Problems?</a></td>
+		<td colspan="1">&nbsp;</td>
 	</tr>
 	</table>
-	
+</fieldset>
 
-</div>
+<fieldset style="width:300px">
+<legend class="indiaLivesFonts"><b>Don't have IL Account?</b></legend>
+<table border="0" align="left" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
+	<tr>
+		<td colspan="1">&nbsp;</td>
+		<td colspan="1" align="left"><input type="button" name="newUser" value="Start Here"></td>
+		<td colspan="1">&nbsp;</td>
+	</tr>
+	</table>
+</fieldset>
 </td>
 
 
