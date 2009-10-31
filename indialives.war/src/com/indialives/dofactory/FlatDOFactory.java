@@ -7,7 +7,6 @@ import java.util.List;
 import com.easymvc.persistence.PersistenceManager;
 import com.easymvc.persistence.PersistenceManagerFactory;
 import com.easymvc.persistence.RowObject;
-import com.easymvc.persistence.dataobject.CountDO;
 import com.easymvc.reader.csv.CsvReader;
 import com.indialives.SQLConstants;
 import com.indialives.dataobjects.FlatTypeEnumDO;
