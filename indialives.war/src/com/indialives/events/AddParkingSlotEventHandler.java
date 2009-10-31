@@ -22,7 +22,6 @@ public class AddParkingSlotEventHandler implements EventHandler,Constants,SetAtt
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-	
 		String parkingId=request.getParameter("parkingId");
 		String location=request.getParameter("location");
 		ParkingSlotDOFactory.addParkingSlot(parkingId,location);

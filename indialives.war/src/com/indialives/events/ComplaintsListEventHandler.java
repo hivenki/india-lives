@@ -34,14 +34,7 @@ public class ComplaintsListEventHandler implements  EventHandler,SetAttributeCon
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
 		HttpSession httpSession=request.getSession();
-		String communityId=request.getParameter("gatedCommunityId");
-		
-		if(communityId==null){
-			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
-		}
-	
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		String noRecords="18";
 		
 		/*if(request.getParameter(noRecords)!=null){

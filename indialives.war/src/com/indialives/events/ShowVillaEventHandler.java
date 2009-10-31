@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -27,8 +28,17 @@ public class ShowVillaEventHandler implements EventHandler,PageNameConstants,Set
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession httpSession=request.getSession();
+		String communityId=request.getParameter("gatedCommunityId");
 		
-		villaList=VillaDOFactory.getVillaListForAdd();
+	
+		if(communityId==null){
+			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		}
+		httpSession.setAttribute(COMMUNITY_ID, communityId);	
+		
+		
+		villaList=VillaDOFactory.getVillaList(communityId);
 		request.setAttribute(VILLA_LIST,villaList);
 		
 	}

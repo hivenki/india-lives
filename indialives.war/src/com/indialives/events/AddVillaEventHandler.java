@@ -26,14 +26,7 @@ public class AddVillaEventHandler implements EventHandler,Constants,SetAttribute
 			throws ServletException, IOException {
 		
 		HttpSession httpSession=request.getSession();
-		String communityId=request.getParameter("gatedCommunityId");
-		
-	
-		if(communityId==null){
-			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
-		}
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		Villas villas=(Villas)request.getAttribute(FORM_BEAN);
 		VillaDOFactory.addVilla(villas,communityId);
 		

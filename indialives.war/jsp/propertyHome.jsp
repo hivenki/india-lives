@@ -67,7 +67,7 @@
 					if(propertyList!=null){ %>
 				<fieldset style="width: 95%;height: 100%;">
 					<legend><%=propertyTypeEnumDO.getName()%></legend>
-						<table class="indiaLivesFonts">						
+						<table >						
 								<%							
 									for(int j=0;j<propertyList.size();j++){
 										PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(j);
@@ -76,7 +76,7 @@
 								<% %>
 								<tr>
 								<td><%=j+1%>.</td>
-								<td><a href="#" class="propertyLink" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
+								<td><a href="#" style="text-decoration: none" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
 								
 								</tr>
 							<%}%>

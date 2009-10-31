@@ -41,16 +41,15 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		
 		HttpSession httpSession=request.getSession();
 		String communityId=request.getParameter("gatedCommunityId");
-		
-	
 		if(communityId==null){
 			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		}
+		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		Session session=SessionFactory.getSession(request);
 		Integer roleId=(Integer) session.get(new Integer(communityId));
 		UserImpl userImpl=(UserImpl) session.getUser();
 		userImpl.setRoleId(roleId);	    
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
+		
 		HashMap<Integer, List<RolePrivilegesVO>> rolePrivilegesMap=(HashMap<Integer, List<RolePrivilegesVO>>) session.get(ROLE_PRIVILEGE_MAP);
 		List<RolePrivilegesVO> rolePrivilegesList=rolePrivilegesMap.get(roleId);
 		

@@ -24,14 +24,7 @@ public class AddParkingEventHandler implements EventHandler,Constants,SetAttribu
 			throws ServletException, IOException {
 		
 		HttpSession httpSession=request.getSession();
-		String communityId=request.getParameter("gatedCommunityId");
-		
-	
-		if(communityId==null){
-			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
-		}
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		String name=request.getParameter("name");
 		String description=request.getParameter("description");
 		ParkingDOFactory.addParking(name,description,communityId);

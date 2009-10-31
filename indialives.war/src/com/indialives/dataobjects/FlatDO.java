@@ -20,6 +20,7 @@ public class FlatDO  implements java.io.Serializable, com.easymvc.persistence.Ro
      private String flatNo;
      private Integer flatTypeId;
      private Integer noOfBedRooms;
+     private Integer blockId;
      private Set<PropertyOwnerDO> propertyOwnerDOs = new HashSet<PropertyOwnerDO>(0);
      private Set<ComplaintDO> complaintDOs = new HashSet<ComplaintDO>(0);
 
@@ -107,6 +108,16 @@ public class FlatDO  implements java.io.Serializable, com.easymvc.persistence.Ro
 	
 	public String getTableName() {
 		return null;
+	}
+
+
+	public Integer getBlockId() {
+		return blockId;
+	}
+
+
+	public void setBlockId(Integer blockId) {
+		this.blockId = blockId;
 	}
 
 

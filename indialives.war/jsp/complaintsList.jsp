@@ -47,7 +47,7 @@ List complaintsList=(List)request.getAttribute(SetAttributeConstants.GET_COMPLAI
 
 String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 
-int rowSize=Integer.parseInt(noRecords);
+//int rowSize=Integer.parseInt(noRecords);
 //String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
 %>
@@ -69,9 +69,9 @@ int rowSize=Integer.parseInt(noRecords);
 				<td colspan="8" align="right" ><input  type="button" name="create" value="Create"  onclick="createComplaint()"></td>
 			</tr>
 		</table>	
-	 	<table class="complaint" border="1" width="100%" cellpadding="0" cellspacing="0"   height="10%" id="complaintsTable">
+	 	<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 		<thead class="indiaLivesFonts" style="font-size: 14px"> 
-			<tr id="complaintListOdd">
+			<tr id="complaintListOdd" class="trColor">
 				<th>S.No</th>
 				<th>Pro Type</th>			
 				<th>Raised By</th>
@@ -84,22 +84,21 @@ int rowSize=Integer.parseInt(noRecords);
 			
 		 	
 			
-			<%if(complaintsList!=null){				
-				int size=0;
-				   if(complaintsList.size()< rowSize){
-					   size=rowSize;
-				   }
-				   else{
-						size=complaintsList.size();   
-				   }
+			<%				
 				
-				for(int i=0;i<size;i++){
+				
+				   int rowSize=complaintsList.size();
+			    	if(rowSize<12){
+			    		rowSize=12;
+			    	} 
+					
+				for(int i=0;i<rowSize;i++){
 					 if(i%2==0){%>
-						<tr class="T1" style="height:  20px;color: black;" style="text-indent: 4px">
+						<tr class="evenTr" style="height:  20px;color: black;" style="text-indent: 4px">
 						<%}else{%>
-						<tr class="T2" style="height:  20px;color: black;" style="text-indent: 4px">
-				<%}%>	
-				<%if(i<complaintsList.size()){
+						<tr class="oddTr" style="height:  20px;color: black;" style="text-indent: 4px">
+				<%}	
+				if(i<complaintsList.size()){
 					ComplaintsVO complaintsVO=(ComplaintsVO)complaintsList.get(i);
 					
 					Date date=complaintsVO.getRaisedTime();	
@@ -122,9 +121,8 @@ int rowSize=Integer.parseInt(noRecords);
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
-					<%} %>
-				</tr>
-				<%}} %>
+					<%}} %>
+				
 			
 			
 							
