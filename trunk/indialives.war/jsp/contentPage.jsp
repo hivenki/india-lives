@@ -27,7 +27,7 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 				 RolePrivilegesVO privilegesVO=(RolePrivilegesVO)rolePrivilegesList.get(i);
 			%>
 				<tr class="indiaLivesFonts">			
-				<td><a style="text-decoration: none;" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
+				<td><a class="ContenthLink" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
 				</tr>					
 			
 		<%}}%>		

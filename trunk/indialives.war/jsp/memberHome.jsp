@@ -59,8 +59,8 @@
 			<table align="center" class="indiaLivesFonts" border="0" width="60%" style="margin-left: 20px;margin-top: 80px;"  >
 				<tr>
 					<td align="center">Search for a Gated Community </td>
-					<td><input type="text" name="searchCommnity" > </td>
-					<td style="font-size:14px"><input type="button" name="search" value="Go"></td>
+					<td width="20%"><input type="text" name="searchCommnity" > </td>
+					<td width="20%" style="font-size:14px"><input type="button" name="search" value="Go"></td>
 				</tr>
 			</table>	
 	</fieldset>

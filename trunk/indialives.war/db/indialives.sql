@@ -50,6 +50,10 @@ CREATE TABLE `ad_board_enum` (
 --
 
 /*!40000 ALTER TABLE `ad_board_enum` DISABLE KEYS */;
+INSERT INTO `ad_board_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
+ (1,'IndiaLives Wide','All IndiaLives users will be able to see this ad'),
+ (2,'City Wide','All Indialives users belongs to the city will be able to see this ad'),
+ (3,'Community Wide','All Indialives user belongs to the community will be able to see this ad');
 /*!40000 ALTER TABLE `ad_board_enum` ENABLE KEYS */;
 
 
@@ -73,6 +77,8 @@ CREATE TABLE `ad_type` (
 --
 
 /*!40000 ALTER TABLE `ad_type` DISABLE KEYS */;
+INSERT INTO `ad_type` (`ID`,`NAME`,`DESCRIPTION`,`WIDTH`,`HEIGHT`,`FILE_FORMAT`) VALUES 
+ (1,'Text Ad','HTML Only AD',200,465,'html');
 /*!40000 ALTER TABLE `ad_type` ENABLE KEYS */;
 
 
@@ -83,7 +89,7 @@ CREATE TABLE `ad_type` (
 DROP TABLE IF EXISTS `advertisements`;
 CREATE TABLE `advertisements` (
   `ID` int(10) unsigned NOT NULL auto_increment,
-  `COMMUNITY_ID` int(10) unsigned NOT NULL,
+  `COMMUNITY_ID` int(10) unsigned default NULL,
   `AD_BOARD_ID` int(10) unsigned NOT NULL,
   `POSTED_DATE` datetime NOT NULL,
   `VADLID_FROM` datetime NOT NULL,
@@ -200,11 +206,15 @@ CREATE TABLE `blocks` (
 --
 -- Dumping data for table `blocks`
 --
- INSERT INTO `blocks` (`ID`,`NAME`,`DESCRIPTION`,`COMMUNITY_ID`,`NO_OF_FLOORS`) VALUES
+
+/*!40000 ALTER TABLE `blocks` DISABLE KEYS */;
+INSERT INTO `blocks` (`ID`,`NAME`,`DESCRIPTION`,`COMMUNITY_ID`,`NO_OF_FLOORS`) VALUES 
  (1,'Block A','Block A',1,10),
  (2,'Block B','Block B',1,8),
- (3,'Block C','Block C',2,12),
- (4,'Block D','Block D',2,10);
+ (3,'Block East','Block East',2,12),
+ (4,'Block West','Block West',2,10);
+/*!40000 ALTER TABLE `blocks` ENABLE KEYS */;
+
 
 --
 -- Definition of table `cities`
@@ -225,7 +235,7 @@ CREATE TABLE `cities` (
 --
 
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` (`ID`,`NAME`,`STATE_ID`) VALUES
+INSERT INTO `cities` (`ID`,`NAME`,`STATE_ID`) VALUES 
  (1,'Chennai',1),
  (2,'Bangalore',2),
  (3,'Hyderabad',3);
@@ -253,11 +263,35 @@ CREATE TABLE `communities` (
 --
 
 /*!40000 ALTER TABLE `communities` DISABLE KEYS */;
-INSERT INTO `communities` (`ID`,`NAME`,`ADDRESS`,`CITY_ID`,`PIN_CODE`) VALUES
- (1,'Community1','Marathahalli',2,'5600037'),
- (2,'Community2','Ennore',1,'600057'),
- (3,'Community3','SomeStreet',3,'500001');
+INSERT INTO `communities` (`ID`,`NAME`,`ADDRESS`,`CITY_ID`,`PIN_CODE`) VALUES 
+ (1,'Manasarovar','12, III Seaward Road, Valmiki Nagar',1,'600041'),
+ (2,'Mantri Espana','Outer Ring Road, Belandur',2,'5600037'),
+ (3,'Aparna Palm Meadows','Kompally',3,'500055');
 /*!40000 ALTER TABLE `communities` ENABLE KEYS */;
+
+
+--
+-- Definition of table `complaint_status_enum`
+--
+
+DROP TABLE IF EXISTS `complaint_status_enum`;
+CREATE TABLE `complaint_status_enum` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(100) NOT NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complaint_status_enum`
+--
+
+/*!40000 ALTER TABLE `complaint_status_enum` DISABLE KEYS */;
+INSERT INTO `complaint_status_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
+ (1,'Open','Open'),
+ (2,'In Progress','In Progress'),
+ (3,'Closed','Closed');
+/*!40000 ALTER TABLE `complaint_status_enum` ENABLE KEYS */;
 
 
 --
@@ -278,9 +312,9 @@ CREATE TABLE `complaint_type_enum` (
 
 /*!40000 ALTER TABLE `complaint_type_enum` DISABLE KEYS */;
 INSERT INTO `complaint_type_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
- (1,'Complaint1','Complaint1'),
- (2,'Complaint2','Complaint2'),
- (3,'Complaint3','Complaint3');
+ (1,'Plumbing','Plumbing'),
+ (2,'Electrical','Electrical'),
+ (3,'Others','Others');
 /*!40000 ALTER TABLE `complaint_type_enum` ENABLE KEYS */;
 
 
@@ -299,15 +333,18 @@ CREATE TABLE `complaints` (
   `AVAILABLE_START_TIME` datetime NOT NULL,
   `AVAILABLE_END_TIME` datetime NOT NULL,
   `SEVERITY_ID` int(10) unsigned NOT NULL,
+  `STATUS_ID` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`ID`),
   KEY `FK_COMPLAINTS_1` (`RAISED_BY`),
   KEY `FK_COMPLAINTS_2` (`PROPERTY_CONTEXT_ID`),
   KEY `FK_COMPLAINTS_3` (`SEVERITY_ID`),
   KEY `FK_COMPLAINTS_4` (`TYPE_ID`),
+  KEY `FK_complaints_5` (`STATUS_ID`),
   CONSTRAINT `FK_COMPLAINTS_1` FOREIGN KEY (`RAISED_BY`) REFERENCES `users` (`ID`),
   CONSTRAINT `FK_COMPLAINTS_2` FOREIGN KEY (`PROPERTY_CONTEXT_ID`) REFERENCES `property_owners` (`ID`),
   CONSTRAINT `FK_COMPLAINTS_3` FOREIGN KEY (`SEVERITY_ID`) REFERENCES `severity_enum` (`ID`),
-  CONSTRAINT `FK_COMPLAINTS_4` FOREIGN KEY (`TYPE_ID`) REFERENCES `complaint_type_enum` (`ID`)
+  CONSTRAINT `FK_COMPLAINTS_4` FOREIGN KEY (`TYPE_ID`) REFERENCES `complaint_type_enum` (`ID`),
+  CONSTRAINT `FK_complaints_5` FOREIGN KEY (`STATUS_ID`) REFERENCES `complaint_status_enum` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -315,14 +352,6 @@ CREATE TABLE `complaints` (
 --
 
 /*!40000 ALTER TABLE `complaints` DISABLE KEYS */;
-INSERT INTO `complaints` (`ID`,`PROPERTY_CONTEXT_ID`,`RAISED_BY`,`RAISED_TIME`,`TYPE_ID`,`DESCRIPTION`,`AVAILABLE_START_TIME`,`AVAILABLE_END_TIME`,`SEVERITY_ID`) VALUES 
- (1,1,1,'2009-10-20 00:35:35',1,'Test','2009-10-20 00:00:00','2009-10-20 00:00:00',1),
- (2,6,1,'2009-10-21 14:34:43',2,'TestVilla','2009-10-21 00:00:00','2009-10-21 00:00:00',2),
- (3,6,1,'2009-10-21 14:38:02',2,'TestVilla','2009-10-21 00:00:00','2009-10-21 00:00:00',2),
- (4,3,1,'2009-10-21 14:38:49',3,'SS','2009-10-21 00:00:00','2009-10-21 00:00:00',3),
- (5,5,1,'2009-10-21 15:03:18',1,'GGG','2009-10-25 00:00:00','2009-10-27 00:00:00',1),
- (6,5,1,'2009-10-21 15:03:29',1,'GGG','2009-10-25 00:00:00','2009-10-27 00:00:00',1),
- (7,6,1,'2009-10-21 15:08:46',2,'hh','2009-10-22 00:00:00','2009-10-23 00:00:00',2);
 /*!40000 ALTER TABLE `complaints` ENABLE KEYS */;
 
 
@@ -365,9 +394,9 @@ CREATE TABLE `flat_type_enum` (
 
 /*!40000 ALTER TABLE `flat_type_enum` DISABLE KEYS */;
 INSERT INTO `flat_type_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
- (1,'FlatType1','FlatType1'),
- (2,'FlatType2','FlatType2'),
- (3,'FlatType3','FlatType3');
+ (1,'2 Bedroom','2 Bedroom'),
+ (2,'3 Bedroom','3 Bedroom'),
+ (3,'5 Bedroom','5 Bedroom');
 /*!40000 ALTER TABLE `flat_type_enum` ENABLE KEYS */;
 
 
@@ -393,11 +422,17 @@ CREATE TABLE `flats` (
 --
 -- Dumping data for table `flats`
 --
-INSERT INTO `flats` (`ID`,`BLOCK_ID`,`FLOOR`,`FLAT_NO`,`FLAT_TYPE_ID`,`NO_OF_BED_ROOMS`) VALUES
- (1,1,3,'Flat 1',1,2),
- (2,2,5,'Flat 2',2,2),
- (3,3,7,'Flat 5',1,3),
- (4,4,8,'Flat 6',3,1);
+
+/*!40000 ALTER TABLE `flats` DISABLE KEYS */;
+INSERT INTO `flats` (`ID`,`BLOCK_ID`,`FLOOR`,`FLAT_NO`,`FLAT_TYPE_ID`,`NO_OF_BED_ROOMS`) VALUES 
+ (1,1,1,'FLAT A-001',1,2),
+ (2,2,1,'FLAT B-001',2,3),
+ (3,3,1,'FLAT E-001',2,3),
+ (4,4,1,'FLAT W-001',3,5);
+/*!40000 ALTER TABLE `flats` ENABLE KEYS */;
+
+
+--
 -- Definition of table `notice_board_enum`
 --
 
@@ -415,9 +450,8 @@ CREATE TABLE `notice_board_enum` (
 
 /*!40000 ALTER TABLE `notice_board_enum` DISABLE KEYS */;
 INSERT INTO `notice_board_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
- (1,'Notice1','Notice1'),
- (2,'Notice2','Notice2'),
- (3,'Notice3','Notice3');
+ (1,'Regual Notice Board','Regular notices will be displayed'),
+ (2,'Emergency Notice Board','Emergency notices will be displayed');
 /*!40000 ALTER TABLE `notice_board_enum` ENABLE KEYS */;
 
 
@@ -470,7 +504,6 @@ CREATE TABLE `parking_slots` (
 --
 
 /*!40000 ALTER TABLE `parking_slots` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `parking_slots` ENABLE KEYS */;
 
 
@@ -495,9 +528,39 @@ CREATE TABLE `parkings` (
 
 /*!40000 ALTER TABLE `parkings` DISABLE KEYS */;
 INSERT INTO `parkings` (`ID`,`NAME`,`DESCRIPTION`,`COMMUNITY_ID`) VALUES 
- (1,'Parking1','Parking1',1);
+ (1,'Parking A','Parking A',1),
+ (2,'Parking B','Parking B',1),
+ (3,'Parking East','Parking East',2),
+ (4,'Parking West','Parking West',2);
 /*!40000 ALTER TABLE `parkings` ENABLE KEYS */;
 
+
+--
+-- Definition of table `privileges`
+--
+
+DROP TABLE IF EXISTS `privileges`;
+CREATE TABLE `privileges` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(100) NOT NULL,
+  `URL` varchar(150) NOT NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `privileges`
+--
+
+/*!40000 ALTER TABLE `privileges` DISABLE KEYS */;
+INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES 
+ (1,'Properties','Properties','eventhandler?event=communityHome'),
+ (2,'Complaints','Complaints','eventhandler?event=complaintsList'),
+ (3,'Notice Board','Notice Board',''),
+ (4,'Parking','Parking',''),
+ (5,'Admin','Admin','eventhandler?event=communityAdmin'),
+ (6,'Amenities','Amenities','');
+/*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
 
 
 --
@@ -524,16 +587,6 @@ CREATE TABLE `property_owners` (
 --
 
 /*!40000 ALTER TABLE `property_owners` DISABLE KEYS */;
-INSERT INTO `property_owners` (`ID`,`PROPERTY_ID`,`PROPERTY_TYPE_ID`,`OWNER_ID`) VALUES 
- (1,1,1,1),
- (2,2,1,2),
- (3,3,1,1),
- (4,4,1,1),
- (5,5,1,1),
- (6,1,2,1),
- (7,2,3,2),
- (8,2,2,2),
- (9,2,3,2);
 /*!40000 ALTER TABLE `property_owners` ENABLE KEYS */;
 
 
@@ -585,13 +638,46 @@ CREATE TABLE `role_contexts` (
 --
 
 /*!40000 ALTER TABLE `role_contexts` DISABLE KEYS */;
-INSERT INTO `role_contexts` (`ID`,`USER_ID`,`COMMUNITY_ID`,`ROLE_ID`) VALUES
+INSERT INTO `role_contexts` (`ID`,`USER_ID`,`COMMUNITY_ID`,`ROLE_ID`) VALUES 
  (1,1,1,1),
  (2,1,2,2),
  (3,2,1,2),
  (4,2,2,1);
 /*!40000 ALTER TABLE `role_contexts` ENABLE KEYS */;
 
+
+--
+-- Definition of table `role_privileges`
+--
+
+DROP TABLE IF EXISTS `role_privileges`;
+CREATE TABLE `role_privileges` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `ROLE_ID` int(10) unsigned NOT NULL,
+  `PRIVILEGE_ID` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`ID`),
+  KEY `FK_ROLE_PRIVILEGES_1` (`ROLE_ID`),
+  KEY `FK_ROLE_PRIVILEGES_2` (`PRIVILEGE_ID`),
+  CONSTRAINT `FK_ROLE_PRIVILEGES_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `roles` (`ID`),
+  CONSTRAINT `FK_ROLE_PRIVILEGES_2` FOREIGN KEY (`PRIVILEGE_ID`) REFERENCES `privileges` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role_privileges`
+--
+
+/*!40000 ALTER TABLE `role_privileges` DISABLE KEYS */;
+INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES 
+ (1,1,1),
+ (2,1,2),
+ (3,1,3),
+ (4,1,4),
+ (5,1,5),
+ (6,2,1),
+ (7,2,2),
+ (8,2,3),
+ (9,2,4);
+/*!40000 ALTER TABLE `role_privileges` ENABLE KEYS */;
 
 
 --
@@ -611,7 +697,7 @@ CREATE TABLE `roles` (
 --
 
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` (`ID`,`NAME`,`DESCRIPTION`) VALUES
+INSERT INTO `roles` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
  (1,'Community Admin','Community Admin'),
  (2,'Property Owner','Property Owner');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
@@ -687,7 +773,7 @@ CREATE TABLE `users` (
 --
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`ID`,`EMAIL_ID`,`PASSWORD`,`MOBILE_NO`,`FIRST_NAME`,`LAST_NAME`) VALUES
+INSERT INTO `users` (`ID`,`EMAIL_ID`,`PASSWORD`,`MOBILE_NO`,`FIRST_NAME`,`LAST_NAME`) VALUES 
  (1,'gopinath.dhanapal@gmail.com','il@123','9916958269','Gopinath','Dhanapal'),
  (2,'vijayan.srinivasan@gmail.com','vijayan$786','9986508767','Vijayan','Srinivasan');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -715,10 +801,8 @@ CREATE TABLE `villas` (
 -- Dumping data for table `villas`
 --
 
-INSERT INTO `villas` (`ID`,`COMMUNITY_ID`,`PLOT_NO`,`NO_OF_FLOORS`,`NAME`,`NO_OF_BED_ROOMS`,`NO_OF_PARKINGS`) VALUES
- (1,1,'3',5,'Villa G',3,2),
- (2,1,'4',4,'Muruga Villa',4,3),
- (3,2,'8',3,'Villa A',2,2);
+/*!40000 ALTER TABLE `villas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `villas` ENABLE KEYS */;
 
 
 --
@@ -728,64 +812,6 @@ INSERT INTO `villas` (`ID`,`COMMUNITY_ID`,`PLOT_NO`,`NO_OF_FLOORS`,`NAME`,`NO_OF
 DROP TABLE IF EXISTS `properties`;
 DROP VIEW IF EXISTS `properties`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `properties` AS select `f`.`ID` AS `PROPERTY_ID`,1 AS `PROPERTY_TYPE_ID`,`f`.`FLAT_NO` AS `PROPERTY_NAME`,`b`.`COMMUNITY_ID` AS `COMMUNITY_ID` from (`flats` `F` join `blocks` `B` on((`f`.`BLOCK_ID` = `b`.`ID`))) union all select `villas`.`ID` AS `PROPERTY_ID`,2 AS `PROPERTY_TYPE_ID`,`villas`.`NAME` AS `PROPERTY_NAME`,`villas`.`COMMUNITY_ID` AS `COMMUNITY_ID` from `villas`;
-
-DROP TABLE IF EXISTS `privileges`;
-CREATE TABLE `privileges` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `NAME` varchar(45) NOT NULL,
-  `DESCRIPTION` varchar(100) NOT NULL,
-  `URL` varchar(150) NOT NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `privileges`
---
-
-/*!40000 ALTER TABLE `privileges` DISABLE KEYS */;
-INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES
- (1,'Properties','Properties','eventhandler?event=communityHome'),
- (2,'Complaints','Complaints','eventhandler?event=complaintsList'),
- (3,'Notice Board','Notice Board',''),
- (4,'Parking','Parking',''),
- (5,'Admin','Admin','eventhandler?event=communityAdmin');
-/*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
-
-
---
--- Definition of table `role_privileges`
---
-
-DROP TABLE IF EXISTS `role_privileges`;
-CREATE TABLE `role_privileges` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `ROLE_ID` int(10) unsigned NOT NULL,
-  `PRIVILEGE_ID` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`ID`),
-  KEY `FK_ROLE_PRIVILEGES_1` (`ROLE_ID`),
-  KEY `FK_ROLE_PRIVILEGES_2` (`PRIVILEGE_ID`),
-  CONSTRAINT `FK_ROLE_PRIVILEGES_1` FOREIGN KEY (`ROLE_ID`) REFERENCES `roles` (`ID`),
-  CONSTRAINT `FK_ROLE_PRIVILEGES_2` FOREIGN KEY (`PRIVILEGE_ID`) REFERENCES `privileges` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `role_privileges`
---
-
-/*!40000 ALTER TABLE `role_privileges` DISABLE KEYS */;
-INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES
- (1,1,1),
- (2,1,2),
- (3,1,3),
- (4,1,4),
- (5,1,5),
- (6,2,1),
- (7,2,2),
- (8,2,3),
- (9,2,4);
-/*!40000 ALTER TABLE `role_privileges` ENABLE KEYS */;
-
-
 
 
 

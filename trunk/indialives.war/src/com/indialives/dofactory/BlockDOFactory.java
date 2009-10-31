@@ -30,4 +30,10 @@ public class BlockDOFactory implements SQLConstants{
 		persistenceManager.create(ADD_BLOCK, paramList);		
 	}
 
+	public static void deleteBlocks(String query) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		ArrayList<Object> paramList=new ArrayList<Object>();
+		persistenceManager.delete(query,paramList);		
+	}
+
 }

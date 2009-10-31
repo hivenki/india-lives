@@ -16,7 +16,7 @@ public class AddFlatEventHandler implements EventHandler,Constants{
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.sendRedirect("eventhandler?event=communityAdmin");
+		response.sendRedirect("eventhandler?event=communityAdmin&flatTab");
 	}
 
 	public void process(HttpServletRequest request, HttpServletResponse response)

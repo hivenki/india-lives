@@ -14,4 +14,5 @@ public interface PageNameConstants {
 	String ADD_FLAT_TYPE="jsp/addFlatType.jsp";
 	String ADD_PARKING="jsp/addParking.jsp";
 	String ADD_PARKING_SLOT="jsp/addParkingSlot.jsp";
+	String ERROR_PAGE="jsp/error.jsp";
 }

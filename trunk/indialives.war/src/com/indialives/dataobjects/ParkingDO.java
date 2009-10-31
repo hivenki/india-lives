@@ -81,6 +81,10 @@ public class ParkingDO  implements java.io.Serializable, com.easymvc.persistence
 	}
 
 
+	@Override
+	public String toString() {
+		return "["+id+","+name+"]";
+	}
 
 
 

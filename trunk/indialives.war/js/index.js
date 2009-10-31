@@ -4,8 +4,9 @@ function  submitLogin(){
 	
 	if(username!="null"  && password!="null" ){
 		if(document.getElementById("remember").checked==true){			
-			setCookie('username',username,1,"localhost");
-			setCookie('password',password,1,"localhost");
+		//	setCookie('username',username,1,"localhost");
+		//	setCookie('password',password,1,"localhost");
+			setCookie();
 		}		
 		document.loginFrm.submit();
 		
@@ -21,11 +22,11 @@ function errorMsg(msg){
 }
 
 
-/*
-function set_cookie ( uname, uvalue,pname,pvalue,exp_y, exp_m, exp_d, path, domain, secure )
+
+function set_cookie ( uname, uvalue,exp_y, exp_m, exp_d, path, domain, secure )
 {
 	
-	var cookie_string = uname + "=" + escape ( uvalue )+";"+ pname + "=" + escape ( pvalue );
+	var cookie_string = uname + "=" + escape ( uvalue );
 	
   if ( exp_y )
   {
@@ -59,7 +60,7 @@ function setCookie(){
 	set_cookie("username",username);
 	set_cookie("password",password);
 	
-	set_cookie ( "", "", 2009, 09, 30, "","localhost", "secure" );
+
 }
 
 function get_cookie ( cookie_name )
@@ -70,9 +71,9 @@ function get_cookie ( cookie_name )
     return ( unescape ( results[2] ) );
   else
     return null;
-}*/
+}
 
-
+/*
 function setCookie(c_name,value,expiredays,domain)
 {
 	var exdate=new Date();
@@ -99,11 +100,11 @@ if (document.cookie.length>0)
   }
 return "";
 }
-
+*/
 
 function fillLastLogin(){
-	var username=getCookie("username");
-	var password=getCookie("password");
+	var username=get_cookie("username");
+	var password=get_cookie("password");
 	if(username!=null){
 		document.getElementById("username").value=username;
 		document.getElementById("password").value=password;
