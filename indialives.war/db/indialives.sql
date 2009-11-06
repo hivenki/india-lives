@@ -556,7 +556,7 @@ CREATE TABLE `privileges` (
 INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES 
  (1,'Properties','Properties','eventhandler?event=communityHome'),
  (2,'Complaints','Complaints','eventhandler?event=complaintsList'),
- (3,'Notice Board','Notice Board',''),
+ (3,'Notice Board','Notice Board','eventhandler?event=noticeBoardList'),
  (4,'Parking','Parking',''),
  (5,'Admin','Admin','eventhandler?event=communityAdmin'),
  (6,'Amenities','Amenities','');

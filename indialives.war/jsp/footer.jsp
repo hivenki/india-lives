@@ -22,7 +22,7 @@
 	</tr>
 	<tr  class="indiaLivesFonts" style="font-size:10px;">
 		<td align="right" colspan="6">
-			copyright 2009 IndiaLives all rights reserved.
+			Copyright 2009 IndiaLives all rights reserved.
 		</td>
 	</tr>
 

@@ -1,13 +1,15 @@
 package com.indialives.formbean;
 
-public class Compliants {
+public class Complaint {
 	
+	private Integer id;
 	private Integer propertyId;
 	private Integer typeId;
 	private Integer severityId;
 	private String description;
 	private String availableStartTime;
 	private String availableEndTime;
+	private Integer statusId;
 	
 	public Integer getTypeId() {
 		return typeId;
@@ -44,5 +46,17 @@ public class Compliants {
 	}
 	public void setPropertyId(Integer propertyId) {
 		this.propertyId = propertyId;
+	}
+	public Integer getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

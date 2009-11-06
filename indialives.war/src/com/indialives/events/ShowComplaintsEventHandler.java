@@ -63,6 +63,8 @@ public class ShowComplaintsEventHandler implements EventHandler,SetAttributeCons
 		compliantTypeEnumList=ComplaintTypeEnumDOFactory.getComplaintTypes();
 		severityTypeList=SeverityEnumDOFactory.getSeverityTypeList();
 		
+		
+		
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyList);
 		request.setAttribute(PROPERTY_NAME_LIST, propertyNameList);
 		request.setAttribute(COMPLAINT_TYPE_LIST, compliantTypeEnumList);

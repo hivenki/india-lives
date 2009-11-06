@@ -17,6 +17,9 @@ import com.indialives.dofactory.BlockDOFactory;
 import com.indialives.dofactory.FlatDOFactory;
 import com.indialives.dofactory.ParkingDOFactory;
 import com.indialives.dofactory.ParkingSlotDOFactory;
+import com.indialives.dofactory.PropertyOwnerDOFactory;
+import com.indialives.dofactory.PropertyTypeEnumDOFactory;
+import com.indialives.dofactory.UserDOFactory;
 import com.indialives.dofactory.VillaDOFactory;
 
 
@@ -29,6 +32,10 @@ public class CommunityAdminEventHandler implements EventHandler,SetAttributeCons
 	private List<RowObject> flatTypeList=null;
 	private List<RowObject> parkingList=null;
 	private List<RowObject> parkingSlotList=null;
+	private List<RowObject> userList=null;
+	private List<RowObject> propertyTypeList=null;
+	private List<RowObject> propertyList=null;
+	private List<RowObject> userForPropertyList=null;
 	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,12 +50,28 @@ public class CommunityAdminEventHandler implements EventHandler,SetAttributeCons
 		HttpSession httpSession=request.getSession();
 		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		
+		
 		flatList=FlatDOFactory.getFlatList(communityId);
 		villaList=VillaDOFactory.getVillaList(communityId);
 		blockList=BlockDOFactory.getBlockList(communityId);
 		flatTypeList=FlatDOFactory.getFlatTypeList();
 		parkingList=ParkingDOFactory.getParkingList(communityId);
 		parkingSlotList=ParkingSlotDOFactory.getParkingSlotList();
+		userList=UserDOFactory.getUserList(communityId);
+		
+		
+		
+		if(httpSession.getAttribute(PROPERTY_TYPE_ID)==null){
+			String propertyTypeId="1";
+			httpSession.setAttribute(PROPERTY_TYPE_ID,propertyTypeId);		
+			propertyList=PropertyOwnerDOFactory.getProperties(propertyTypeId,communityId);
+			httpSession.setAttribute(PROPERTY_LIST_BASED_ON_TYPE, propertyList);
+		}
+		
+		userForPropertyList=UserDOFactory.getUserList(communityId);		
+		httpSession.setAttribute(USER_LIST_FOR_PROPERTY,userForPropertyList);
+		
+		propertyTypeList=PropertyTypeEnumDOFactory.getPropertyList();
 		
 		request.setAttribute(FLATS_LIST,flatList);
 		request.setAttribute(VILLA_LIST,villaList);
@@ -56,6 +79,8 @@ public class CommunityAdminEventHandler implements EventHandler,SetAttributeCons
 		request.setAttribute(FLAT_TYPE_LIST,flatTypeList);
 		request.setAttribute(PARKING_LIST,parkingList);
 		request.setAttribute(PARKING_SLOT_LIST,parkingSlotList);
+		request.setAttribute(GET_USER_LIST,userList);
+		request.setAttribute(PROPERTY_ENUM_LIST,propertyTypeList);
 	}
 
 }

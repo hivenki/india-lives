@@ -25,6 +25,7 @@ public class ComplaintDO  implements java.io.Serializable, com.easymvc.persisten
      private Date availableStartTime;
      private Date availableEndTime;
      private Integer raisedBy;
+     private Integer statusId;
 
     public ComplaintDO() {
     }
@@ -132,6 +133,14 @@ public class ComplaintDO  implements java.io.Serializable, com.easymvc.persisten
 	}
 	public void setRaisedBy(Integer raisedBy) {
 		this.raisedBy = raisedBy;
+	}
+
+	public Integer getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 	
 

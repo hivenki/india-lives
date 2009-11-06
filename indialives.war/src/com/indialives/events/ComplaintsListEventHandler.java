@@ -19,7 +19,9 @@ import com.indialives.dofactory.ComplaintDOFactory;
 
 public class ComplaintsListEventHandler implements  EventHandler,SetAttributeConstants,PageNameConstants{
 	
-	private List<RowObject> complaintsList=null;
+	private List<RowObject> complaintsListForOpen=null;
+	private List<RowObject> complaintsListForInProgress=null;
+	private List<RowObject> complaintsListForClosed=null;
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -44,14 +46,19 @@ public class ComplaintsListEventHandler implements  EventHandler,SetAttributeCon
 		int roleId=session.getUser().getRoleId();
 		
 		if(roleId==1){
-			complaintsList=ComplaintDOFactory.getComplaintsListBasedOnAdmin(communityId);
+			complaintsListForOpen=ComplaintDOFactory.getComplaintsListBasedOnAdminForOpen(communityId);
+			complaintsListForInProgress=ComplaintDOFactory.getComplaintsListBasedOnAdminForInProgress(communityId);
+			complaintsListForClosed=ComplaintDOFactory.getComplaintsListBasedOnAdminForClosed(communityId);
 		
 		}else{
-			complaintsList=ComplaintDOFactory.getComplaintsList(userId, communityId);
-		
+			complaintsListForOpen=ComplaintDOFactory.getComplaintsListForOpen(userId, communityId);
+			complaintsListForInProgress=ComplaintDOFactory.getComplaintsListForInProgress(userId, communityId);
+			complaintsListForClosed=ComplaintDOFactory.getComplaintsListForClosed(userId, communityId);
 		}
 		
-		request.setAttribute(GET_COMPLAINTS_LIST,complaintsList);
+		request.setAttribute(GET_COMPLIANTS_LIST_FOR_OPEN,complaintsListForOpen);
+		request.setAttribute(GET_COMPLIANTS_LIST_FOR_IN_PROGRESS,complaintsListForInProgress);
+		request.setAttribute(GET_COMPLIANTS_LIST_FOR_CLOSED,complaintsListForClosed);
 		
 		
 		

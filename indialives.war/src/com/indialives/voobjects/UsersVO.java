@@ -11,6 +11,7 @@ public class UsersVO extends UserDO{
 	
 	private Integer roleId;
 	private Integer communityId;
+	private String roleName;
 	
 	public Integer getRoleId() {
 		return roleId;
@@ -23,5 +24,11 @@ public class UsersVO extends UserDO{
 	}
 	public void setCommunityId(Integer communityId) {
 		this.communityId = communityId;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 }

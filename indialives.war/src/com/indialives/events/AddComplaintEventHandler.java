@@ -12,7 +12,7 @@ import com.easymvc.session.Session;
 import com.easymvc.session.SessionFactory;
 import com.indialives.PageNameConstants;
 import com.indialives.dofactory.ComplaintDOFactory;
-import com.indialives.formbean.Compliants;
+import com.indialives.formbean.Complaint;
 
 public class AddComplaintEventHandler implements EventHandler,Constants,PageNameConstants{
 
@@ -24,7 +24,7 @@ public class AddComplaintEventHandler implements EventHandler,Constants,PageName
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Compliants compliants=(Compliants)request.getAttribute(FORM_BEAN);
+		Complaint compliants=(Complaint)request.getAttribute(FORM_BEAN);
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
 		ComplaintDOFactory.addComplaint(compliants,userId);

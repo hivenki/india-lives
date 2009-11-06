@@ -27,4 +27,5 @@ public class PropertiesVO extends PropertyOwnerDO {
 	public void setPropertyTypeName(String propertyTypeName) {
 		this.propertyTypeName = propertyTypeName;
 	}
+	
 }

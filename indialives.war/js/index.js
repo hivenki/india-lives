@@ -4,10 +4,9 @@ function  submitLogin(){
 	
 	if(username!="null"  && password!="null" ){
 		if(document.getElementById("remember").checked==true){			
-		//	setCookie('username',username,1,"localhost");
-		//	setCookie('password',password,1,"localhost");
 			setCookie();
 		}		
+		document.loginFrm.event.value="login";
 		document.loginFrm.submit();
 		
 	}else{	
@@ -54,13 +53,10 @@ function setCookie(){
 	var password=document.getElementById("password").value;
 	var exprDateString=new Date();
 	var exprYear=exprDateString.getYear();
-	var exprMonth=exprDateString.getMonth()+1;
-	var exprDate=exprDateString.getDate();	
-	var domainName="http://localhost:8080/indialives";
-	set_cookie("username",username);
-	set_cookie("password",password);
-	
-
+	var exprMonth=exprDateString.getMonth();
+	var exprDate=exprDateString.getDate()+7;	
+	set_cookie("username",username,exprYear,exprMonth,exprDate);
+	set_cookie("password",password,exprYear,exprMonth,exprDate);
 }
 
 function get_cookie ( cookie_name )
@@ -73,35 +69,6 @@ function get_cookie ( cookie_name )
     return null;
 }
 
-/*
-function setCookie(c_name,value,expiredays,domain)
-{
-	var exdate=new Date();
-	exdate.setDate(exdate.getDate()+expiredays);
-	document.cookie=c_name+ "=" +escape(value)+
-	((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+ "; domain=" + escape (domain);
-	alert(document.cookie);
-}
-
-
-
-function getCookie(uName)
-{
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(uName + "=");
-  if (c_start!=-1)
-    {
-    c_start=c_start + uName.length+1;
-    c_end=document.cookie.indexOf(";",c_start);
-    if (c_end==-1) c_end=document.cookie.length;
-    return unescape(document.cookie.substring(c_start,c_end));
-    }
-  }
-return "";
-}
-*/
-
 function fillLastLogin(){
 	var username=get_cookie("username");
 	var password=get_cookie("password");
@@ -111,8 +78,15 @@ function fillLastLogin(){
 	}
 }
 
+function createUser(){
+	document.loginFrm.event.value="createUser";
+	document.loginFrm.submit();
+}
 
-
+function submitForgot(){
+	document.loginFrm.event.value="forgotPassword";
+	document.loginFrm.submit();
+}
 
 
 

@@ -107,7 +107,7 @@
 	</tr>
 	<tr>
 		<td colspan="1">&nbsp;</td>
-		<td align="right" colspan="1"><a href="#">Sign In Problems?</a></td>
+		<td align="right" colspan="1"><a href="#" onclick="submitForgot()">Sign In Problems?</a></td>
 		<td colspan="1">&nbsp;</td>
 	</tr>
 	</table>
@@ -118,7 +118,7 @@
 <table border="0" align="left" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
 	<tr>
 		<td colspan="1">&nbsp;</td>
-		<td colspan="1" align="left"><input type="button" name="newUser" value="Start Here"></td>
+		<td colspan="1" align="left"><input type="button" name="newUser" value="Start Here" onclick="createUser()"></td>
 		<td colspan="1">&nbsp;</td>
 	</tr>
 	</table>
@@ -133,7 +133,7 @@
 </table>
 <%@include file="footer.jsp" %>
 
-<input type="hidden" name="event" value="login"> <input
+<input type="hidden" name="event"> <input
 	type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"
 	value="<%=LoginUser.class.getName()%>">
 	<input type="hidden" name="username" >
