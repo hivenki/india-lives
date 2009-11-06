@@ -35,7 +35,6 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

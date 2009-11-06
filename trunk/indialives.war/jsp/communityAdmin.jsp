@@ -15,17 +15,36 @@
 	List flatTypeList=(List)request.getAttribute(SetAttributeConstants.FLAT_TYPE_LIST);
 	List parkingList=(List)request.getAttribute(SetAttributeConstants.PARKING_LIST);
 	List parkingSlotList=(List)request.getAttribute(SetAttributeConstants.PARKING_SLOT_LIST);
+	List userList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST);
+	List propertTypeList=(List)request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
+	List propertyList=(List)session.getAttribute(SetAttributeConstants.PROPERTY_LIST_BASED_ON_TYPE);
+	List userForPropertyList=(List)session.getAttribute(SetAttributeConstants.USER_LIST_FOR_PROPERTY);
 	
 	String uploadParkingSlotErrorMessage=(String)session.getAttribute(SetAttributeConstants.PARKING_ERROR_LIST);
 	session.setAttribute(SetAttributeConstants.PARKING_ERROR_LIST,null);
 	
 	String delteBlockErrormessage=(String)session.getAttribute(SetAttributeConstants.DELETE_BLOCKS_ERROR_MSG);
 	session.setAttribute(SetAttributeConstants.DELETE_BLOCKS_ERROR_MSG,null);
-
+	
+	String propertyTypeId=(String)session.getAttribute(SetAttributeConstants.PROPERTY_TYPE_ID);
+	
+	int propertyType=1;
+	if(propertyTypeId==null){
+		propertyType=1;
+	}
+	else{
+		propertyType=Integer.parseInt(propertyTypeId);
+	}
 %>
 
 
-<html>			
+
+<%@page import="com.indialives.dataobjects.UserDO"%>
+<%@page import="com.indialives.voobjects.UsersVO"%>
+<%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
+<%@page import="com.indialives.voobjects.PropertiesVO"%>
+<%@page import="com.indialives.formbean.PropertyOwner"%>
+<%@page import="com.easymvc.Constants"%><html>			
 <head>
 <title>Welcome to IndiaLives</title>
 <%@include file="complaintsList.jspf"%>
@@ -35,7 +54,6 @@
 
 
 </script>
-
 
 
 
@@ -70,6 +88,61 @@
 	</td>	
 	<td valign="top" height="100%" >
 	<div class="tabber"  id="divHome" style="margin-top: 12px" >
+	
+			<div class="tabbertab" title="User List" style="height: 418px">
+		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
+		    <legend>User List</legend>
+		    <table border="0" width="100%">
+		    	<tr>
+				<td align="right" width="100%"><input type="button"  value="Add" onclick="addUser()"></td>
+			</tr>
+		    </table>
+		   <table class="tableBgColor" width="100%"  cellpadding="1" cellspacing="1" >
+		   
+			 <tr class="trColor">
+			 	<th  nowrap="nowrap">S.No</th>
+				<th  nowrap="nowrap">First Name</th>
+				<th  nowrap="nowrap">Last Name</th>
+				<th  nowrap="nowrap">Email</th>
+				<th  nowrap="nowrap">Mobile No</th>
+				<th  nowrap="nowrap">Role</th>
+			</tr>
+			<%
+				int userRowSize=userList.size();
+		    	if(userRowSize<12){
+		    		userRowSize=12;
+		    	} 
+				
+			for(int j=0;j<userRowSize;j++){
+					 if(j%2==0){%>
+						<tr class="evenTr" style="height:  20px;color: black;" style="text-indent: 4px">
+						<%}else{%>
+						<tr class="oddTr" style="height:  20px;color: black;" style="text-indent: 4px">
+				<%}	
+				if(j<userList.size()){	    
+		    	 UsersVO usersVO=(UsersVO)userList.get(j); %>		    	
+				<td><%=j+1%></td>
+				<td><%=usersVO.getFirstName()%></td>
+				<td><%=usersVO.getLastName() %></td>
+				<td><%=usersVO.getEmailId()%></td>
+				<td><%=usersVO.getMobileNo()%></td>
+				<td><%=usersVO.getRoleName()%></td>
+		   	  <%}else{%>		    
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>	
+				<td>&nbsp;</td>	
+				<td>&nbsp;</td>				
+				<%}}%>				
+		    </table>
+		    
+		     </fieldset>
+		         
+		    
+		  </div>
+	
+	
 			<div class="tabbertab" title="Blocks" style="height: 418px">
 		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
 		    <legend>Blocks</legend>
@@ -389,16 +462,96 @@
 		   		 </form>
 			    
 		    </fieldset>
+		    		    	    
+		  </div>
+		  
+		  <div class="tabbertab" title="Property Owners" id="villaTab" style="height: 418px" >
+		    <fieldset style="height: 100%" class="indiaLivesFonts" >
+		    <legend>Property Owners</legend>
+		   
+		   <table border="0" width="54%" align="center" style="margin-left: 50px;margin-top: 120px">
+		    <tr>
+				
+				<td>Property Type</td> 			
+				<td><select onchange="showProperty()" name="propertyTypeId" style="width: 250px">
+					<%if(propertTypeList!=null){
+							for(int i=0;i<propertTypeList.size();i++){
+								PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertTypeList.get(i);
+								%>
+						
+							<%if(propertyType==propertyTypeEnumDO.getId().intValue()){ %>
+						<option value="<%=propertyTypeEnumDO.getId()%>" selected="selected"><%=propertyTypeEnumDO.getName()%></option>
+						<%}else{%>
+						<option value="<%=propertyTypeEnumDO.getId()%>" ><%=propertyTypeEnumDO.getName()%></option>
+						<%}%>
+						<%}}%>	
+				</select>	
+				</td>	
+			</tr>
+				<tr>
+				<td>Property </td>			
+				<td><select name="propertyId" style="width: 250px">
+				<option>--Select--</option>
+					<%if(propertyList!=null){
+							for(int i=0;i<propertyList.size();i++){
+								PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(i);
+								%>
+						
+						<option value="<%=propertiesVO.getPropertyId()%>"><%=propertiesVO.getPropertyName()%></option>
+															
+						<%}}%>	
+				</select>	
+				</td>	
+			</tr>
+			
+			<tr>
+				<td>Owners</td> 			
+				<td><select name="ownerId" style="width: 250px" >
+				<option>--Select--</option>
+					<%if(userForPropertyList!=null){
+							for(int i=0;i<userForPropertyList.size();i++){
+								UsersVO usersVO=(UsersVO)userForPropertyList.get(i);
+								%>
+						
+						<option value="<%=usersVO.getId()%>"><%=usersVO.getFirstName()%></option>
+															
+						<%}}%>	
+				</select>	
+				</td>	
+			</tr>
+			 <tr>
+				<td colspan="2" align="right"><input type="button"  value="Add" onclick="addPropertyOwner()"></td>
+			</tr>
+					   
+			 </table>
+			     <form name="uploadPropertyOwnerFrm"  enctype="multipart/form-data" action="/indialives/eventhandler" method="post"  >
+		    <table border="0" width="95%">
+			    <tr>
+			    	<td align="right">Upload CSV file</td>
+			    	<td width="50%"><input type="file" name="<%=ApplicationConstants.FILE_TYPE_NAME%>" size="50" > </td>
+			    	<td><input type="button"  value="Upload" onclick="uploadPropertyOwner()" ></td>
+			    </tr>		    
+		    </table>
+		    <input type="hidden" name="event"/>
+		    	
+		    </form>	
+			     
+		    </fieldset>
 		    
 		  </div>
 		  
 		  
 		
 	</div>
-	<form name="communityAdmin" action="/indialives/eventhandler" method="post">
-	<input type="hidden" name="event">
-	<input type="hidden" name="deleteBlockIds">	
-	</form>	
+	
+	<form name="communityAdmin" action="/indialives/eventhandler" method="get">
+	  <input type="hidden" name="event">
+	  <input type="hidden" name="deleteBlockIds">	
+	  <input type="hidden" name="propertyTypeIds">	
+	   <input type="hidden" name="pTypeId">
+	   <input type="hidden" name="pId">
+	        <input type="hidden" name="oId">
+	</form>		 
 	</td>
 	<td valign="top" width="15%" class="indiaLivesFonts">
 		 <fieldset style="height: 98%;" >

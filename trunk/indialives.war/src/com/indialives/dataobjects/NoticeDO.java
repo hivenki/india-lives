@@ -14,12 +14,14 @@ public class NoticeDO  implements java.io.Serializable, com.easymvc.persistence.
 	private static final long serialVersionUID = 1L;
 
      private Integer id;
+     private Integer communityId;
      private UserDO userDO;
      private CommunityDO communityDO;
      private NoticeBoardEnumDO noticeBoardEnumDO;
      private Date postedDate;
      private String subject;
      private String description;
+     private Integer postedBy;
 
     public NoticeDO() {
     }
@@ -88,6 +90,22 @@ public class NoticeDO  implements java.io.Serializable, com.easymvc.persistence.
 	
 	public String getTableName() {
 		return null;
+	}
+
+	public Integer getPostedBy() {
+		return postedBy;
+	}
+
+	public void setPostedBy(Integer postedBy) {
+		this.postedBy = postedBy;
+	}
+
+	public Integer getCommunityId() {
+		return communityId;
+	}
+
+	public void setCommunityId(Integer communityId) {
+		this.communityId = communityId;
 	}
 
 

@@ -6,11 +6,11 @@
 <%@page import="java.util.List"%>
 <%@page import="com.indialives.dataobjects.CommunityDO"%>
 <%@page import="com.easymvc.session.SessionFactory"%>
-<%@page import="com.indialives.formbean.Compliants"%>
 <%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
 <%@page import="com.indialives.voobjects.PropertiesVO"%>
 <%@page import="com.indialives.dataobjects.ComplaintTypeEnumDO"%>
-<%@page import="com.indialives.dataobjects.SeverityEnumDO"%><html>
+<%@page import="com.indialives.dataobjects.SeverityEnumDO"%>
+<%@page import="com.indialives.formbean.Complaint"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
 <%@include file="indialives_css.jspf"%>
@@ -174,7 +174,7 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 		
 	</table>
 	<input type="hidden" name="event">
-	<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Compliants.class.getName()%>">
+	<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Complaint.class.getName()%>">
 	
 	</form>
 	</fieldset>

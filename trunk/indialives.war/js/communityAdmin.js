@@ -113,3 +113,36 @@ function monitor(object,size){
 		document.getElementById("selectall").checked=false;
 	}
 }
+
+
+
+function addUser(){
+
+	document.communityAdmin.event.value="addUserNotThisCommunity";
+	document.communityAdmin.submit();
+}
+
+function showProperty(){
+	var pTypeId=document.getElementById("propertyTypeId").value;
+	document.communityAdmin.propertyTypeIds.value=pTypeId;
+	document.communityAdmin.event.value="propertyOwners";
+	document.communityAdmin.submit();
+	
+}
+
+function addPropertyOwner(){
+	var proTyId=document.getElementById("propertyTypeId").value;
+	document.communityAdmin.pTypeId.value=proTyId;
+	var propId=document.getElementById("propertyId").value;
+	document.communityAdmin.pId.value=propId;
+	var ownId=document.getElementById("ownerId").value;
+	document.communityAdmin.oId.value=ownId;
+	document.communityAdmin.event.value="addPropertyOwner";
+	document.communityAdmin.submit();
+}
+
+function uploadPropertyOwner(){
+	
+	document.uploadPropertyOwnerFrm.event.value="uploadPropertyOwner";
+    document.uploadPropertyOwnerFrm.submit();
+}

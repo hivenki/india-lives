@@ -14,6 +14,7 @@ public class ComplaintsVO extends ComplaintDO {
 	private String severityName;
 	private String complaintTypeName;
 	private String raisedByName;
+	private Integer statusName;
 	
 	
 	
@@ -46,6 +47,12 @@ public class ComplaintsVO extends ComplaintDO {
 	}
 	public void setRaisedByName(String raisedByName) {
 		this.raisedByName = raisedByName;
+	}
+	public Integer getStatusName() {
+		return statusName;
+	}
+	public void setStatusName(Integer statusName) {
+		this.statusName = statusName;
 	}
 	
 	

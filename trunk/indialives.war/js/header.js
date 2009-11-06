@@ -5,9 +5,3 @@ function  submitSignOut(){
 		document.getElementById("signOutLink").href="eventhandler?event=signOut";
 	  }	
 }
-
-function submitHome(){
-	document.headerFrm.event.value="memberHome";
-	document.getElementById("headerFrm").submit();
-	
-}

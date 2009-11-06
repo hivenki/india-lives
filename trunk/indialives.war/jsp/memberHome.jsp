@@ -28,29 +28,36 @@
 	  	<form name="memberHome" action="/indialives/eventhandler" method="post">
 		<table border="0" width="65%" style="margin-left: 170px;margin-top: 80px" >
 		<tr class="indiaLivesFonts" style="font-size:16px;">
-			<td>
-				You are part of the following gated communities,				
-			</td>
-		</tr>
+					<td>
+						You are part of the following gated communities,				
+					</td>
+				</tr>
 		
 				<%
-				if(communityList!=null){
+				if(communityList!=null && communityList.size()>0){
 					for(int i=0;i<communityList.size();i++){
 				%>
+				
 				<tr class="indiaLivesFonts">
 				<%		
 					CommunityVO communityVO=(CommunityVO)communityList.get(i);
 				%>
 				<td class="indiaLivesFonts" ><input type="radio"  name="gatedCommunityId" value="<%=communityVO.getId()%>" ><%=communityVO.getName()%></td>
 				</tr>
-				<% }}%>	
+					<% }%>
 			
 		
-		<tr class="indiaLivesFonts">
-			<td> 
-				<input style="margin-left: 310px;font-size:14px" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
-			</td>
-		</tr>
+					<tr class="indiaLivesFonts">
+						<td> 
+							<input style="margin-left: 310px;font-size:14px" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
+						</td>
+					</tr>
+			<%}else {%>
+				<tr class="indiaLivesFonts" style="font-size: 16px">
+					<td>You don't have communities.</td>
+				</tr>
+			
+			<%}%>	
 	</table>
 	<input type="hidden" name="event" value="communityHome">
 	</form>
