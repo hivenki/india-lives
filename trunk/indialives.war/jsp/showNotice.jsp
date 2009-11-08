@@ -53,7 +53,7 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 	   <legend style="font-size:16px;">Create Notice</legend>
 	   	  
 	   	  <form name="addNoticeFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
+	    	<table border="0" width="65%" align="center" style="margin-left: 50px;margin-top: 120px">
 					
 		<tr>
 			<td>Notice Type</td>
@@ -71,7 +71,7 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 		</tr>
 		<tr>
 			<td>Posted Date</td>
-			<td><input type="text" size="21" name="postedDate">(DD-MM-YYYY)</td>
+			<td><input type="text" size="35" name="postedDate">(DD-MM-YYYY)</td>
 		</tr>
 		<tr>
 			<td>Subject </td>
@@ -96,8 +96,8 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 		</td>
 		</tr>
 		<tr>
-		<td colspan="2"  align="right" >
-			<input type="button" name="add" value="Add" onclick="addNotice()">
+		<td colspan="2" >
+			<input style="margin-left: 285px" type="button" name="add" value="Add" onclick="addNotice()">
 		</td>		
 		</tr>
 		</table>
