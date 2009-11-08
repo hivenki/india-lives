@@ -24,7 +24,12 @@ function addUser(){
 	if(msg!=null && msg!=""){
 		alert(msg.substring(0,msg.length-1)+"\nThese fields are empty");
 	}else{
+		document.addUserFrm.event.value="addUser"
 		document.addUserFrm.submit();
 	}	
 }
 
+function submitBack(){
+	document.addUserFrm.event.value="index";
+	document.addUserFrm.submit();
+}

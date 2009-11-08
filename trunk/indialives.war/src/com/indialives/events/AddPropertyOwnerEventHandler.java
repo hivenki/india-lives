@@ -25,7 +25,7 @@ public class AddPropertyOwnerEventHandler implements EventHandler,Constants,SetA
 		String propertyTypeId=request.getParameter("pTypeId");
 		String propertyId=request.getParameter("pId");
 		String ownerId=request.getParameter("oId");
-		PropertyOwnerDOFactory.addPropertyToOwner(propertyTypeId,propertyId,ownerId);
+		PropertyOwnerDOFactory.addPropertyToOwner(propertyId,propertyTypeId,ownerId);
 	}
 
 }

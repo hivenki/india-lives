@@ -77,10 +77,30 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 			userMap.put(usersVO.getFirstName(),usersVO.getId());
 		}	
 		
-		PropertyOwnerDOFactory.addPropertyOwnerCSV(csvReader,propertyTypeMap,propertyMap,userMap);		
+		List<String> list =PropertyOwnerDOFactory.addPropertyOwnerCSV(csvReader,propertyTypeMap,propertyMap,userMap);
+	//	String propertyOwnerErrMsg="";
+	//	if(list==null){
+	//		httpSession.setAttribute(PROPERTY_OWNER_ERROR_LIST,propertyOwnerErrMsg);
+	//	}
+		String message=getErrorMessage(list);
+		httpSession.setAttribute(PROPERTY_OWNER_ERROR_LIST,message);	
 	}
 
 	
+
+	private String getErrorMessage(List<String> list) {
+		if(list.size()>0){
+			String message="";				
+			for(int i=0;i<list.size();i++){
+				message=message+list.get(i)+",";
+			}
+			if(message.length()>0){
+				message=message.substring(0,message.length()-1);
+			}
+			return message;
+		}
+		return "";
+	}
 
 	private CsvReader getCsvReader(HttpServletRequest request) {
 		Properties properties=PropertyLoader.getProperties(APPLICATION_PROPERTIES_FILE_NAME);

@@ -32,4 +32,32 @@ public class NoticeDOFactory implements SQLConstants{
 		paramList.add(notice.getPostedById());
 		persistenceManager.create(ADD_NOTICE, paramList);
 	}
+
+	public static NoticeVO findNotice(String editNoticeId, String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(communityId);
+		paramList.add(editNoticeId);
+		NoticeVO noticeVO=(NoticeVO) persistenceManager.find(NoticeVO.class,EDIT_NOTICE, paramList);
+		return noticeVO;
+	}
+
+	public static void updateNotice(Notice notice, String noticeId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(notice.getNoticeTypeId());
+		paramList.add(DateUtil.getDateFromString(notice.getPostedDate()));
+		paramList.add(notice.getSubject());
+		paramList.add(notice.getDescription());
+		paramList.add(notice.getPostedById());
+		paramList.add(noticeId);
+		persistenceManager.update(UPDATE_NOTICE, paramList);
+		
+	}
+
+	public static void deleteNotice(String query) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();	
+		persistenceManager.delete(query, paramList);		
+	}
 }

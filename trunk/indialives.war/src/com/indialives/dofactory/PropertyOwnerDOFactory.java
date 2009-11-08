@@ -44,26 +44,42 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		
 	}
 
-	public static void addPropertyToOwner(String propertyTypeId,
-			String propertyId, String ownerId) {
+	public static void addPropertyToOwner(String propertyId,String propertyTypeId,
+			 String ownerId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
-		paramList.add(propertyTypeId);
 		paramList.add(propertyId);
+		paramList.add(propertyTypeId);
 		paramList.add(ownerId);
 		persistenceManager.create(ADD_PROPERTY_OWNER, paramList);
 		
 	}
 
-	public static void addPropertyOwnerCSV(CsvReader csvReader, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap) {
+	public static List<String>  addPropertyOwnerCSV(CsvReader csvReader, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap) {
+		List<String> list=new ArrayList<String>();
 		for(int i=1;i<csvReader.getNumberOfRows();i++){
 			List<?> rowList=csvReader.getRowValues(i);			
 			Integer propertyTypeId=propertyTypeMap.get(rowList.get(1).toString().trim());
+			
 			Map<String, Integer> propertyNameMap=propertyMap.get(propertyTypeId);
 			Integer propertyId=propertyNameMap.get(rowList.get(0).toString().trim());			
 			Integer ownerId=userMap.get(rowList.get(2).toString().trim());	
-			addPropertyToOwner(propertyId,propertyTypeId,ownerId);
+			
+			if(propertyTypeId==null){
+				list.add((String) rowList.get(0));
+			}
+			if(propertyId==null){
+				list.add((String) rowList.get(1));
+			}
+			if(ownerId==null){
+				list.add((String) rowList.get(2));
+			}
+			else{
+				addPropertyToOwner(propertyId,propertyTypeId,ownerId);
+			}
+			
 		}
+		return list;
 		
 	}
 

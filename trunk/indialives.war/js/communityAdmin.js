@@ -18,9 +18,14 @@ function addBlock(){
 }
 
 function uploadCSV(){
+	var filedata=document.getElementById('Filedata');
 	
-	document.uploadFlatFrm.event.value="uploadFlat";
-    document.uploadFlatFrm.submit();
+	if(filedata!=null && filedata!==""){
+		alert("File name is empty");
+	}else{
+		document.uploadFlatFrm.event.value="uploadFlat";
+	    document.uploadFlatFrm.submit();
+	}
 }
 
 function addFlatType(){
@@ -40,14 +45,25 @@ function addParkingSlot(){
 
 
 function  uploadParkingSlot(){
-	document.uploadParkingSlotFrm.event.value="uploadParkingSlot";
-    document.uploadParkingSlotFrm.submit();
+	var filedata=document.getElementById('Filedata');
 	
+	if(filedata!=null && filedata!==""){
+		alert("File name is empty");
+	}else{
+		document.uploadParkingSlotFrm.event.value="uploadParkingSlot";
+		document.uploadParkingSlotFrm.submit();
+	}
 }
 
 function uploadVilla(){
-	document.uploadVillaFrm.event.value="uploadVilla";
-    document.uploadVillaFrm.submit();
+	var filedata=document.getElementById('Filedata');
+	
+	if(filedata!=null && filedata!==""){
+		alert("File name is empty");
+	}else{
+		document.uploadVillaFrm.event.value="uploadVilla";
+	    document.uploadVillaFrm.submit();
+	}
 }
 
 
@@ -131,18 +147,40 @@ function showProperty(){
 }
 
 function addPropertyOwner(){
-	var proTyId=document.getElementById("propertyTypeId").value;
-	document.communityAdmin.pTypeId.value=proTyId;
-	var propId=document.getElementById("propertyId").value;
-	document.communityAdmin.pId.value=propId;
-	var ownId=document.getElementById("ownerId").value;
-	document.communityAdmin.oId.value=ownId;
-	document.communityAdmin.event.value="addPropertyOwner";
-	document.communityAdmin.submit();
+	
+	
+	var propertyId=document.getElementById("propertyId").selectedIndex;
+	var ownerId=document.getElementById("ownerId").selectedIndex;
+	var msg="";
+	
+	if(propertyId!=null && propertyId=="0"){
+		msg=msg+"Property  \n";
+	}
+	if(ownerId!=null && ownerId=="0"){
+		msg=msg+"Owner \n";
+	}
+	if(msg!=null && msg!=""){
+		alert(msg.substring(0,msg.length-1)+"\nThese fields are empty");
+	}else{	
+		var proTyId=document.getElementById("propertyTypeId").value;
+		document.communityAdmin.pTypeId.value=proTyId;
+		var propId=document.getElementById("propertyId").value;
+		document.communityAdmin.pId.value=propId;
+		var ownId=document.getElementById("ownerId").value;
+		document.communityAdmin.oId.value=ownId;
+		document.communityAdmin.event.value="addPropertyOwner";
+		document.communityAdmin.submit();
+	}
 }
 
 function uploadPropertyOwner(){
+	var filedata=document.getElementById('Filedata');
 	
-	document.uploadPropertyOwnerFrm.event.value="uploadPropertyOwner";
-    document.uploadPropertyOwnerFrm.submit();
+	if(filedata!=null && filedata!==""){
+		alert("File name is empty");
+	}else{
+		document.uploadPropertyOwnerFrm.event.value="uploadPropertyOwner";
+	    document.uploadPropertyOwnerFrm.submit();
+	}
+	
 }

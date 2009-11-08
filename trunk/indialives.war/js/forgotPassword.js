@@ -27,5 +27,4 @@ function showMsg(msg){
 function submitBack(){
 	document.forgotPasswordFrm.event.value="index";
 	document.forgotPasswordFrm.submit();
-	
 }

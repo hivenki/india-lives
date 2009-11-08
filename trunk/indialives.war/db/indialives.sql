@@ -557,7 +557,7 @@ INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES
  (1,'Properties','Properties','eventhandler?event=communityHome'),
  (2,'Complaints','Complaints','eventhandler?event=complaintsList'),
  (3,'Notice Board','Notice Board','eventhandler?event=noticeBoardList'),
- (4,'Parking','Parking',''),
+ (4,'Parking','Parking','eventhandler?event=parkingList'),
  (5,'Admin','Admin','eventhandler?event=communityAdmin'),
  (6,'Amenities','Amenities','');
 /*!40000 ALTER TABLE `privileges` ENABLE KEYS */;

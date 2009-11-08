@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
+import com.easymvc.session.Session;
+import com.easymvc.session.SessionFactory;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dofactory.NoticeDOFactory;
@@ -18,7 +20,7 @@ import com.indialives.dofactory.NoticeDOFactory;
 public class NoticeBoardListEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
 
 	private List<RowObject> noticeBoardList=null;
-//	
+	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -34,9 +36,17 @@ public class NoticeBoardListEventHandler implements EventHandler,SetAttributeCon
 		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();		
 	
 		noticeBoardList=NoticeDOFactory.getNoticeList(communityId);
-//		;
 		request.setAttribute(NOTICE_LIST,noticeBoardList);
-//		request.setAttribute(NOTICE__TYPE_LIST,noticeBoardTypeList);
+		
+		Session session=SessionFactory.getSession(request);
+		Integer roleId=session.getUser().getRoleId().intValue();
+		
+		Integer privilegeId=4;
+		httpSession.setAttribute("PrivilegeId",privilegeId);
+		request.setAttribute(ROLE_ID, roleId);
+		
+		
+		
 	}
 
 }

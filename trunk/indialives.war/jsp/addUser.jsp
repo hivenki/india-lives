@@ -55,7 +55,7 @@
 	<tr>
 	
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
-	  <fieldset style="height: 98%;width: 100%">
+	  <fieldset style="height: 100%;width: 100%">
 	   <legend style="font-size:16px;">Create User</legend>
 	   	  
 	   	  <form name="addUserFrm" action="/indialives/eventhandler" method="post">
@@ -84,19 +84,19 @@
 		<tr>
 		<td >&nbsp;</td>
 		<td width="50%" align="right" style="margin-left: 100px">
+		<input type="button" onclick="submitBack()"	value="Back">
 		<input type="button" name="add" value="Add" onclick="addUser()">
-		</td>		
+		<input type="reset" value="Clear">
+		</td>
 		</tr>
 		</table>
 		<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Users.class.getName()%>">
-		<input type="hidden" name="event" value="addUser">
+		<input type="hidden" name="event">
 		</form>
 		</fieldset>	
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		<fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
 	</td>
 
 	</tr>

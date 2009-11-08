@@ -35,6 +35,11 @@
 	else{
 		propertyType=Integer.parseInt(propertyTypeId);
 	}
+	
+	String uploadPropertOwnerErrorMessage=(String)session.getAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST);
+	session.setAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST,null);
+	
+//  String propertyOwnerErrMsg=(String)session.getAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST);
 %>
 
 
@@ -65,7 +70,7 @@
 <%@ include file="header.jspf" %>
 </head>
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 	var uploadParkingSlotErrorMessage='<%=uploadParkingSlotErrorMessage%>';
 	if(uploadParkingSlotErrorMessage!='null' && uploadParkingSlotErrorMessage.length > 0 ){
 		alert("The following parking names are not available \n"+uploadParkingSlotErrorMessage);
@@ -75,6 +80,15 @@
 	if(delteBlockErrormessage!='null' && delteBlockErrormessage.length >0){
 		alert("The following block names are in use \n"+delteBlockErrormessage);
 	}
+	var uploadPropertOwnerErrorMessage='<%=uploadPropertOwnerErrorMessage%>';
+	if(uploadPropertOwnerErrorMessage!='null' && uploadPropertOwnerErrorMessage.length > 0 ){
+		alert("The following are not available \n"+uploadPropertOwnerErrorMessage);
+		
+	}
+//	var propertyOwnerErrMsg='';
+//	if(propertyOwnerErrMsg!='null' && propertyOwnerErrMsg.length > 0 ){
+//		alert("All the fields are not availble");		
+	//}
 	
 </script>
 
@@ -89,7 +103,7 @@
 	<td valign="top" height="100%" >
 	<div class="tabber"  id="divHome" style="margin-top: 12px" >
 	
-			<div class="tabbertab" title="User List" style="height: 418px">
+			<div class="tabbertab" title="User List" style="height: 428px">
 		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
 		    <legend>User List</legend>
 		    <table border="0" width="100%">
@@ -143,7 +157,7 @@
 		  </div>
 	
 	
-			<div class="tabbertab" title="Blocks" style="height: 418px">
+			<div class="tabbertab" title="Blocks" style="height: 428px">
 		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
 		    <legend>Blocks</legend>
 		    <table border="0" width="100%">
@@ -194,7 +208,7 @@
 		    
 		  </div>
 			
-			<div class="tabbertab" id="flat"  title="Flat Type" style="height: 418px">
+			<div class="tabbertab" id="flat"  title="Flat Type" style="height: 428px">
 		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
 		    <legend>Flat Type</legend>
 		    <table border="0" width="100%">
@@ -238,7 +252,7 @@
 		    
 		  </div>
 				
-		  <div class="tabbertab" title="Flats" id="flatTab" style="height: 418px">
+		  <div class="tabbertab" title="Flats" id="flatTab" style="height: 428px">
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Flats</legend>
 		    <table border="0" width="100%">
@@ -304,7 +318,7 @@
 		    
 		  </div>
 		
-		  <div class="tabbertab" title="Villas" id="villaTab" style="height: 418px" >
+		  <div class="tabbertab" title="Villas" id="villaTab" style="height: 428px" >
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Villas</legend>
 		   <table border="0" width="100%"> 
@@ -369,7 +383,7 @@
 		    
 		  </div>
 		  
-		   <div class="tabbertab" title="Parking" id="villaTab" style="height: 418px" >
+		   <div class="tabbertab" title="Parking" id="villaTab" style="height: 428px" >
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Parking</legend>
 		   <table border="0" width="100%"> 
@@ -410,7 +424,7 @@
 		  </div>
 		  
 		  
-		   <div class="tabbertab" title="Parking Slot" id="villaTab" style="height: 418px" >
+		   <div class="tabbertab" title="Parking Slot" id="villaTab" style="height: 428px" >
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Parking Slot</legend>
 		   <table border="0" width="100%"> 
@@ -465,7 +479,7 @@
 		    		    	    
 		  </div>
 		  
-		  <div class="tabbertab" title="Property Owners" id="villaTab" style="height: 418px" >
+		  <div class="tabbertab" title="Property Owners" id="villaTab" style="height: 428px" >
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
 		    <legend>Property Owners</legend>
 		   
@@ -505,7 +519,7 @@
 			</tr>
 			
 			<tr>
-				<td>Owners</td> 			
+				<td>Owner</td> 			
 				<td><select name="ownerId" style="width: 250px" >
 				<option>--Select--</option>
 					<%if(userForPropertyList!=null){
@@ -527,9 +541,9 @@
 			     <form name="uploadPropertyOwnerFrm"  enctype="multipart/form-data" action="/indialives/eventhandler" method="post"  >
 		    <table border="0" width="95%">
 			    <tr>
-			    	<td align="right">Upload CSV file</td>
-			    	<td width="50%"><input type="file" name="<%=ApplicationConstants.FILE_TYPE_NAME%>" size="50" > </td>
-			    	<td><input type="button"  value="Upload" onclick="uploadPropertyOwner()" ></td>
+			    	<td  align="right" width="30%" >Upload CSV file</td>
+			    	<td  align="right"  width="20%" ><input type="file" style="width: 260px" name="<%=ApplicationConstants.FILE_TYPE_NAME%>" size="50" > </td>
+			    	<td  align="right"  width="10%" ><input type="button"  value="Upload" onclick="uploadPropertyOwner()" ></td>
 			    </tr>		    
 		    </table>
 		    <input type="hidden" name="event"/>
@@ -553,11 +567,9 @@
 	        <input type="hidden" name="oId">
 	</form>		 
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	</tr>
 	
 </table>

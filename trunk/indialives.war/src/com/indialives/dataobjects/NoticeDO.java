@@ -15,6 +15,7 @@ public class NoticeDO  implements java.io.Serializable, com.easymvc.persistence.
 
      private Integer id;
      private Integer communityId;
+     private Integer noticeBoardId;
      private UserDO userDO;
      private CommunityDO communityDO;
      private NoticeBoardEnumDO noticeBoardEnumDO;
@@ -106,6 +107,14 @@ public class NoticeDO  implements java.io.Serializable, com.easymvc.persistence.
 
 	public void setCommunityId(Integer communityId) {
 		this.communityId = communityId;
+	}
+
+	public Integer getNoticeBoardId() {
+		return noticeBoardId;
+	}
+
+	public void setNoticeBoardId(Integer noticeBoardId) {
+		this.noticeBoardId = noticeBoardId;
 	}
 
 

@@ -28,14 +28,16 @@
 	  	<form name="memberHome" action="/indialives/eventhandler" method="post">
 		<table border="0" width="65%" style="margin-left: 170px;margin-top: 80px" >
 		<tr class="indiaLivesFonts" style="font-size:16px;">
-					<td>
+					
+		
+				<%
+				if(communityList!=null && communityList.size()>0){ %>
+				<td>
 						You are part of the following gated communities,				
 					</td>
 				</tr>
-		
-				<%
-				if(communityList!=null && communityList.size()>0){
-					for(int i=0;i<communityList.size();i++){
+				
+				<%	for(int i=0;i<communityList.size();i++){
 				%>
 				
 				<tr class="indiaLivesFonts">
@@ -73,25 +75,13 @@
 	</fieldset>
 	
 	</td>	
-	
-	<td valign="top" width="20%" class="indiaLivesFonts">
-	<!-- 	<b class="a1"></b><b class="a2"></b><b class="a3"></b><b class="a4"></b>
-	    <div class="contenta" style="height: 96%"> -->
-	    <fieldset style="height: 100%" >
-	    <legend>Adv Board</legend>
-			
-		</fieldset>
-			
-	<!--	</div>
-	 	<b class="a4"></b><b class="a3"></b><b class="a2"></b><b class="a1"></b>
-	 -->
-		</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	</tr>
 	
 </table>
 
 <%@include file="footer.jsp" %>
-
-</form>
 </body>
 </html>
