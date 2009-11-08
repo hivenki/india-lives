@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
@@ -29,9 +28,6 @@ public class AddUserNotThisCommunityEventHandler implements EventHandler,SetAttr
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-	//	HttpSession httpSession=request.getSession();
-	//	String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		
 		userListNotThisCommunity=UserDOFactory.getUserListNotThisCommunity();
 		roleList=RoleDOFactory.getRoleList();

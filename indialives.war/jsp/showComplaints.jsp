@@ -50,7 +50,7 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 		<%@include file="contentPage.jsp"%>
 	</td>	
 	<td  valign="top"  height="100%">		
-	 <fieldset style="height: 98%;" >
+	 <fieldset style="height: 99%;" >
 	  <legend class="indiaLivesFonts" style="font-size:16px ">Create Complaint</legend>
 	  <form name="showComplaintFrm" action="/indialives/eventhandler" method="post">
 		<table border="0" width="100%" height="76%">
@@ -179,11 +179,9 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 	</form>
 	</fieldset>
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	</tr>
 	
 </table>

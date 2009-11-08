@@ -22,7 +22,10 @@
 <%@page import="com.indialives.formbean.Blocks"%>
 <%@page import="com.indialives.dataobjects.NoticeBoardEnumDO"%>
 <%@page import="com.indialives.voobjects.UsersVO"%>
-<%@page import="com.indialives.formbean.Notice"%><html>
+<%@page import="com.indialives.formbean.Notice"%>
+<%@page import="com.indialives.voobjects.NoticeVO"%>
+<%@page import="com.indialives.util.DateUtil"%>
+<%@page import="java.text.SimpleDateFormat"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
@@ -31,13 +34,21 @@
 <%@include file="addBlock.jspf"%>
 </head>
 
-<script type="text/javascript" src="/indialives/js/showNotice.js"></script>
-
-<body>
+<script type="text/javascript" src="/indialives/js/showEditNotice.js"></script>
 <%
  List noticeTypeList=(List)request.getAttribute(SetAttributeConstants.NOTICE__TYPE_LIST);
 List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST);
+
+NoticeVO noticeVO=(NoticeVO)request.getAttribute(SetAttributeConstants.NOTICE__OBJ);
+String postDateString="";
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+postDateString = dateFormat.format(noticeVO.getPostedDate());
+
+String updateMsg=(String)request.getAttribute(SetAttributeConstants.NOTICE__UPDATED_MSG);
+
 %>
+<body onload="showMsg('<%=updateMsg%>')">
+
 <%@include file="header.jsp" %>
 
 
@@ -52,8 +63,8 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 	  <fieldset style="height: 99%;width: 100%">
 	   <legend style="font-size:16px;">Create Notice</legend>
 	   	  
-	   	  <form name="addNoticeFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
+	   	  <form name="updateNoticeFrm" action="/indialives/eventhandler" method="post">
+	    	<table border="0" width="65%" align="center" style="margin-left: 50px;margin-top: 120px">
 					
 		<tr>
 			<td>Notice Type</td>
@@ -64,22 +75,25 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 			for(int i=0;i<noticeTypeList.size();i++){
 				NoticeBoardEnumDO noticeBoardEnumDO=(NoticeBoardEnumDO)noticeTypeList.get(i);
 			%>	
-			<option value="<%=noticeBoardEnumDO.getId()%>"><%=noticeBoardEnumDO.getName()%></option>
-			<%}}%>
+			<%if(noticeBoardEnumDO.getId().equals(noticeVO.getNoticeBoardId())){%>
+			<option value="<%=noticeBoardEnumDO.getId()%>" selected="selected"><%=noticeBoardEnumDO.getName()%></option>
+			<%}else{%>
+			<option value="<%=noticeBoardEnumDO.getId()%>" ><%=noticeBoardEnumDO.getName()%></option>
+			<%}}}%>
 		 </select>		 
 		</td>
 		</tr>
 		<tr>
 			<td>Posted Date</td>
-			<td><input type="text" size="21" name="postedDate">(DD-MM-YYYY)</td>
+			<td><input type="text" size="35" name="postedDate"  value="<%=postDateString%>">(DD-MM-YYYY)</td>
 		</tr>
 		<tr>
 			<td>Subject </td>
-			<td><input type="text" name="subject" size="35"></td>
+			<td><input type="text" name="subject" size="35" value="<%=noticeVO.getSubject()%>"></td>
 		</tr>
 		<tr>
 			<td>Description </td>
-			<td><input type="text" name="description" size="35"></td>
+			<td><input type="text" name="description" size="35" value="<%=noticeVO.getDescription()%>"></td>
 		</tr>		
 		<tr>
 			<td>Posted By</td>
@@ -90,19 +104,23 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 			for(int i=0;i<postedByList.size();i++){
 				UsersVO usersVO=(UsersVO)postedByList.get(i);
 			%>	
+				<%if(usersVO.getId().equals(noticeVO.getPostedBy())){%>
+			<option value="<%=usersVO.getId()%>" selected="selected"><%=usersVO.getFirstName()%></option>
+			<%}else{%>
 			<option value="<%=usersVO.getId()%>"><%=usersVO.getFirstName()%></option>
-			<%}}%>
+			<%}}}%>
 		 </select>		 
 		</td>
 		</tr>
 		<tr>
-		<td colspan="2"  align="right" >
-			<input type="button" name="add" value="Add" onclick="addNotice()">
+		<td colspan="2">
+			<input style="margin-left: 255px" type="button"  value="Update" onclick="updateNotice()">
 		</td>		
 		</tr>
 		</table>
 		<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Notice.class.getName()%>">
-		<input type="hidden" name="event" value="addNotice">
+		<input type="hidden" name="event" value="updateNotice">
+		<input type="hidden" name="noticeId" value="<%=noticeVO.getId()%>">
 		</form>
 		</fieldset>	
 	</td>
@@ -113,7 +131,6 @@ List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST
 	</tr>
 	
 </table>
-
 <%@include file="footer.jsp" %>
 
 </body>

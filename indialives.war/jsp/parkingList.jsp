@@ -11,23 +11,22 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.indialives.voobjects.PropertiesVO"%>
-<%@page import="com.indialives.voobjects.RolePrivilegesVO"%><html>
+<%@page import="com.indialives.voobjects.RolePrivilegesVO"%>
+<%@page import="com.indialives.dataobjects.ParkingDO"%>
+<%@page import="com.indialives.dataobjects.ParkingSlotDO"%>
+<%@page import="com.indialives.voobjects.ParkingSlotVO"%><html>
 <head>
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
-<%@include file="propertyHome.jspf"%>
 <%@include file="indialives_css.jspf"%>
 </head>
 
-
+<script type="text/javascript" src="/indialives/js/parkingList.js"></script>
 <body>
 <%
-	HashMap propertyMap=(HashMap)request.getAttribute(SetAttributeConstants.PROPERTY_LIST);
-	List propertyEnumList=(List) request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
+	HashMap parkingMap=(HashMap)request.getAttribute(SetAttributeConstants.PARKING_SLOT_LIST);
+	List parkingList=(List) request.getAttribute(SetAttributeConstants.PARKING_LIST);
 	
-//	List rolePrivilegesList=(List) request.getAttribute(SetAttributeConstants.ROLE_PRIVILEGES_LIST);
-
-//	String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
 
 
 %>
@@ -42,56 +41,62 @@
 	</td>	
 	 <td  valign="top"  height="100%">	
 	   <fieldset style="height: 99%;" >
-	  <legend class="indiaLivesFonts" >Properties</legend>
-	 	<form name="propertyHome" action="/indialives/eventhandler" method="post">
+	  <legend class="indiaLivesFonts" >Parkings</legend>
+	 	<form name="parkingListFrm" action="/indialives/eventhandler" method="post">
 	 
 	
 		<table border="0" width="90%" height="80%" style="margin-left: 50px">
 		<tr class="indiaLivesFonts" valign="top">
 			<td>
-				Properties List,				
+				Parking List,				
 			</td>
 		</tr>
 			<%		
-				if(propertyEnumList!=null){
-				for(int i=0;i<propertyEnumList.size();i++){				
+				if(parkingList!=null){
+				for(int i=0;i<parkingList.size();i++){				
 				
-					 PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertyEnumList.get(i);
+					 ParkingDO parkingDO=(ParkingDO)parkingList.get(i);
 					 
-					List propertyList=(List)propertyMap.get(propertyTypeEnumDO.getId());;	
+					List parkingSlotList=(List)parkingMap.get(parkingDO.getId());	
 						
 				%>
 				<tr class="indiaLivesFonts">
 				<td>
 				<%
-					if(propertyList!=null){ %>
+					if(parkingSlotList!=null){ %>
+				
 				<fieldset style="width: 95%;height: 100%;">
-					<legend><%=propertyTypeEnumDO.getName()%></legend>
-						<table >						
+					<legend><%=parkingDO.getName()%></legend>
+					 <div style="height: 107px" class="scroll">	
+						<table  width="100%"  border="1" cellpadding="0" cellspacing="0">						
 								<%							
-									for(int j=0;j<propertyList.size();j++){
-										PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(j);
-										String propertyName=propertiesVO.getPropertyName();
+									for(int j=0;j<parkingSlotList.size();j++){
+										ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotList.get(j);
+										String parkingSlotLocation=parkingSlotVO.getLocation();
 								%>
 								<% %>
 								<tr>
 								<td><%=j+1%>.</td>
-								<td><a href="#" style="text-decoration: none" onclick="viewProfile('<%=propertiesVO.getPropertyId()%>','<%=propertiesVO.getPropertyTypeId()%>')"><%=propertyName%></a></td>
+						<!-- <td><a href="#" style="text-decoration: none" onclick="viewProfile('<%=parkingSlotVO.getId()%>','<%=parkingSlotVO.getParkingId()%>')" ><%=parkingSlotLocation%></a></td> -->
+								<td><%=parkingSlotLocation%></td>
 								
 								</tr>
 							<%}%>
 							</table>
+							</div>
 								
 				</fieldset>
+				
 				<%}%>
 				</td>
 				</tr>				
 		<%}}%>
+		
 		</table>
 	
-	<input type="hidden" name="event" value="propertyProfile">
-	<input type="hidden" name="propertyId">
-	<input type="hidden" name="propertyTypeId" >
+	<input type="hidden" name="event" value="parkingProfile">
+	<input type="hidden" name="parkingSlotId">
+	<input type="hidden" name="parkingId" >
 	</form>
 	</fieldset>
 	</td>

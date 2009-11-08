@@ -29,10 +29,10 @@ List complaintStatusList=(List)request.getAttribute(SetAttributeConstants.COMPLA
 		<%@include file="contentPage.jsp"%>
 	</td>	
 	<td  valign="top"  height="100%">		
-	 <fieldset style="height: 98%;" >
+	 <fieldset style="height: 99%;" >
 	  <legend class="indiaLivesFonts" style="font-size:16px ">Complaint Details</legend>
 	  <form name="showComplaintFrm" action="/indialives/eventhandler" method="post">
-		<table class="indiaLivesFonts" border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 100px;font-size: 16px">
+		<table class="indiaLivesFonts" border="0" width="55%" align="center" style="margin-left: 50px;margin-top: 100px;font-size: 16px">
 				
 			<tr class="indiaLivesFonts" style="font-size:14px">
 				<td>Property Type</td>			
@@ -58,13 +58,13 @@ List complaintStatusList=(List)request.getAttribute(SetAttributeConstants.COMPLA
 			<tr>
 			<td>Status</td>
 			<td>
-			<select name="statusId" style="width: 150px">
+			<select name="statusId" style="width: 100px">
 					<%
 						if(complaintStatusList!=null){
 										for(int i=0;i<complaintStatusList.size();i++){
 											ComplaintStatusEnumDO complaintStatusEnumDO=(ComplaintStatusEnumDO)complaintStatusList.get(i);
 					%>
-								<option value="<%=complaintStatusEnumDO.getId()%>"
+								<option value="<%=complaintStatusEnumDO.getId()%>" 
 									<%if(complaintsVO.getStatusId().equals(complaintStatusEnumDO.getId())){%>
 										selected="selected"
 									<%}%>
@@ -79,7 +79,7 @@ List complaintStatusList=(List)request.getAttribute(SetAttributeConstants.COMPLA
 			</td>	
 			</tr>
 			<tr>
-				<td colspan="2"><input type="button" value="Change" onclick="changeStatus()"></td>
+				<td colspan="2" ><input  style="margin-left: 205px" type="button" value="Change" onclick="changeStatus()"></td>
 			</tr>
 		
 		
@@ -88,11 +88,9 @@ List complaintStatusList=(List)request.getAttribute(SetAttributeConstants.COMPLA
 	</form>
 	</fieldset>
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	</tr>
 	
 </table>

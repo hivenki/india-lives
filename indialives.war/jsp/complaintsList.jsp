@@ -49,14 +49,14 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
 
 	<tr>
-	<td width="15%" valign="top" height="100%" >
+	<td width="15%" valign="top">
 		<%@include file="contentPage.jsp"%>
 	</td>	
 	
 	 <td  valign="top"  height="100%">
 	 <div class="tabber"  id="divHome" style="margin-top: 12px" >
-			<div class="tabbertab" title="Open" style="height: 418px">
-		  <fieldset style="height: 98%;"  >
+			<div class="tabbertab" title="Open" style="height: 428px">
+		  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
 				
 		  	<table border="0" width="100%">
@@ -131,8 +131,8 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 			</fieldset>
 		</div>
 	
-		<div class="tabbertab" title="In Progress" style="height: 418px">
-		  <fieldset style="height: 98%;"  >
+		<div class="tabbertab" title="In Progress" style="height: 428px">
+		  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
 				
 		  	<table border="0" width="100%">
@@ -207,8 +207,8 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 			</fieldset>
 		</div>
 	
-		<div class="tabbertab" title="Closed" style="height: 418px">
-		  <fieldset style="height: 98%;"  >
+		<div class="tabbertab" title="Closed" style="height: 428px">
+		  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
 				
 		  	<table border="0" width="100%">
@@ -291,11 +291,9 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 	
 	</td>
 	
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	
 	
 	</tr>

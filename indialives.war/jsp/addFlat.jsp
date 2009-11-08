@@ -45,7 +45,7 @@
 	</td>
 	
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
-	  <fieldset style="height: 98%;">
+	  <fieldset style="height: 99%;">
 	   <legend style="font-size:16px;">Create Flat</legend>
 	   	  <form name="addFlatFrm" action="/indialives/eventhandler" method="post">
 	    	<table border="0" width="53%" align="center" style="margin-left: 50px;margin-top: 120px">
@@ -101,10 +101,8 @@
 		</form>
 	</fieldset>	
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		<fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
 	</td>
 
 	</tr>

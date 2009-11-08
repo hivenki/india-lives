@@ -11,29 +11,39 @@
 
 
 <script type="text/javascript" src="/indialives/js/noticeList.js"></script>
-
-<body>
 <%
 List noticeList=(List)request.getAttribute(SetAttributeConstants.NOTICE_LIST);
+Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
+Integer privilegeId=(Integer)session.getAttribute("PrivilegeId");
+
+
+
 %>
+<body onload="showBoldContent(<%=privilegeId%>)">
+
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
 	<tr>
-	<td width="15%" valign="top" height="100%" >
+	<td width="15%" valign="top" >
 		<%@include file="contentPage.jsp"%>
 	</td>	
 	 <td  valign="top"  height="100%">
-	  <fieldset style="height: 98%;"  >
+	  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Notice List</legend>
-				
-		  	<table border="0" width="100%">
+			<%if(roleId.intValue()==1){%>
+			
+		  	<table border="0" width="100%" >
 				<tr>
-					<td colspan="8" align="right" ><input  type="button" name="create" value="Create"  onclick="createNotice()"></td>
+					<td  align="right" ><input  type="button" name="create" value="Create"  onclick="createNotice()"></td>
+					<td align="right" width="5%"><input type="button" name="editButton" value="Edit" onclick="editNotice('<%=noticeList.size()%>')"></td>
+					<td align="right" width="10%"><input type="button" name="deleteButton" value="Delete" onclick="deleteNotice('<%=noticeList.size()%>')"></td>
 				</tr>
 			</table>	
-		 	<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
+			
+			<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
+				   	<th  nowrap="nowrap"  width="5%"><input type="checkbox" name="selectall" onclick="doSelectAll('<%=noticeList.size()%>')" ></th>
 					<th>S.No</th>
 					<th>Notice Type</th>			
 					<th>Posted Date</th>
@@ -58,11 +68,12 @@ List noticeList=(List)request.getAttribute(SetAttributeConstants.NOTICE_LIST);
 						NoticeVO noticeVO=(NoticeVO)noticeList.get(i);
 						
 						 %>
-					<td><%=i+1%></td>
-					<td><%=noticeVO.getNoticeTypeName()%></td>
-					<td><%=DateUtil.getStringFromDate(noticeVO.getPostedDate())%></td>
-					<td><%=noticeVO.getSubject()%></td>
-					<td><%=noticeVO.getPostedByName()%></td>				
+					<td><input type="checkbox"  name="select[<%=i%>]" value="<%=noticeVO.getId()%>" onclick="monitor(this,'<%=noticeList.size()%>')"></td>	 
+					<td onclick="submitEditRow('<%=noticeVO.getId()%>')"><%=i+1%></td>
+					<td onclick="submitEditRow('<%=noticeVO.getId()%>')"><%=noticeVO.getNoticeTypeName()%></td>
+					<td onclick="submitEditRow('<%=noticeVO.getId()%>')"><%=DateUtil.getStringFromDate(noticeVO.getPostedDate())%></td>
+					<td onclick="submitEditRow('<%=noticeVO.getId()%>')"><%=noticeVO.getSubject()%></td>
+					<td onclick="submitEditRow('<%=noticeVO.getId()%>')"><%=noticeVO.getPostedByName()%></td>				
 					
 						<%}else{ %>
 						<td>&nbsp;</td>
@@ -70,23 +81,80 @@ List noticeList=(List)request.getAttribute(SetAttributeConstants.NOTICE_LIST);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<%}} %>
+						<td>&nbsp;</td>						
+						<%}}%>
 			</tbody>
 			</table>
 			</fieldset>
 	</td>
+			<%}else{%>
+				<table border="0" width="100%" >
+				<tr>
+					<td  align="right" >&nbsp;</td>
+					<td align="right" width="5%">&nbsp;</td>
+					<td align="right" width="10%">&nbsp;</td>
+				</tr>
+			</table>
+			
+			<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
+			<thead class="indiaLivesFonts" style="font-size: 14px"> 
+				<tr id="complaintListOdd" class="trColor">
+				   	<th>S.No</th>
+					<th>Notice Type</th>			
+					<th>Posted Date</th>
+					<th>Subject</th>
+					<th>Posted By</th>					
+					</tr>
+			</thead>
+				<tbody class="indiaLivesFonts" style="font-size: 14px">
+				<%				
+					   int rowSize=noticeList.size();
+				    	if(rowSize<15){
+				    		rowSize=15;
+				    	} 
+						
+					for(int i=0;i<rowSize;i++){
+						 if(i%2==0){%>
+							<tr class="evenTr" style="cursor: hand;height:  20px;color: black;" style="text-indent: 4px">
+							<%}else{%>
+							<tr class="oddTr" style="cursor: hand;height:  20px;color: black;" style="text-indent: 4px">
+					<%}	
+					if(i<noticeList.size()){
+						NoticeVO noticeVO=(NoticeVO)noticeList.get(i);
+						
+						 %>
+					<td onclick="submitEditRowForUser('<%=noticeVO.getId()%>')" ><%=i+1%></td>
+					<td onclick="submitEditRowForUser('<%=noticeVO.getId()%>')"><%=noticeVO.getNoticeTypeName()%></td>
+					<td onclick="submitEditRowForUser('<%=noticeVO.getId()%>')"><%=DateUtil.getStringFromDate(noticeVO.getPostedDate())%></td>
+					<td onclick="submitEditRowForUser('<%=noticeVO.getId()%>')"><%=noticeVO.getSubject()%></td>
+					<td onclick="submitEditRowForUser('<%=noticeVO.getId()%>')"><%=noticeVO.getPostedByName()%></td>				
+					
+						<%}else{ %>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>						
+						<%}}%>
+			</tbody>
+			</table>
+			</fieldset>
+	</td>	
+			<%}%>
+		 	
 	
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		 <fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 	</tr>
 	
 </table>
+<%@include file="footer.jsp" %>
 <form method="post" name="noticeListFrm" action="/indialives/eventhandler" >
 	<input type="hidden" name="event">
+	<input type="hidden" name="editNoticeId">
+	<input type="hidden" name="deleteNoticeIds">
 </form>
-<%@include file="footer.jsp" %>
+
 </body>
 </html>

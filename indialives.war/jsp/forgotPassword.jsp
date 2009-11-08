@@ -56,7 +56,7 @@
 	<tr>
 	
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
-	  <fieldset style="height: 98%;width: 100%">
+	  <fieldset style="height: 99%;width: 100%">
 	   <legend style="font-size:16px;">Forgot Password</legend>
 	   	  
 	   	  <form name="forgotPasswordFrm" action="/indialives/eventhandler" method="post">
@@ -84,11 +84,9 @@
 		</form>
 		</fieldset>	
 	</td>
-	<td valign="top" width="15%" class="indiaLivesFonts">
-		<fieldset style="height: 98%;" >
-	    	<legend>Adv Board</legend>			
-		</fieldset>
-	</td>
+	<td valign="top" width="15%">
+		<%@include file="advBoard.jsp" %>
+	</td>	
 
 	</tr>
 	

@@ -15,10 +15,10 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 
 %>
 <form name="contentFrm" action="/indialives/eventhandler" method="post">
-<table border="0" width="98%" height="100%">
+<table border="0" width="100%" height="100%">
 	<tr class="indiaLivesFonts">
 	<td width="25%">
-		<fieldset style="height: 98%;">
+		<fieldset style="height: 100%;">
 		<legend>Contents</legend>
 		<table border="0" width="100%" height="50%">
 			
@@ -28,6 +28,7 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 			%>
 				<tr class="indiaLivesFonts">			
 				<td><a class="ContenthLink" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
+				<input type="hidden" name="privilegeId" value="<%=privilegesVO.getId()%>" />
 				</tr>					
 			
 		<%}}%>		
@@ -39,6 +40,7 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 
 </table>
 	<input type="hidden" name="event">
+	
 </form>
 </body>
 
