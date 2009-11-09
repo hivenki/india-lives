@@ -7,20 +7,14 @@
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-</head>
-
-
 <script type="text/javascript" src="/indialives/js/noticeList.js"></script>
+</head>
 <%
 List noticeList=(List)request.getAttribute(SetAttributeConstants.NOTICE_LIST);
 Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 Integer privilegeId=(Integer)session.getAttribute("PrivilegeId");
-
-
-
 %>
-<body onload="showBoldContent(<%=privilegeId%>)">
-
+<body>
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
 	<tr>
@@ -43,12 +37,12 @@ Integer privilegeId=(Integer)session.getAttribute("PrivilegeId");
 			<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
-				   	<th  nowrap="nowrap"  width="5%"><input type="checkbox" name="selectall" onclick="doSelectAll('<%=noticeList.size()%>')" ></th>
-					<th>S.No</th>
-					<th>Notice Type</th>			
-					<th>Posted Date</th>
-					<th>Subject</th>
-					<th>Posted By</th>					
+				   	<th nowrap="nowrap"  width="5%"><input type="checkbox" name="selectall" onclick="doSelectAll('<%=noticeList.size()%>')" ></th>
+					<th nowrap="nowrap" width="5%">S.No</th>
+					<th width="23%" nowrap="nowrap">Notice Type</th>			
+					<th width="20%" nowrap="nowrap">Posted Date</th>
+					<th nowrap="nowrap">Subject</th>
+					<th width="18%" nowrap="nowrap">Posted By</th>					
 					</tr>
 			</thead>
 				<tbody class="indiaLivesFonts" style="font-size: 14px">
@@ -99,11 +93,11 @@ Integer privilegeId=(Integer)session.getAttribute("PrivilegeId");
 			<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
-				   	<th>S.No</th>
-					<th>Notice Type</th>			
-					<th>Posted Date</th>
-					<th>Subject</th>
-					<th>Posted By</th>					
+				   	<th width="5%">S.No</th>
+					<th width="23%" nowrap="nowrap">Notice Type</th>			
+					<th width="20%" nowrap="nowrap">Posted Date</th>
+					<th nowrap="nowrap">Subject</th>
+					<th width="18%" nowrap="nowrap">Posted By</th>				
 					</tr>
 			</thead>
 				<tbody class="indiaLivesFonts" style="font-size: 14px">

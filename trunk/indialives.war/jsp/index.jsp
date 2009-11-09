@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
-<%@include file="index.jspf"%>
 <%@include file="indialives_css.jspf"%>
 <%@ include file="header.jspf" %>
+<script type="text/javascript" src="/indialives/js/index.js"></script>
 </head>
 
 

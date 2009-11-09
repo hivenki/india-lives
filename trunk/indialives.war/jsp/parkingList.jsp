@@ -19,9 +19,8 @@
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-</head>
-
 <script type="text/javascript" src="/indialives/js/parkingList.js"></script>
+</head>
 <body>
 <%
 	HashMap parkingMap=(HashMap)request.getAttribute(SetAttributeConstants.PARKING_SLOT_LIST);

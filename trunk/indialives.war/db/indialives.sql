@@ -554,7 +554,7 @@ CREATE TABLE `privileges` (
 
 /*!40000 ALTER TABLE `privileges` DISABLE KEYS */;
 INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES 
- (1,'Properties','Properties','eventhandler?event=communityHome'),
+ (1,'Properties','Properties','eventhandler?event=propertiesList'),
  (2,'Complaints','Complaints','eventhandler?event=complaintsList'),
  (3,'Notice Board','Notice Board','eventhandler?event=noticeBoardList'),
  (4,'Parking','Parking','eventhandler?event=parkingList'),

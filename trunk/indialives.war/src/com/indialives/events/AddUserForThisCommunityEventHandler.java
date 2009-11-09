@@ -15,23 +15,23 @@ import com.indialives.SetAttributeConstants;
 import com.indialives.dofactory.RoleDOFactory;
 import com.indialives.dofactory.UserDOFactory;
 
-public class AddUserNotThisCommunityEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants{
-	private List<RowObject> userListNotThisCommunity=null;
+public class AddUserForThisCommunityEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants{
+	private List<RowObject> userListForThisCommunity=null;
 	private List<RowObject> roleList=null;
 	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher(ADD_USER_NOT_THIS_COMMUNITY);
+		RequestDispatcher dispatcher=request.getRequestDispatcher(ADD_USER_FOR_THIS_COMMUNITY);
 		dispatcher.forward(request,response);
 	}
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		userListNotThisCommunity=UserDOFactory.getUserListNotThisCommunity();
+		userListForThisCommunity=UserDOFactory.getUserListNotThisCommunity();
 		roleList=RoleDOFactory.getRoleList();
-		request.setAttribute(GET_USER_LIST_NOT_THIS_COMMUNITY ,userListNotThisCommunity);
+		request.setAttribute(GET_USER_LIST_FOR_THIS_COMMUNITY ,userListForThisCommunity);
 		request.setAttribute(GET_ROLE_LIST ,roleList);
 	}
 

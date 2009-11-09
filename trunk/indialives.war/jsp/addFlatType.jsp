@@ -5,7 +5,7 @@
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-<%@include file="addFlatType.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/addFlatType.js"></script>
 </head>
 
 

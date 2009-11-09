@@ -1,22 +1,17 @@
 <html>
 <head>
 <title>Welcome to IndiaLives</title>
-
 <%@include file="indialives_css.jspf"%>
-
 </head>
 <script type="text/javascript">
 function submitLogin(){
 	document.errorFrm.submit();
 }
 </script>
-
 <%
 	String errormessage=request.getParameter("error");
 %>
-
 <body>
-
  <form action="/indialives/eventhandler"  name="errorFrm" method="post">
  	<table align="center" border="0" >
  		<tr>

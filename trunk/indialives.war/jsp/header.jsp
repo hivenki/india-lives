@@ -1,5 +1,4 @@
 <%@page import="com.easymvc.session.SessionFactory"%>
-
 <table border="0" width="100%">
 	<tr>
 		<td width="15%"style="font-size: large;text-indent: 25px">
@@ -25,6 +24,5 @@
 		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
 		</td>
 	</tr>
-	
 </table>
 <input type="hidden" name="event">

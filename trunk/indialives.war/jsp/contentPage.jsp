@@ -1,18 +1,16 @@
- 
 <%@page import="com.indialives.voobjects.RolePrivilegesVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.easymvc.session.Session"%>
-<%@page import="com.easymvc.session.SessionFactory"%><html>
+<%@page import="com.easymvc.session.SessionFactory"%>
+<%@page import="com.indialives.SetAttributeConstants"%>
+<html>
 <head>
 <title>Welcome to IndiaLives</title>
 </head>
-<%@page import="com.indialives.SetAttributeConstants"%>
-<%@ include file="contentPage.jspf" %>
-<body>
 <%
 Session easyMVCSession=SessionFactory.getSession(request);
 List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRIVILEGES_LIST);
-
+String contentLink=(String)session.getAttribute(SetAttributeConstants.CURRENT_CONTENT_LINK);
 %>
 <form name="contentFrm" action="/indialives/eventhandler" method="post">
 <table border="0" width="100%" height="100%">
@@ -27,10 +25,8 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 				 RolePrivilegesVO privilegesVO=(RolePrivilegesVO)rolePrivilegesList.get(i);
 			%>
 				<tr class="indiaLivesFonts">			
-				<td><a class="ContenthLink" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
-				<input type="hidden" name="privilegeId" value="<%=privilegesVO.getId()%>" />
+				<td><a class="ContenthLink" name="<%=privilegesVO.getPrivilegeName()%>" href="<%=privilegesVO.getUrl()%>" ><%=privilegesVO.getPrivilegeName()%></a></td>
 				</tr>					
-			
 		<%}}%>		
 		</table>
 		
@@ -38,10 +34,9 @@ List rolePrivilegesList=(List) easyMVCSession.get(SetAttributeConstants.ROLE_PRI
 	</td>
 	</tr>
 
-</table>
-	<input type="hidden" name="event">
-	
+</table>	
 </form>
-</body>
-
+<script type="text/javascript">
+	document.getElementById('<%=contentLink%>').style.fontWeight="bold";
+</script>
 </html>

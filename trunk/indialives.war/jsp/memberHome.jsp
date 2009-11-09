@@ -10,8 +10,8 @@
 <head>
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
-<%@include file="memberHome.jspf"%>
 <%@include file="indialives_css.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/memberHome.js"></script>
 </head>
 <body>
 <%
@@ -61,7 +61,7 @@
 			
 			<%}%>	
 	</table>
-	<input type="hidden" name="event" value="communityHome">
+	<input type="hidden" name="event" value="propertiesList">
 	</form>
 	</fieldset>
 	<fieldset style="height: 49%;margin-top: 3px"  >	   		

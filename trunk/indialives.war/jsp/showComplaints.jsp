@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.indialives.SetAttributeConstants"%>
 <%@page import="com.easymvc.Constants"%>
-<%@page import="com.indialives.formbean.LoginUser"%>
 <%@page import="java.util.List"%>
 <%@page import="com.indialives.dataobjects.CommunityDO"%>
 <%@page import="com.easymvc.session.SessionFactory"%>
@@ -14,8 +13,8 @@
 <head>
 <title>Welcome to IndiaLives</title>
 <%@include file="indialives_css.jspf"%>
-<%@include file="showComplaints.jspf"%>
 <%@ include file="header.jspf" %>
+<script type="text/javascript" language="javascript" src="/indialives/js/showComplaints.js"></script>
 </head>
 <body>
 <%

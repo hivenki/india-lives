@@ -1,12 +1,26 @@
 <%@page import="com.indialives.voobjects.FlatVO"%>
 <%@page import="com.indialives.dataobjects.VillaDO"%>
 <%@page import="com.indialives.dataobjects.BlockDO"%>	
-
 <%@page import="com.indialives.dataobjects.FlatTypeEnumDO"%>
 <%@page import="com.indialives.dataobjects.ParkingDO"%>
 <%@page import="com.indialives.voobjects.ParkingSlotVO"%>
 <%@page import="com.indialives.ApplicationConstants"%>
+<%@page import="com.indialives.dataobjects.UserDO"%>
+<%@page import="com.indialives.voobjects.UsersVO"%>
+<%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
+<%@page import="com.indialives.voobjects.PropertiesVO"%>
+<%@page import="com.indialives.formbean.PropertyOwner"%>
+<%@page import="com.easymvc.Constants"%><html>			
+<head>
+<title>Welcome to IndiaLives</title>
 
+<%@include file="indialives_css.jspf"%>
+<%@include file="indialives_tab.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/tabPersistent.js"></script>
+<script type="text/javascript" language="javascript" src="/indialives/js/communityAdmin.js"></script>
+<%@include file="tabber.jspf"%>
+<%@ include file="header.jspf" %>
+</head>
 <%
 	List flatsList=(List)request.getAttribute(SetAttributeConstants.FLATS_LIST);
 	List villasList=(List)request.getAttribute(SetAttributeConstants.VILLA_LIST);
@@ -44,32 +58,6 @@
 
 
 
-<%@page import="com.indialives.dataobjects.UserDO"%>
-<%@page import="com.indialives.voobjects.UsersVO"%>
-<%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
-<%@page import="com.indialives.voobjects.PropertiesVO"%>
-<%@page import="com.indialives.formbean.PropertyOwner"%>
-<%@page import="com.easymvc.Constants"%><html>			
-<head>
-<title>Welcome to IndiaLives</title>
-<%@include file="complaintsList.jspf"%>
-<%@include file="indialives_css.jspf"%>
-<%@include file="indialives_tab.jspf"%>
-<script type="text/javascript" language="javascript" src="/indialives/js/tabPersistent.js">
-
-
-</script>
-
-
-
-
-
-
-<%@include file="tabber.jspf"%>
-<%@include file="communityAdmin.jspf"%>
-<%@ include file="header.jspf" %>
-</head>
-
 <script type="text/javascript"><!--
 	var uploadParkingSlotErrorMessage='<%=uploadParkingSlotErrorMessage%>';
 	if(uploadParkingSlotErrorMessage!='null' && uploadParkingSlotErrorMessage.length > 0 ){
@@ -106,7 +94,7 @@
 			<div class="tabbertab" title="User List" style="height: 428px">
 		    <fieldset  class="indiaLivesFonts" style="height: 100%" >
 		    <legend>User List</legend>
-		    <table border="0" width="100%">
+		    <table border="0" width="100%" class="indiaLivesFonts">
 		    	<tr>
 				<td align="right" width="100%"><input type="button"  value="Add" onclick="addUser()"></td>
 			</tr>
@@ -170,10 +158,10 @@
 		   
 			 <tr class="trColor">
 			 	<th  nowrap="nowrap"  width="5%"><input type="checkbox" name="selectall" onclick="doSelectAll('<%=blockList.size()%>')" ></th>
-				<th  nowrap="nowrap">S.No</th>
-				<th  nowrap="nowrap">Block Name</th>
-				<th  nowrap="nowrap">Block Description</th>
-				<th  nowrap="nowrap">No of Floors</th>
+				<th  nowrap="nowrap" width="6%">S.No</th>
+				<th  nowrap="nowrap" width="30%" >Name</th>
+				<th  nowrap="nowrap" width="40%">Description</th>
+				<th  nowrap="nowrap" width="15%" >No of Floors</th>
 			</tr>
 			<%
 				int blockRowSize=blockList.size();
@@ -220,7 +208,7 @@
 		   
 			 <tr class="trColor">
 				<th width="8%">S.No</th>
-				<th>Flat Type Name</th>
+				<th width="40%">Name</th>
 				<th>Description</th>				
 			</tr>
 			<%
@@ -263,12 +251,12 @@
 		    <div style="height: 289px" class="scroll">
 		   <table class="tableBgColor" width="100%"  cellpadding="1" cellspacing="1" >
 		     <tr class="trColor">
-				<th>S.No</th>
-				<th>Block Name</th>
-				<th>Floor</th>
+				<th width="5%" nowrap="nowrap">S.No</th>
+				<th nowrap="nowrap">Block Name</th>
+				<th nowrap="nowrap" width="5%">Floor</th>
 				<th>Flat No</th>
 				<th>Flat Type</th>
-				<th>No of Bedrooms</th>
+				<th nowrap="nowrap" width="10%">No of Bedrooms</th>
 			</tr>
 		    <%
 			    int flatRowSize=flatsList.size();

@@ -54,6 +54,7 @@ public class ParkingListEventHandler implements EventHandler,SetAttributeConstan
 		parkingList=ParkingDOFactory.getParkingList(communityId);
 		request.setAttribute(PARKING_SLOT_LIST,parkingMap);
 		request.setAttribute(PARKING_LIST,parkingList);
+		httpSession.setAttribute(CURRENT_CONTENT_LINK,"Parking");
 		
 	}
 	

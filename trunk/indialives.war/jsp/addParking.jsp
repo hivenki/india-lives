@@ -5,20 +5,11 @@
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-<%@include file="addParking.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/addParking.js"></script>
 </head>
-
-
-
 <body>
-<%
- List parkingList=(List)request.getAttribute(SetAttributeConstants.PARKING_LIST);
-%>
 <%@include file="header.jsp" %>
-
-
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
-
 	<tr>
 	<td width="15%">
 		<%@include file="contentPage.jsp" %>

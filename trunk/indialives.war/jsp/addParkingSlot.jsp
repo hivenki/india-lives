@@ -1,26 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="com.indialives.dataobjects.ParkingDO"%>
+<%@page import="java.util.List"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-<%@include file="addParkingSlot.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/addParkingSlot.js"></script>
 </head>
-
-
-
-<body>
 <%
-	
- List parkingSlotList=(List)request.getAttribute(SetAttributeConstants.PARKING_SLOT_LIST);
- List parkingList=(List)request.getAttribute(SetAttributeConstants.PARKING_LIST);
+	 List parkingList=(List)request.getAttribute(SetAttributeConstants.PARKING_LIST);
 %>
 <%@include file="header.jsp" %>
-
-
+<body>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
-
 	<tr>
 	<td width="15%">
 		<%@include file="contentPage.jsp" %>
@@ -65,10 +58,7 @@
 	</td>
 
 	</tr>
-	
 </table>
 <%@include file="footer.jsp" %>
-
 </body>
-
-<%@page import="com.indialives.dataobjects.ParkingDO"%></html>
+</html>

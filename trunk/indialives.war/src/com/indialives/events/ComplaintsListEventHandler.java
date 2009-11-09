@@ -60,7 +60,7 @@ public class ComplaintsListEventHandler implements  EventHandler,SetAttributeCon
 		request.setAttribute(GET_COMPLIANTS_LIST_FOR_IN_PROGRESS,complaintsListForInProgress);
 		request.setAttribute(GET_COMPLIANTS_LIST_FOR_CLOSED,complaintsListForClosed);
 		
-		
+		httpSession.setAttribute(CURRENT_CONTENT_LINK,"Complaints");
 		
 		
 		
