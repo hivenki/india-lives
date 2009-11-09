@@ -1,42 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="com.indialives.SetAttributeConstants"%>
 <%@page import="com.easymvc.Constants"%>
-<%@page import="com.indialives.formbean.LoginUser"%>
-<%@page import="java.util.List"%>
-<%@page import="com.indialives.dataobjects.CommunityDO"%>
-<%@page import="com.easymvc.session.SessionFactory"%>
-<%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="com.indialives.voobjects.PropertiesVO"%>
-<%@page import="com.indialives.dataobjects.FlatDO"%>
-<%@page import="com.indialives.dataobjects.VillaDO"%>
-<%@page import="com.indialives.voobjects.FlatVO"%>
-<%@page import="com.indialives.dataobjects.ParkingSlotDO"%>
-<%@page import="com.indialives.voobjects.ParkingSlotVO"%>
-<%@page import="com.indialives.dataobjects.FlatTypeEnumDO"%>
-<%@page import="com.indialives.dataobjects.BlockDO"%>
-<%@page import="com.indialives.formbean.Flats"%>
-<%@page import="com.indialives.formbean.Blocks"%>
 <%@page import="com.indialives.formbean.Users"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
 <%@include file="indialives_css.jspf"%>
-<%@include file="addUser.jspf"%>
 </head>
-
-
-
+<script type="text/javascript" language="javascript" src="/indialives/js/addUser.js"></script>
 <body>
-<%
- 
-%>
-
-
 <table border="0" width="100%">
 	<tr>
 		<td width="15%"style="font-size: large;text-indent: 25px">

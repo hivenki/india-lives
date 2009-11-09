@@ -19,40 +19,24 @@
 <head>
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
-<%@include file="complaintsList.jspf"%>
 <%@include file="indialives_css.jspf"%>
 <%@include file="indialives_tab.jspf"%>
 <%@include file="tabber.jspf"%>
+<script type="text/javascript" src="/indialives/js/complaintsList.js"></script>
 </head>
-
-
-<script type="text/javascript" src="/indialives/js/jquery-latest.js"></script>
-<script type="text/javascript" src="/indialives/js/jquery.tablesorter.js"></script>
-
 <body>
 <%
-
 List complaintsListForOpen=(List)request.getAttribute(SetAttributeConstants.GET_COMPLIANTS_LIST_FOR_OPEN);
-
 List complaintsListForInProgress=(List)request.getAttribute(SetAttributeConstants.GET_COMPLIANTS_LIST_FOR_IN_PROGRESS);
-
 List complaintsListForClosed=(List)request.getAttribute(SetAttributeConstants.GET_COMPLIANTS_LIST_FOR_CLOSED);
-
 String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
-
-//int rowSize=Integer.parseInt(noRecords);
-//String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
-
 %>
-
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
-
 	<tr>
 	<td width="15%" valign="top">
 		<%@include file="contentPage.jsp"%>
 	</td>	
-	
 	 <td  valign="top"  height="100%">
 	 <div class="tabber"  id="divHome" style="margin-top: 12px" >
 			<div class="tabbertab" title="Open" style="height: 428px">
@@ -67,21 +51,16 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 		 	<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
-					<th>S.No</th>
-					<th>Pro Type</th>			
-					<th>Raised By</th>
-					<th>Raised Time</th>
-					<th>Comp Type</th>				
-					<th>Severity</th>
+					<th width="5%">S.No</th>
+					<th width="10%" nowrap="nowrap">Property</th>			
+					<th width="10%" nowrap="nowrap">Raised By</th>
+					<th width="12%" nowrap="nowrap">Raised Time</th>
+					<th width="10%" nowrap="nowrap">Complaint Type</th>				
+					<th width="8%" nowrap="nowrap"> Severity</th>
 					</tr>
 			</thead>
 				<tbody class="indiaLivesFonts" style="font-size: 14px">
-				
-			 	
-				
 				<%				
-					
-					
 					   int complaintsListForOpenRowSize=complaintsListForOpen.size();
 				    	if(complaintsListForOpenRowSize<15){
 				    		complaintsListForOpenRowSize=15;
@@ -99,7 +78,7 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						Date date=complaintsVO.getRaisedTime();	
 						Date availStart=complaintsVO.getAvailableStartTime();
 						Date availEnd=complaintsVO.getAvailableEndTime();
-						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 						String raisedTime=dateFormat.format(date);
 						String availStartTime=dateFormat.format(availStart);
 						String availEndTime=dateFormat.format(availEnd); %>
@@ -117,20 +96,10 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<%}} %>
-					
-				
-				
-								
-							
-			
 			</tbody>
-			
-			
-			
 			</table>
 			</fieldset>
 		</div>
-	
 		<div class="tabbertab" title="In Progress" style="height: 428px">
 		  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
@@ -143,21 +112,16 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 		 	<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
-					<th>S.No</th>
-					<th>Pro Type</th>			
-					<th>Raised By</th>
-					<th>Raised Time</th>
-					<th>Comp Type</th>				
-					<th>Severity</th>
+					<th width="5%">S.No</th>
+					<th width="10%" nowrap="nowrap">Property</th>			
+					<th width="10%" nowrap="nowrap">Raised By</th>
+					<th width="12%" nowrap="nowrap">Raised Time</th>
+					<th width="10%" nowrap="nowrap">Complaint Type</th>				
+					<th width="8%" nowrap="nowrap"> Severity</th>
 					</tr>
 			</thead>
 				<tbody class="indiaLivesFonts" style="font-size: 14px">
-				
-			 	
-				
 				<%				
-					
-					
 					   int complaintsListForInProgressRowSize=complaintsListForOpen.size();
 				    	if(complaintsListForInProgressRowSize<15){
 				    		complaintsListForInProgressRowSize=15;
@@ -175,7 +139,7 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						Date date=complaintsVO.getRaisedTime();	
 						Date availStart=complaintsVO.getAvailableStartTime();
 						Date availEnd=complaintsVO.getAvailableEndTime();
-						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 						String raisedTime=dateFormat.format(date);
 						String availStartTime=dateFormat.format(availStart);
 						String availEndTime=dateFormat.format(availEnd); %>
@@ -193,20 +157,10 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<%}} %>
-					
-				
-				
-								
-							
-			
 			</tbody>
-			
-			
-			
 			</table>
 			</fieldset>
 		</div>
-	
 		<div class="tabbertab" title="Closed" style="height: 428px">
 		  <fieldset style="height: 99%;"  >
 		  <legend class="indiaLivesFonts" style="font-size:16px ">Complaints List</legend>
@@ -219,21 +173,16 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 		 	<table class="tableBgColor"  width="100%" cellpadding="1" cellspacing="1"   height="10%" id="complaintsTable">
 			<thead class="indiaLivesFonts" style="font-size: 14px"> 
 				<tr id="complaintListOdd" class="trColor">
-					<th>S.No</th>
-					<th>Pro Type</th>			
-					<th>Raised By</th>
-					<th>Raised Time</th>
-					<th>Comp Type</th>				
-					<th>Severity</th>
+					<th width="5%">S.No</th>
+					<th width="10%" nowrap="nowrap">Property</th>			
+					<th width="10%" nowrap="nowrap">Raised By</th>
+					<th width="12%" nowrap="nowrap">Raised Time</th>
+					<th width="10%" nowrap="nowrap">Complaint Type</th>				
+					<th width="8%" nowrap="nowrap"> Severity</th>
 					</tr>
 			</thead>
 				<tbody class="indiaLivesFonts" style="font-size: 14px">
-				
-			 	
-				
 				<%				
-					
-					
 					   int complaintsListForClosedRowSize=complaintsListForOpen.size();
 				    	if(complaintsListForClosedRowSize<15){
 				    		complaintsListForClosedRowSize=15;
@@ -251,7 +200,7 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						Date date=complaintsVO.getRaisedTime();	
 						Date availStart=complaintsVO.getAvailableStartTime();
 						Date availEnd=complaintsVO.getAvailableEndTime();
-						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+						SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 						String raisedTime=dateFormat.format(date);
 						String availStartTime=dateFormat.format(availStart);
 						String availEndTime=dateFormat.format(availEnd); %>
@@ -269,16 +218,7 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<%}} %>
-					
-				
-				
-								
-							
-			
 			</tbody>
-			
-			
-			
 			</table>
 			<form name="complaintListFrm" action="/indialives/eventhandler" method="get">
 				<input type="hidden" name="event" >
@@ -287,20 +227,12 @@ String noRecords=(String)session.getAttribute(SetAttributeConstants.NO_RECORDS);
 		</fieldset>
 		</div>
 	</div>
-		
-	
 	</td>
-	
 	<td valign="top" width="15%">
 		<%@include file="advBoard.jsp" %>
 	</td>	
-	
-	
 	</tr>
-	
 </table>
-
-
 <%@include file="footer.jsp" %>
 </body>
 </html>

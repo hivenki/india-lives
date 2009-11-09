@@ -1,5 +1,5 @@
 function addParkingSlot(){
-	var parkingId=document.getElementById("parkingId").value;
+	var parkingId=document.getElementById("parkingId").selectedIndex;
 	var location=document.getElementById("location").value;
 	
 	var msg="";

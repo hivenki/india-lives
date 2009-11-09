@@ -14,11 +14,10 @@ import com.easymvc.persistence.RowObject;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dofactory.ParkingDOFactory;
-import com.indialives.dofactory.ParkingSlotDOFactory;
 
 public class ShowParkingSlotEventHandler implements EventHandler,PageNameConstants,SetAttributeConstants {
 	
-	private List<RowObject> parkingSlotList=null;
+	
 	private List<RowObject> parkingList=null;
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -40,8 +39,6 @@ public class ShowParkingSlotEventHandler implements EventHandler,PageNameConstan
 		}
 		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		
-		parkingSlotList=ParkingSlotDOFactory.getParkingSlotList();
-		request.setAttribute(PARKING_SLOT_LIST,parkingSlotList);
 		parkingList=ParkingDOFactory.getParkingList(communityId);
 		request.setAttribute(PARKING_LIST,parkingList);
 		

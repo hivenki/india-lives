@@ -5,15 +5,6 @@ function  createNotice(){
 	document.noticeListFrm.submit();
 }
 
-function isEligibleForEdit(size){
-	for(var i=0;i<size;i++){
-		if(document.getElementById("select["+i+"]").checked){
-			return true;
-		}
-	}	
-	return false;
-}
-
 function doSelectAll(size){
 	var headCheckBoxSelected=false;
 	headCheckBoxSelected=document.getElementById("selectall").checked;
@@ -78,20 +69,26 @@ function isEligibleForDelete(size){
 	return false;
 }
 function deleteNotice(size){
-	if(isEligibleForDelete(size)){
-		var noticeIds="";
-		for(var i=0;i<size;i++){
-			if(document.getElementById("select["+i+"]").checked){
-				noticeIds=noticeIds+document.getElementById("select["+i+"]").value+",";
-			}
+	
+		if(isEligibleForDelete(size)){
+			var message=confirm("Are you sure you want to delete? ");
+			if (message==true)
+			  {
+				
+				var noticeIds="";
+				for(var i=0;i<size;i++){
+					if(document.getElementById("select["+i+"]").checked){
+						noticeIds=noticeIds+document.getElementById("select["+i+"]").value+",";
+					}
+				}
+				if(noticeIds.length>0){
+					noticeIds=noticeIds.substring(0,noticeIds.length-1);
+				}
+				document.getElementById("deleteNoticeIds").value=noticeIds;
+				document.noticeListFrm.event.value="deleteNotice";
+				document.noticeListFrm.submit();
+			  }
 		}
-		if(noticeIds.length>0){
-			noticeIds=noticeIds.substring(0,noticeIds.length-1);
-		}
-		document.getElementById("deleteNoticeIds").value=noticeIds;
-		document.noticeListFrm.event.value="deleteNotice";
-		document.noticeListFrm.submit();	
-	}
 }
 
 function submitEditRow(id){
@@ -106,9 +103,4 @@ function submitEditRowForUser(id){
 	document.getElementById("editNoticeId").value=id;
 	document.noticeListFrm.event.value="showEditForUser";
 	document.noticeListFrm.submit();
-}
-
-function showBoldContent(){
-	
-	
 }

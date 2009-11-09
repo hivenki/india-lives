@@ -18,14 +18,8 @@ function addBlock(){
 }
 
 function uploadCSV(){
-	var filedata=document.getElementById('Filedata');
-	
-	if(filedata!=null && filedata!==""){
-		alert("File name is empty");
-	}else{
 		document.uploadFlatFrm.event.value="uploadFlat";
 	    document.uploadFlatFrm.submit();
-	}
 }
 
 function addFlatType(){
@@ -45,25 +39,13 @@ function addParkingSlot(){
 
 
 function  uploadParkingSlot(){
-	var filedata=document.getElementById('Filedata');
-	
-	if(filedata!=null && filedata!==""){
-		alert("File name is empty");
-	}else{
 		document.uploadParkingSlotFrm.event.value="uploadParkingSlot";
 		document.uploadParkingSlotFrm.submit();
-	}
 }
 
 function uploadVilla(){
-	var filedata=document.getElementById('Filedata');
-	
-	if(filedata!=null && filedata!==""){
-		alert("File name is empty");
-	}else{
 		document.uploadVillaFrm.event.value="uploadVilla";
 	    document.uploadVillaFrm.submit();
-	}
 }
 
 
@@ -98,19 +80,25 @@ function doSelectAll(size){
 
 function deleteBlock(size){
 	
-	if(isEligibleForDelete(size)){
-		var blockIds="";
-		for(var i=0;i<size;i++){
-			if(document.getElementById("select["+i+"]").checked){
-				blockIds=blockIds+document.getElementById("select["+i+"]").value+",";
-			}
+		if(isEligibleForDelete(size)){
+			
+			var blockIds="";
+			var message=confirm("Are you sure you want to delete? ");
+			if (message==true)
+			  {
+				for(var i=0;i<size;i++){
+					if(document.getElementById("select["+i+"]").checked){
+						blockIds=blockIds+document.getElementById("select["+i+"]").value+",";
+					}
+				}
+				if(blockIds.length>0){
+					blockIds=blockIds.substring(0,blockIds.length-1);
+				}
+				document.getElementById("deleteBlockIds").value=blockIds;
+				submitForm("deleteBlocks");
+			  }
 		}
-		if(blockIds.length>0){
-			blockIds=blockIds.substring(0,blockIds.length-1);
-		}
-		document.getElementById("deleteBlockIds").value=blockIds;
-		submitForm("deleteBlocks");
-	}
+	  
 	
 }
 
@@ -134,7 +122,7 @@ function monitor(object,size){
 
 function addUser(){
 
-	document.communityAdmin.event.value="addUserNotThisCommunity";
+	document.communityAdmin.event.value="addUserForThisCommunity";
 	document.communityAdmin.submit();
 }
 
@@ -174,13 +162,6 @@ function addPropertyOwner(){
 }
 
 function uploadPropertyOwner(){
-	var filedata=document.getElementById('Filedata');
-	
-	if(filedata!=null && filedata!==""){
-		alert("File name is empty");
-	}else{
 		document.uploadPropertyOwnerFrm.event.value="uploadPropertyOwner";
 	    document.uploadPropertyOwnerFrm.submit();
-	}
-	
 }

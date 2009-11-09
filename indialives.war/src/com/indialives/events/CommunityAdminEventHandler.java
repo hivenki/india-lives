@@ -81,6 +81,7 @@ public class CommunityAdminEventHandler implements EventHandler,SetAttributeCons
 		request.setAttribute(PARKING_SLOT_LIST,parkingSlotList);
 		request.setAttribute(GET_USER_LIST,userList);
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyTypeList);
+		httpSession.setAttribute(CURRENT_CONTENT_LINK,"Admin");
 	}
 
 }

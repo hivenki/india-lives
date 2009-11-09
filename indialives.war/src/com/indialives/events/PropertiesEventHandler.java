@@ -23,7 +23,7 @@ import com.indialives.dofactory.PropertyOwnerDOFactory;
 import com.indialives.voobjects.PropertiesVO;
 import com.indialives.voobjects.RolePrivilegesVO;
 
-public class CommunityHomeEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
+public class PropertiesEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
 	
 	
 	private List<RowObject> propertyList=null;
@@ -74,6 +74,7 @@ public class CommunityHomeEventHandler implements EventHandler,SetAttributeConst
 				
 		request.setAttribute(PROPERTY_LIST,propertyMap);
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyEnumList);
+		httpSession.setAttribute(CURRENT_CONTENT_LINK,"Properties");
 	
 		
 	}

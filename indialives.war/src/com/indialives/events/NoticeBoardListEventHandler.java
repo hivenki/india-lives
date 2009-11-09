@@ -41,8 +41,8 @@ public class NoticeBoardListEventHandler implements EventHandler,SetAttributeCon
 		Session session=SessionFactory.getSession(request);
 		Integer roleId=session.getUser().getRoleId().intValue();
 		
-		Integer privilegeId=4;
-		httpSession.setAttribute("PrivilegeId",privilegeId);
+		
+		httpSession.setAttribute(CURRENT_CONTENT_LINK,"Notice Board");
 		request.setAttribute(ROLE_ID, roleId);
 		
 		

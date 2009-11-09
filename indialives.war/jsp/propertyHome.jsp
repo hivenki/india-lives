@@ -15,27 +15,16 @@
 <head>
 <title>Welcome to IndiaLives</title>
 <%@ include file="header.jspf" %>
-<%@include file="propertyHome.jspf"%>
+<script type="text/javascript" language="javascript" src="/indialives/js/propertyHome.js"></script>
 <%@include file="indialives_css.jspf"%>
 </head>
-
-
 <body>
 <%
 	HashMap propertyMap=(HashMap)request.getAttribute(SetAttributeConstants.PROPERTY_LIST);
 	List propertyEnumList=(List) request.getAttribute(SetAttributeConstants.PROPERTY_ENUM_LIST);
-	
-//	List rolePrivilegesList=(List) request.getAttribute(SetAttributeConstants.ROLE_PRIVILEGES_LIST);
-
-//	String  gatedCommunityId=(String)session.getAttribute(SetAttributeConstants.COMMUNITY_ID);
-
-
 %>
 <%@include file="header.jsp" %>
-
-
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
-
 	<tr>	
 	<td width="15%">
 	<%@include file="contentPage.jsp" %>	
@@ -44,8 +33,6 @@
 	   <fieldset style="height: 99%;" >
 	  <legend class="indiaLivesFonts" >Properties</legend>
 	 	<form name="propertyHome" action="/indialives/eventhandler" method="post">
-	 
-	
 		<table border="0" width="90%" height="80%" style="margin-left: 50px">
 		<tr class="indiaLivesFonts" valign="top">
 			<td>
@@ -88,7 +75,6 @@
 				</tr>				
 		<%}}%>
 		</table>
-	
 	<input type="hidden" name="event" value="propertyProfile">
 	<input type="hidden" name="propertyId">
 	<input type="hidden" name="propertyTypeId" >
@@ -101,6 +87,5 @@
 	</tr>
 </table>
 <%@include file="footer.jsp" %>
-
 </body>
 </html>
