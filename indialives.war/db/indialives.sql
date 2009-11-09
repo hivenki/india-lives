@@ -1,4 +1,4 @@
-﻿-- MySQL Administrator dump 1.4
+-- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
 -- Server version	5.0.18-nt
@@ -559,7 +559,12 @@ INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES
  (3,'Notice Board','Notice Board','eventhandler?event=noticeBoardList'),
  (4,'Parking','Parking','eventhandler?event=parkingList'),
  (5,'Admin','Admin','eventhandler?event=communityAdmin'),
- (6,'Amenities','Amenities','');
+ (6,'Amenities','Amenities','eventhandler?event=handleAmenities'),
+ (7,'Visitors','Visitors','eventhandler?event=handleVisitors'),
+ (8,'Payments','Payments','eventhandler?event=handlePayments'),
+ (9,'SocietyManagement','Society Management','eventhandler?event=handleSocietyManagement'),
+ (10,'ValueAddedServices','Value Added Services','eventhandler?event=handleValueAddedServices'),
+ (11,'Security','Gate Security','eventhandler?event=handleSecurity');
 /*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
 
 
@@ -676,7 +681,20 @@ INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES
  (6,2,1),
  (7,2,2),
  (8,2,3),
- (9,2,4);
+ (9,2,4),
+ (10,1,6),
+ (11,1,7),
+ (12,1,8),
+ (13,1,9),
+ (14,1,10),
+ (15,1,11),
+ (16,2,6),
+ (17,2,7),
+ (19,2,8),
+ (20,2,9),
+ (21,2,10),
+ (22,2,11);
+ 
 /*!40000 ALTER TABLE `role_privileges` ENABLE KEYS */;
 
 
@@ -775,7 +793,8 @@ CREATE TABLE `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`ID`,`EMAIL_ID`,`PASSWORD`,`MOBILE_NO`,`FIRST_NAME`,`LAST_NAME`) VALUES 
  (1,'gopinath.dhanapal@gmail.com','il@123','9916958269','Gopinath','Dhanapal'),
- (2,'vijayan.srinivasan@gmail.com','vijayan$786','9986508767','Vijayan','Srinivasan');
+ (2,'vijayan.srinivasan@gmail.com','vijayan$786','9986508767','Vijayan','Srinivasan'),
+ (3,'hivenki@gmail.com','il@123','9849948728','Venky','Reddy');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
