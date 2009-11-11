@@ -7,7 +7,7 @@
 	<tr align="right"  class="indiaLivesFonts" style="font-size:14px;">
 		<td valign="top" width="15%">
 		<fieldset style="height: 100%;" >
-	    	<legend>Adv Board</legend>			
+	    	<legend>ADBoard</legend>			
 		</fieldset>
 	</td>
 	</tr>
