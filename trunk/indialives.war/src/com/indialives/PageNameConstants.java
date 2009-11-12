@@ -21,9 +21,11 @@ public interface PageNameConstants {
 	String ADD_USER_FOR_THIS_COMMUNITY="jsp/addUserForThisCommunity.jsp";
 	String USER_PROFILE="jsp/userProfile.jsp";
 	String NOTICE_LIST_PAGE="jsp/noticeList.jsp";
+	String MESSAGE_LIST_PAGE="jsp/inboxMessagesList.jsp";
 	String SHOW_NOTICE="jsp/showNotice.jsp";
 	String SHOW_EDIT_NOTICE="jsp/showEditNotice.jsp";
 	String SHOW_EDIT__NOTICE_FOR_USER="jsp/showEditNoticeForUser.jsp";
 	String PARKING_LIST_PAGE="jsp/parkingList.jsp";
+	String MANAGEMENT_TASK_LIST_PAGE="jsp/managementTaskList.jsp";
 	
 }
