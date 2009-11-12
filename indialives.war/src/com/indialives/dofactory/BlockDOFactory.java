@@ -36,4 +36,13 @@ public class BlockDOFactory implements SQLConstants{
 		persistenceManager.delete(query,paramList);		
 	}
 
+	public static BlockDO getBlockName(String communityId, String blockName) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(blockName);
+		paramList.add(communityId);
+		BlockDO blockDO=(BlockDO) persistenceManager.find(BlockDO.class,"SELECT NAME FROM BLOCKS WHERE NAME=? AND COMMUNITY_ID=?",paramList);
+		return blockDO;
+	}
+
 }

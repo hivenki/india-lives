@@ -18,8 +18,20 @@ function addBlock(){
 }
 
 function uploadCSV(){
+	var fileString=document.uploadFlatFrm.Filedata.value;
+	if(fileString!='null' && fileString.length>0 ){
+		fileString=fileString.substring(fileString.lastIndexOf(".")+1,fileString.length);
+		if(fileString!="" && fileString!="csv" && fileString!="CSV"){
+			alert("You have selected a ."+fileString+" file.Please select a .csv file instead!");
+			return false;	
+		}
 		document.uploadFlatFrm.event.value="uploadFlat";
-	    document.uploadFlatFrm.submit();
+		document.uploadFlatFrm.submit();
+	}
+	else{
+		alert("Filename is empty");
+	}
+
 }
 
 function addFlatType(){
@@ -39,13 +51,35 @@ function addParkingSlot(){
 
 
 function  uploadParkingSlot(){
+	var fileString=document.uploadParkingSlotFrm.Filedata.value;
+	if(fileString!='null' && fileString.length>0 ){
+		fileString=fileString.substring(fileString.lastIndexOf(".")+1,fileString.length);
+		if(fileString!="" && fileString!="csv" && fileString!="CSV"){
+			alert("You have selected a ."+fileString+" file.Please select a .csv file instead!");
+			return false;	
+		}
 		document.uploadParkingSlotFrm.event.value="uploadParkingSlot";
 		document.uploadParkingSlotFrm.submit();
+	}
+	else{
+		alert("Filename is empty");
+	}
 }
 
 function uploadVilla(){
+	var fileString=document.uploadVillaFrm.Filedata.value;
+	if(fileString!='null' && fileString.length>0 ){
+		fileString=fileString.substring(fileString.lastIndexOf(".")+1,fileString.length);
+		if(fileString!="" && fileString!="csv" && fileString!="CSV"){
+			alert("You have selected a ."+fileString+" file.Please select a .csv file instead!");
+			return false;	
+		}
 		document.uploadVillaFrm.event.value="uploadVilla";
 	    document.uploadVillaFrm.submit();
+	}
+	else{
+		alert("Filename is empty");
+	}
 }
 
 
@@ -135,8 +169,6 @@ function showProperty(){
 }
 
 function addPropertyOwner(){
-	
-	
 	var propertyId=document.getElementById("propertyId").selectedIndex;
 	var ownerId=document.getElementById("ownerId").selectedIndex;
 	var msg="";
@@ -162,6 +194,17 @@ function addPropertyOwner(){
 }
 
 function uploadPropertyOwner(){
+	var fileString=document.uploadPropertyOwnerFrm.Filedata.value;
+	if(fileString!='null' && fileString.length>0 ){
+		fileString=fileString.substring(fileString.lastIndexOf(".")+1,fileString.length);
+		if(fileString!="" && fileString!="csv" && fileString!="CSV"){
+			alert("You have selected a ."+fileString+" file.Please select a .csv file instead!");
+			return false;	
+		}
 		document.uploadPropertyOwnerFrm.event.value="uploadPropertyOwner";
 	    document.uploadPropertyOwnerFrm.submit();
+	}
+	else{
+		alert("Filename is empty");
+	}	    
 }

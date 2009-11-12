@@ -2,6 +2,7 @@ package com.indialives.events;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +29,12 @@ import com.indialives.voobjects.UsersVO;
 
 public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,MultipartConstants,ApplicationConstants,SetAttributeConstants {
 	
-	private CsvReader csvReader=null;
-	private List<RowObject> propertyList=null;
-	private List<RowObject> propertyTypeList=null;
-	private List<RowObject> userList=null;
 
+	private Properties applicationProperties=null;
+	private String[] uploadColumnNameOrder;
+	private List<String> columnNames;
+	private List<String> row;
+	String formatErrorString="";
 	
 	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
@@ -47,64 +49,111 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 		
 		HttpSession httpSession = request.getSession();		
 		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();		
-		csvReader=getCsvReader(request);
-		propertyTypeList=PropertyTypeEnumDOFactory.getPropertyList();
-		propertyList=PropertyOwnerDOFactory.getPropertiesList();
-		userList=UserDOFactory.getUserList(communityId);
+		CsvReader csvReader=getCsvReader(request);
 		
-		HashMap<String,Integer> propertyTypeMap=new HashMap<String, Integer>();
-		HashMap<Integer,Map<String, Integer>> propertyMap=new HashMap<Integer,Map<String, Integer>> ();
-		HashMap<String,Integer> userMap=new HashMap<String, Integer>();
+		List<RowObject> propertyTypeList=PropertyTypeEnumDOFactory.getPropertyList();
+		List<RowObject> propertyList=PropertyOwnerDOFactory.getPropertiesList();
+		List<RowObject> userList=UserDOFactory.getUserList(communityId);
 		
-		for(RowObject rowObject : propertyTypeList){
-			PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO) rowObject;
-			propertyTypeMap.put(propertyTypeEnumDO.getName(),propertyTypeEnumDO.getId());
-		}	
 		
-		for(RowObject rowObject : propertyList){
-			PropertiesVO propertiesVO=(PropertiesVO) rowObject;
-			Map<String, Integer> map=propertyMap.get(propertiesVO.getPropertyTypeId());
-			if(map==null){
-				map=new HashMap<String, Integer>();
-			}
-			map.put(propertiesVO.getPropertyName(), propertiesVO.getPropertyId());			
-			propertyMap.put(propertiesVO.getPropertyTypeId(),map);
+		
+		 if(csvReader!=null){
+				columnNames=csvReader.getColumnNames();
+				if( (columnNames.size()==3) == false ){
+					formatErrorString="CSV File Must have 3 headers like this - Property,Property Type,Owner";				
+				}			
+				else{
+					isValidColumnOrder();
+					if(formatErrorString.length()==0){
+					for(int i=1;i<csvReader.getNumberOfRows();i++){
+							row = (List<String>) csvReader.getRowValues(i);
+							row=updateRow(row);
+							if(row.size()==3){
+							HashMap<String, Integer>propertyTypeMap=getPropertyTypeMap(propertyTypeList);
+							HashMap<Integer, Map<String, Integer>>propertyMap=getPropertyMap(propertyList);
+							HashMap<String, Integer>userMap=getUserMap(userList);
+							validateRowValues(row,i,propertyTypeMap,propertyMap,userMap);
+							}
+						}
+					}
+				}
+		 }
 
-		}	
-		
-		for(RowObject rowObject : userList){
-			UsersVO usersVO=(UsersVO) rowObject;
-			userMap.put(usersVO.getFirstName(),usersVO.getId());
-		}	
-		
-		List<String> list =PropertyOwnerDOFactory.addPropertyOwnerCSV(csvReader,propertyTypeMap,propertyMap,userMap);
-	//	String propertyOwnerErrMsg="";
-	//	if(list==null){
-	//		httpSession.setAttribute(PROPERTY_OWNER_ERROR_LIST,propertyOwnerErrMsg);
-	//	}
-		String message=getErrorMessage(list);
-		httpSession.setAttribute(PROPERTY_OWNER_ERROR_LIST,message);	
+		formatErrorString="Invalid CSV "+","+formatErrorString;
+		httpSession.setAttribute(FORMAT_ERROR_STRING,formatErrorString);
+			
 	}
-
-	
-
-	private String getErrorMessage(List<String> list) {
-		if(list.size()>0){
-			String message="";				
-			for(int i=0;i<list.size();i++){
-				message=message+list.get(i)+",";
+	private List<String> updateRow(List<String> src) {
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<src.size();i++){
+			if(src.get(i).trim().length()!=0){
+				list.add(src.get(i));
 			}
-			if(message.length()>0){
-				message=message.substring(0,message.length()-1);
-			}
-			return message;
 		}
-		return "";
+		return list;
+	}
+	 private HashMap<String, Integer> getUserMap(List<RowObject> userList) {
+		 HashMap<String, Integer>userMap=new HashMap<String, Integer>();
+		 for(RowObject rowObject : userList){
+				UsersVO usersVO=(UsersVO) rowObject;
+				userMap.put(usersVO.getFirstName(),usersVO.getId());
+			}	
+		return userMap;
+	}
+	 
+	private HashMap<Integer, Map<String, Integer>> getPropertyMap(List<RowObject> propertyList) {
+		HashMap<Integer, Map<String, Integer>> propertyMap=new HashMap<Integer, Map<String,Integer>>();
+		 for(RowObject rowObject : propertyList){
+				PropertiesVO propertiesVO=(PropertiesVO) rowObject;
+				Map<String, Integer> map=propertyMap.get(propertiesVO.getPropertyTypeId());
+				if(map==null){
+					map=new HashMap<String, Integer>();
+				}
+				map.put(propertiesVO.getPropertyName(), propertiesVO.getPropertyId());			
+				propertyMap.put(propertiesVO.getPropertyTypeId(),map);
+
+			}	
+		return propertyMap;
 	}
 
+	private HashMap<String, Integer> getPropertyTypeMap(List<RowObject> propertyTypeList) {
+		HashMap<String, Integer>propertyTypeMap=new HashMap<String, Integer>();
+		 for(RowObject rowObject : propertyTypeList){
+				PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO) rowObject;
+				propertyTypeMap.put(propertyTypeEnumDO.getName(),propertyTypeEnumDO.getId());
+			}
+		return propertyTypeMap;
+	}
+
+	public void  validateRowValues(List<?> row,Integer rowIndex, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap) {
+		isValidRow(rowIndex);
+
+    	if(propertyTypeMap.get(row.get(1))==null){
+    		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[1]+"' is not available in DB,";
+    	}
+    	if(propertyTypeMap.get(row.get(1))!=null){
+    		if(propertyMap.get(propertyTypeMap.get(row.get(1))).get(row.get(0))==null){
+        		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[0]+"' is not available in DB,";
+        	}
+    	}
+    	
+    	if(userMap.get(row.get(2))==null){
+    		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[2]+"' is not available in DB,";
+    	}
+		
+		if (propertyTypeMap.get(row.get(1))!=null && propertyMap.get(propertyTypeMap.get(row.get(1))).get(row.get(0))!=null && userMap.get(row.get(2))!=null ){
+		    	Integer propertyTypeId=propertyTypeMap.get(row.get(1).toString().trim());
+				Map<String, Integer> propertyNameMap=propertyMap.get(propertyTypeId);
+				Integer propertyId=propertyNameMap.get(row.get(0).toString().trim());			
+				Integer ownerId=userMap.get(row.get(2).toString().trim());
+		    	PropertyOwnerDOFactory.addPropertyToOwner(propertyId,propertyTypeId,ownerId);
+			}	   
+	}
+			
+	
 	private CsvReader getCsvReader(HttpServletRequest request) {
-		Properties properties=PropertyLoader.getProperties(APPLICATION_PROPERTIES_FILE_NAME);
-		String serverLocation=properties.getProperty(FILE_STORAGE_LOCATION);
+		applicationProperties=PropertyLoader.getProperties(APPLICATION_PROPERTIES_FILE_NAME);
+		String serverLocation=applicationProperties.getProperty(FILE_STORAGE_LOCATION);
 		StringBuilder builder=new StringBuilder();
 		builder.append(serverLocation);			
 		Map<?,?> fileParameterMap=(Map<?,?>)request.getAttribute(MULTIPART_FILE_PARAMETER_MAP);
@@ -118,6 +167,32 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 		File csvFile=new File(csvUploadFile);		
 		CsvReader csvReader=new CsvReader(csvFile.getAbsolutePath());	
 		return csvReader;
+	}
+	
+	private void isValidColumnOrder() {
+		String columnNameOrder=applicationProperties.getProperty(UPLOAD_PROPERTY_OWNER_COLUMN_NAME_ORDER);
+		uploadColumnNameOrder=columnNameOrder.split(",");
+		for(int i=0;i<columnNames.size();i++){
+			String item=columnNames.get(i);
+			if(item.equals(Constants.EMPTY_STRING)){
+				formatErrorString="Headers should not be empty\n";
+				break;
+			}
+			else if(item.equalsIgnoreCase(uploadColumnNameOrder[i])==false){
+				formatErrorString="CSV File headers should be this order - Property,Property Type,Owner";
+				break;
+			}			
+		}		
+	}
+	private void isValidRow(int rowIndex) {
+		if(row.size()==3){
+			for(int i=0;i<row.size();i++){
+				String item=row.get(i);				
+				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
+					formatErrorString=formatErrorString+".Row No :"+rowIndex+"ColumnName - "+uploadColumnNameOrder[i]+" should not be empty,";
+				}
+			}
+	    }		
 	}
 
 }

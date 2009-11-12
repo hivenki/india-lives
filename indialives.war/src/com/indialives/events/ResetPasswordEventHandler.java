@@ -32,12 +32,9 @@ public class ResetPasswordEventHandler implements NonAuthenticatedHandler,EventH
 			UserDOFactory.updatePassword(resetPassword,username);
 			System.out.println(resetPassword);
 			message="Your password has been reset.";
-		//	request.setAttribute(RESET_PASSWORD_SUCCESS_MSG,message);
-			
 		}
 		else{
 			 message="Sorry! We are unable to reset password kindly contact the admin.";
-			//request.setAttribute(RESET_PASSWORD_ERROR_MSG,message);
 		}
 	}
 

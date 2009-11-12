@@ -1,14 +1,13 @@
 package com.indialives.dofactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.easymvc.persistence.PersistenceManager;
 import com.easymvc.persistence.PersistenceManagerFactory;
 import com.easymvc.persistence.RowObject;
-import com.easymvc.reader.csv.CsvReader;
 import com.indialives.SQLConstants;
+import com.indialives.dataobjects.BlockDO;
 import com.indialives.dataobjects.FlatTypeEnumDO;
 import com.indialives.formbean.Flats;
 import com.indialives.voobjects.FlatVO;
@@ -58,21 +57,8 @@ public class FlatDOFactory implements SQLConstants {
 		
 	}
 
-	public static void addBulkFlats(HashMap<String, Integer> bulkHashMap,
-			HashMap<String, Integer> flatTypehashMap,CsvReader csvReader) {
-		for(int i=1;i<csvReader.getNumberOfRows();i++){
-			List<?> rowList=csvReader.getRowValues(i);
-			Integer blockId=bulkHashMap.get(rowList.get(0));
-			String floor=rowList.get(1).toString();
-			String flatNo=rowList.get(2).toString();
-			Integer flatTypeId=flatTypehashMap.get(rowList.get(3));
-			String noOfBedRooms=rowList.get(4).toString();
-			addBulkFlats(blockId,floor,flatNo,flatTypeId,noOfBedRooms);
-		}
-		
-	}
-
-	private static void addBulkFlats(Integer blockId, String floor,
+	
+	public static void addBulkFlats(Integer blockId, String floor,
 			String flatNo, Integer flatTypeId, String noOfBedRooms) {
 		Integer blockType=Integer.valueOf(blockId);
 		Integer floorNo=Integer.valueOf(floor);
@@ -103,6 +89,14 @@ public class FlatDOFactory implements SQLConstants {
 		String query="SELECT DISTINCT (B.ID) AS BLOCK_ID,B.NAME AS BLOCK_NAME FROM FLATS F JOIN  BLOCKS B ON B.ID=F.BLOCK_ID WHERE F.BLOCK_ID IN  ("+deleteBlockIds+")";
 		List<RowObject> list=persistenceManager.findCollection(FlatVO.class,query, paramList);
 		return list;
+	}
+
+	public static FlatTypeEnumDO getFlatTypeName(String flatTypeName) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(flatTypeName);
+		FlatTypeEnumDO flatTypeEnumDO=(FlatTypeEnumDO) persistenceManager.find(BlockDO.class,"SELECT NAME FROM FLAT_TYPE_ENUM WHERE NAME=?",paramList);
+		return flatTypeEnumDO;
 	}
 
 }
