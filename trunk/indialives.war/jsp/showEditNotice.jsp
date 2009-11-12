@@ -65,7 +65,11 @@
 		</tr>
 		<tr>
 			<td>Description </td>
-			<td><input type="text" name="description" size="35" value="<%=noticeVO.getDescription()%>"></td>
+			<td>
+			<textarea rows="10" cols="27" name="description">
+			<%=noticeVO.getDescription()%>
+			</textarea>
+			</td>
 		</tr>		
 		<tr>
 			<td>Posted By</td>

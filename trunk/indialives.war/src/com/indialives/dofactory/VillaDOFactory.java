@@ -51,6 +51,7 @@ public class VillaDOFactory implements SQLConstants {
 
 	public static void addVillasCSV(CsvReader csvReader, String communityId) {
 		
+		String INT_SEQ="^[0-9]+$";
 		for(int i=1;i<csvReader.getNumberOfRows();i++){
 			List<?> rowList=csvReader.getRowValues(i);			
 			String plotNo=  rowList.get(0).toString();
@@ -58,13 +59,14 @@ public class VillaDOFactory implements SQLConstants {
 			String name=rowList.get(2).toString();
 			String noOfBedRooms=rowList.get(3).toString();
 			String noOfParkings=rowList.get(4).toString();
-			addBulkVillas(communityId,plotNo,noOfFloors,name,noOfBedRooms,noOfParkings);
+			 if(noOfFloors.matches(INT_SEQ)&& noOfBedRooms.matches(INT_SEQ)&& noOfParkings.matches(INT_SEQ)){
+				 addBulkVillas(communityId,plotNo,noOfFloors,name,noOfBedRooms,noOfParkings);
+			 }
 		}
-		
 	}
 	
 	public static void addBulkVillas(String communityId,String plotNo, String noOfFloors,String name,String noOfBedRooms,String noOfParkings ) {
-		Integer pNo=Integer.valueOf(plotNo);
+		String pNo=String.valueOf(plotNo);
 		Integer noFloors=Integer.valueOf(noOfFloors);
 		String villaName=String.valueOf(name);
 		Integer noBedrooms=Integer.valueOf(noOfBedRooms);
@@ -74,7 +76,7 @@ public class VillaDOFactory implements SQLConstants {
 		
 	}
 
-	private static void addBulkVillas(String communityId, Integer plotNo,
+	private static void addBulkVillas(String communityId, String plotNo,
 			Integer noOfFloors, String name, Integer noOfBedRooms,
 			Integer noOfParkings) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();

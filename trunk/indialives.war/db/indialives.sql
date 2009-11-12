@@ -1,4 +1,4 @@
--- MySQL Administrator dump 1.4
+﻿-- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
 -- Server version	5.0.18-nt
@@ -783,7 +783,9 @@ CREATE TABLE `users` (
   `MOBILE_NO` varchar(12) NOT NULL,
   `FIRST_NAME` varchar(20) NOT NULL,
   `LAST_NAME` varchar(20) NOT NULL,
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY  (`ID`),
+  UNIQUE KEY `EMAIL_ID` USING BTREE (`EMAIL_ID`),
+  UNIQUE KEY `MOBILE_NO` USING BTREE (`MOBILE_NO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

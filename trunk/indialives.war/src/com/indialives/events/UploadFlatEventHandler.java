@@ -2,6 +2,7 @@ package com.indialives.events;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,16 @@ import com.indialives.dofactory.BlockDOFactory;
 import com.indialives.dofactory.FlatDOFactory;
 
 public class UploadFlatEventHandler implements EventHandler,Constants,ApplicationConstants,MultipartConstants,SetAttributeConstants {
-	private CsvReader csvReader=null;
-	private List<RowObject> blockList=null;
-	private List<RowObject> flatTypeEnumList=null;
+	
+	
+	private Properties applicationProperties=null;
+	private String[] uploadColumnNameOrder;
+	private List<String> columnNames;
+	private List<String> row;
+	String formatErrorString="";
+	private static final String INT_SEQ="^[0-9]+$";
+	
+	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -40,44 +48,88 @@ public class UploadFlatEventHandler implements EventHandler,Constants,Applicatio
 			throws ServletException, IOException {
 		
 		HttpSession httpSession=request.getSession();
-		String communityId=request.getParameter("gatedCommunityId");
-		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();		
+		List<RowObject> blockList=BlockDOFactory.getBlockList(communityId);
+		List<RowObject> flatTypeEnumList=FlatDOFactory.getFlatTypeList();
+		CsvReader csvReader=getCsvReader(request);
+		 
+		 if(csvReader!=null){
+				columnNames=csvReader.getColumnNames();
+				if( (columnNames.size()==5) == false ){
+					formatErrorString="CSV File Must have 5 headers like this - Block Name,Floor,Flat No,Flat Type,No of Bedrooms";				
+				}			
+				else{
+					isValidColumnOrder();
+					if(formatErrorString.length()==0){
+						for(int i=1;i<csvReader.getNumberOfRows();i++){
+								row = (List<String>) csvReader.getRowValues(i);
+								row=updateRow(row);
+								if(row.size()==5){
+									HashMap<String, Integer> blockHashMap=getBlockHashMap(blockList);
+									HashMap<String, Integer> flatTypehashMap=getFlatHashMap(flatTypeEnumList);
+									addFlatsIfValid(row,i,blockHashMap,flatTypehashMap);
+								}
+						 }
+					}
+				}
+		 }
+		 formatErrorString="Invalid CSV "+","+formatErrorString;
+		 httpSession.setAttribute(FORMAT_ERROR_STRING, formatErrorString);		 
+	}
 	
-		if(communityId==null){
-			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+	
+	private List<String> updateRow(List<String> src) {
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<src.size();i++){
+			if(src.get(i).trim().length()!=0){
+				list.add(src.get(i));
+			}
 		}
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
-			
-		 csvReader=getCsvReader(request);
-		 
-		 
-		 
-		 blockList=BlockDOFactory.getBlockList(communityId);
-		 flatTypeEnumList=FlatDOFactory.getFlatTypeList();
-			
-		HashMap<String,Integer> bulkHashMap=new HashMap<String, Integer>();
-		for(RowObject rowObject : blockList){
-			BlockDO blockDO=(BlockDO) rowObject;
-			bulkHashMap.put(blockDO.getName(),blockDO.getId());
-		}		
-		
-		HashMap<String,Integer> flatTypehashMap=new HashMap<String, Integer>();
-		for(RowObject rowObject : flatTypeEnumList){
-			FlatTypeEnumDO flatTypeEnumDO=(FlatTypeEnumDO) rowObject;
-			flatTypehashMap.put(flatTypeEnumDO.getName(),flatTypeEnumDO.getId());
-		}		
-		
-		FlatDOFactory.addBulkFlats(bulkHashMap,flatTypehashMap,csvReader);
-			
-			
-		        		
+		return list;
 	}
 
+	private HashMap<String, Integer> getFlatHashMap(List<RowObject> flatTypeEnumList) {
+		HashMap<String, Integer> flatTypehashMap = new HashMap<String, Integer>();
+		 for(RowObject rowObject : flatTypeEnumList){
+				FlatTypeEnumDO flatTypeEnumDO=(FlatTypeEnumDO) rowObject;
+				flatTypehashMap.put(flatTypeEnumDO.getName(),flatTypeEnumDO.getId());
+			}	
+		 return flatTypehashMap;
+	}
+
+	private HashMap<String, Integer> getBlockHashMap(List<RowObject> blockList) {
+		HashMap<String, Integer> blockHashMap = new HashMap<String, Integer>();
+			for(RowObject rowObject : blockList){
+				BlockDO blockDO=(BlockDO) rowObject;
+				blockHashMap.put(blockDO.getName(),blockDO.getId());
+			}	
+		return blockHashMap;
+	}
 	
 
+	public void addFlatsIfValid(List<String> row,Integer rowIndex, HashMap<String, Integer> blockHashMap,HashMap<String, Integer> flatTypehashMap) {
+			isValidRow(rowIndex);
+			Integer blockId=blockHashMap.get(row.get(0));
+			Integer flatTypeId=flatTypehashMap.get(row.get(3));
+			if(blockId!=null && flatTypeId!=null ){
+			  String floor=row.get(1).toString();
+			  String flatNo=row.get(2).toString();
+			  String noOfBedRooms=row.get(4).toString();
+			  FlatDOFactory.addBulkFlats(blockId,floor,flatNo,flatTypeId,noOfBedRooms);			
+			}
+			else{		    	
+			  	if(blockId==null){
+			   		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[0]+"' is not available in DB,";
+			    }
+			    if(flatTypeId==null){
+			    	formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[3]+"'is not available in DB,";
+				}		    	
+			 }		    
+	}
+	
 	private CsvReader getCsvReader(HttpServletRequest request) {
-		Properties properties=PropertyLoader.getProperties(APPLICATION_PROPERTIES_FILE_NAME);
-		String serverLocation=properties.getProperty(FILE_STORAGE_LOCATION);
+		applicationProperties=PropertyLoader.getProperties(APPLICATION_PROPERTIES_FILE_NAME);
+		String serverLocation=applicationProperties.getProperty(FILE_STORAGE_LOCATION);
 		StringBuilder builder=new StringBuilder();
 		builder.append(serverLocation);			
 		Map<?,?> fileParameterMap=(Map<?,?>)request.getAttribute(MULTIPART_FILE_PARAMETER_MAP);
@@ -93,5 +145,38 @@ public class UploadFlatEventHandler implements EventHandler,Constants,Applicatio
 		return csvReader;
 	}
 	
+	private void isValidColumnOrder() {
+		String columnNameOrder=applicationProperties.getProperty(UPLOAD_FLAT_COLUMN_NAME_ORDER);
+		uploadColumnNameOrder=columnNameOrder.split(",");
+		for(int i=0;i<columnNames.size();i++){
+			String item=columnNames.get(i);
+			if(item.equals(Constants.EMPTY_STRING)){
+				formatErrorString="Headers should not be empty";
+				break;
+			}
+			else if(item.equalsIgnoreCase(uploadColumnNameOrder[i])==false){
+				formatErrorString="CSV File headers should be this order - Block Name,Floor,Flat No,Flat Type,No of Bedrooms";
+				break;
+			}			
+		}		
+	}
 	
+	private void isValidRow(int rowIndex) {		
+		if(row.size()==5){
+			for(int i=0;i<row.size();i++){
+				String item=row.get(i);				
+				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
+					formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[i]+"' should not be empty,";
+				}
+				else if((i==1 || i==4)&& isNumber(item)==false){					   					
+						formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[i]+"' should be integer value,";
+				}
+		}
+	  }
+	}
+	
+	private  boolean isNumber(String valueString){		
+		return valueString.matches(INT_SEQ);
+	}
+
 }

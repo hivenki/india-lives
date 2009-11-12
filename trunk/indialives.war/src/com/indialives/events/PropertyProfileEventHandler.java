@@ -1,23 +1,27 @@
 package com.indialives.events;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
+import com.easymvc.persistence.RowObject;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dataobjects.VillaDO;
 import com.indialives.dofactory.FlatDOFactory;
+import com.indialives.dofactory.ParkingSlotDOFactory;
 import com.indialives.dofactory.VillaDOFactory;
 import com.indialives.voobjects.FlatVO;
 
 public class PropertyProfileEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants {
 
-	
+	private List<RowObject> parkingSlotList=null;
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -32,6 +36,9 @@ public class PropertyProfileEventHandler implements EventHandler,SetAttributeCon
 		String propertyId=request.getParameter("propertyId");
 		String propertyTypeId=request.getParameter("propertyTypeId");
 		
+		HttpSession httpSession=request.getSession();
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		parkingSlotList=ParkingSlotDOFactory.getParkingSlotListForAssigningProperty(communityId);
 		if(propertyTypeId.equals("1")){
 			FlatVO flatVO=FlatDOFactory.getFlatDetails(propertyId);
 			request.setAttribute(PROPERTY_OBJ, flatVO);
@@ -40,10 +47,8 @@ public class PropertyProfileEventHandler implements EventHandler,SetAttributeCon
 		else if(propertyTypeId.equals("2")){
 			VillaDO villaDO=VillaDOFactory.getVillaDetails(propertyId);
 			request.setAttribute(PROPERTY_OBJ, villaDO);
-		}/*else{
-			ParkingSlotVO parkingSlotVO=ParkingSlotDOFactory.getParkingDetails(propertyId);
-			request.setAttribute(PROPERTY_OBJ, parkingSlotVO);
-		}*/		
+		}		
+		request.setAttribute(PARKING_SLOT_LIST,parkingSlotList);
 	}
 
 }

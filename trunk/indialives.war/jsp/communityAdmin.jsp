@@ -34,8 +34,8 @@
 	List propertyList=(List)session.getAttribute(SetAttributeConstants.PROPERTY_LIST_BASED_ON_TYPE);
 	List userForPropertyList=(List)session.getAttribute(SetAttributeConstants.USER_LIST_FOR_PROPERTY);
 	
-	String uploadParkingSlotErrorMessage=(String)session.getAttribute(SetAttributeConstants.PARKING_ERROR_LIST);
-	session.setAttribute(SetAttributeConstants.PARKING_ERROR_LIST,null);
+//	String uploadParkingSlotErrorMessage=(String)session.getAttribute(SetAttributeConstants.PARKING_ERROR_LIST);
+//	session.setAttribute(SetAttributeConstants.PARKING_ERROR_LIST,null);
 	
 	String delteBlockErrormessage=(String)session.getAttribute(SetAttributeConstants.DELETE_BLOCKS_ERROR_MSG);
 	session.setAttribute(SetAttributeConstants.DELETE_BLOCKS_ERROR_MSG,null);
@@ -50,38 +50,35 @@
 		propertyType=Integer.parseInt(propertyTypeId);
 	}
 	
-	String uploadPropertOwnerErrorMessage=(String)session.getAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST);
-	session.setAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST,null);
+//	String uploadPropertOwnerErrorMessage=(String)session.getAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST);
+//	session.setAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST,null);
 	
-//  String propertyOwnerErrMsg=(String)session.getAttribute(SetAttributeConstants.PROPERTY_OWNER_ERROR_LIST);
+	String formatErrorString=(String)session.getAttribute(SetAttributeConstants.FORMAT_ERROR_STRING);
+	session.setAttribute(SetAttributeConstants.FORMAT_ERROR_STRING,null);
+	
+//	String uploadFlatErrorMessage=(String)session.getAttribute(SetAttributeConstants.UPLOAD_FLAT_ERROR_LIST);
+//	session.setAttribute(SetAttributeConstants.UPLOAD_FLAT_ERROR_LIST,null);
+
 %>
-
-
-
 <script type="text/javascript"><!--
-	var uploadParkingSlotErrorMessage='<%=uploadParkingSlotErrorMessage%>';
-	if(uploadParkingSlotErrorMessage!='null' && uploadParkingSlotErrorMessage.length > 0 ){
-		alert("The following parking names are not available \n"+uploadParkingSlotErrorMessage);
-		
-	}
+
 	var delteBlockErrormessage='<%=delteBlockErrormessage%>';
 	if(delteBlockErrormessage!='null' && delteBlockErrormessage.length >0){
 		alert("The following block names are in use \n"+delteBlockErrormessage);
 	}
-	var uploadPropertOwnerErrorMessage='<%=uploadPropertOwnerErrorMessage%>';
-	if(uploadPropertOwnerErrorMessage!='null' && uploadPropertOwnerErrorMessage.length > 0 ){
-		alert("The following are not available \n"+uploadPropertOwnerErrorMessage);
-		
-	}
-//	var propertyOwnerErrMsg='';
-//	if(propertyOwnerErrMsg!='null' && propertyOwnerErrMsg.length > 0 ){
-//		alert("All the fields are not availble");		
-	//}
 	
+	var formatErrorString="<%=formatErrorString%>";
+	
+	var formatString="";
+	if(formatErrorString!='null' && formatErrorString.length > 0 ){
+		formatErrorString=formatErrorString.split(",");
+		for (var i=0;i<formatErrorString.length;i++){
+			formatString=formatString+formatErrorString[i]+"\n";
+		}
+		alert(formatString);
+	}
 </script>
-
 <body>
-
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
 	<tr>	
@@ -546,6 +543,8 @@
 		
 	</div>
 	
+
+	
 	<form name="communityAdmin" action="/indialives/eventhandler" method="get">
 	  <input type="hidden" name="event">
 	  <input type="hidden" name="deleteBlockIds">	
@@ -561,13 +560,11 @@
 	</tr>
 	
 </table>
-
-
+	
 <%@include file="footer.jsp" %>
 
 
 </body>
-
 
 
 </html>

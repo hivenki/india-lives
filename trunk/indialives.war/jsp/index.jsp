@@ -84,7 +84,7 @@
 <legend class="indiaLivesFonts"><b>Sign In</b></legend>
 <table border="0" align="left" cellpadding="1" cellspacing="1" class="indiaLivesFonts">
 	<tr>
-		<td>Email/Mobile</td>
+		<td>Email</td>
 		<td><input  type="text" name="username" value=""></td>
 		<td colspan="1">&nbsp;</td>
 	</tr>

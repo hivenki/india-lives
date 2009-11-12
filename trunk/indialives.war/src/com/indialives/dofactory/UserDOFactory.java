@@ -17,8 +17,7 @@ public class UserDOFactory implements SQLConstants{
 	public static UsersVO findValidUser(LoginUser loginUser) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> userList=new ArrayList<Object>();
-		userList.add(loginUser.getUsername());
-		userList.add(loginUser.getUsername());
+		userList.add(loginUser.getUsername());		
 		userList.add(loginUser.getPassword());
 		UsersVO userVO=(UsersVO) persistenceManager.find(UsersVO.class,FIND_VALID_USER,userList);
 		return userVO;
@@ -39,7 +38,6 @@ public class UserDOFactory implements SQLConstants{
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(username);
-		paramList.add(username);
 		UserDO userDO=(UserDO) persistenceManager.find(UserDO.class,FIND_PASSWORD,paramList);
 		return userDO;
 	}
@@ -48,8 +46,7 @@ public class UserDOFactory implements SQLConstants{
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(resetPassword);
-		paramList.add(username);
-		paramList.add(username);
+		paramList.add(username);		
 		persistenceManager.update(UPDATE_PASSWORD, paramList);		
 	}
 
@@ -84,6 +81,22 @@ public class UserDOFactory implements SQLConstants{
 		paramList.add(password);
 		paramList.add(userId);
 		persistenceManager.update(UPDATE_USER_PROFILE, paramList);		
+	}
+
+	public static UserDO findUserBasedOnEmail(String emailId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(emailId);
+		UserDO userDO=(UserDO) persistenceManager.find(UserDO.class, FIND_EMAIL_ALREADY_EXISTS, paramList);
+		return userDO;
+	}
+
+	public static UserDO findUserBasedOnMobileNo(String mobileNo) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(mobileNo);
+		UserDO userDO=(UserDO) persistenceManager.find(UserDO.class, FIND_MOBILE_NO_ALREADY_EXISTS, paramList);
+		return userDO;
 	}
 
 	
