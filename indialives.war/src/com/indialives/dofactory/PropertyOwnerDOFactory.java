@@ -20,11 +20,11 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		return propertyList;
 	}
 
-	public static List<RowObject> getPropertiesNameList(int userId, Integer propertyType, String communityId) {
+	public static List<RowObject> getPropertiesNameList(int userId, String propertyTypeId, String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(userId);
-		paramList.add(propertyType);
+		paramList.add(propertyTypeId);
 		paramList.add(communityId);
 		List<RowObject> propertyNameList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES__NAME_LIST, paramList);
 		return propertyNameList;
@@ -36,30 +36,33 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(propertyTypeId);
 		paramList.add(communityId);
+		paramList.add(propertyTypeId);
 		List<RowObject> propertyList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES_LIST_BASED_ON_TYPE, paramList);
 		return propertyList;
 		
 	}
 
 	public static void addPropertyToOwner(String propertyId,String propertyTypeId,
-			 String ownerId) {
+			 String ownerId, String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(propertyId);
 		paramList.add(propertyTypeId);
 		paramList.add(ownerId);
+		paramList.add(communityId);
 		persistenceManager.create(ADD_PROPERTY_OWNER, paramList);
 		
 	}
 
 
-	public static void addPropertyToOwner(Integer proId, Integer proTypeId,
-			Integer userId) {
+	public static void uploadPropertyToOwner(Integer proId, Integer proTypeId,
+			Integer userId,String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();	
 		paramList.add(proId);
 		paramList.add(proTypeId);
 		paramList.add(userId);
+		paramList.add(communityId);
 		persistenceManager.create(ADD_PROPERTY_OWNER, paramList);
 		
 	}
@@ -79,6 +82,14 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 		paramList.add(propertTypeId);
 		paramList.add(userId);
 		persistenceManager.create(ADD_PROPERTY_OWNER, paramList);
+	}
+
+	public static List<RowObject> getPropertyOwnerList(String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();	
+		paramList.add(communityId);
+		List<RowObject> propertyOwnerList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES_OWNER_LIST, paramList);
+		return propertyOwnerList;
 	}
 
 

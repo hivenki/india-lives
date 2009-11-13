@@ -85,6 +85,8 @@ function deleteNotice(size){
 					noticeIds=noticeIds.substring(0,noticeIds.length-1);
 				}
 				document.getElementById("deleteNoticeIds").value=noticeIds;
+				var nTypeId=document.getElementById("noticeTypeIds").value;
+				document.noticeListFrm.noticeTypeId.value=nTypeId;
 				document.noticeListFrm.event.value="deleteNotice";
 				document.noticeListFrm.submit();
 			  }
@@ -99,8 +101,22 @@ function submitEditRow(id){
 }
 
 
-function submitEditRowForUser(id){
+function showNoticeDetail(id){
 	document.getElementById("editNoticeId").value=id;
-	document.noticeListFrm.event.value="showEditForUser";
+	document.noticeListFrm.event.value="showNoticeDetail";
 	document.noticeListFrm.submit();
+}
+
+function showNoticeType(){
+	
+	var nTypeId=document.getElementById("noticeTypeIds").value;
+	document.noticeListFrm.noticeTypeId.value=nTypeId;
+	document.noticeListFrm.event.value="noticeBoardList";
+	document.noticeListFrm.submit();
+}
+
+function showMsg(msg){
+	if(msg!='null'){
+		alert(msg);
+	}	
 }

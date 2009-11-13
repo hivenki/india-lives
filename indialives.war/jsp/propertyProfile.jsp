@@ -27,7 +27,7 @@
 	   <legend style="font-size:16px;">Property  Profile</legend>
 	   	  	
 	   	  <form name="propertyProfileFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="40%" align="center" style="margin-left: 50px;margin-top: 100px">
+	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 30px">
 			
 			<%if(object instanceof FlatVO){
 				
@@ -55,23 +55,6 @@
 			<td>No of Bedroom</td>
 			<td><%=flatVO.getNoOfBedRooms()%></td>
 		</tr>
-		<tr>
-			<td>Parking Slot</td>
-			<td>
-			<select name="parkingSlotId" style="width: 150px">
-					<%
-						if(parkingSlotlist!=null){
-										for(int i=0;i<parkingSlotlist.size();i++){
-											ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotlist.get(i);
-					%>
-								<option value="<%=parkingSlotVO.getId()%>" ><%=parkingSlotVO.getParkingSlotName()%></option>
-					<%}}%>
-				</select>
-			</td>	
-		</tr>
-		<tr>
-		<td><input type="button" value="Submit" onclick="submitParkingSlot()"></td>
-		</tr>
 		
 		<%	}else if(object instanceof VillaDO){
 				VillaDO villaDO=(VillaDO) object;				
@@ -96,27 +79,48 @@
 			<td>No of parkings</td>
 			<td><%=villaDO.getNoOfParkings()%></td>
 		</tr>
-		<tr>
-			<td>Parking Slot</td>
-			<td>
-			<select name="parkingSlotId" style="width: 150px">
-					<%
-						if(parkingSlotlist!=null){
-										for(int i=0;i<parkingSlotlist.size();i++){
-											ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotlist.get(i);
-					%>
-								<option value="<%=parkingSlotVO.getId()%>" ><%=parkingSlotVO.getParkingSlotName()%></option>
-					<%}}%>
-				</select>
-			</td>	
-		</tr>
-		<tr>
-		<td><input type="button" value="Submit" onclick="submitParkingSlot()"></td>
-		</tr>
-	
+		
 	<%}%>
-	
+		<tr>
+		<td colspan="2">
+			&nbsp;
+		</td>
+		</tr>
 		</table>
+		<div style="height: 200px" class="scroll">
+		 <fieldset style="height: 95%;">
+	   		<legend style="font-size:16px;">Parking Slot</legend>
+		    <table class="tableBgColor" width="50%" border="0" align="center" style="margin-left: 50px;margin-top: 30px"      cellpadding="1" cellspacing="1" >
+		    <tr class="trColor"  >
+				<td width="8%">S.No</td>
+				<td>Parking Name</td>
+				<td>Location</td>				
+			</tr>	
+		    <%	
+				int parkingSlotrowSize=parkingSlotlist.size();
+		    	if(parkingSlotrowSize<5){
+		    		parkingSlotrowSize=5;
+		    	}
+		    	for(int i=0;i<parkingSlotrowSize;i++){
+		    		if(i%2==0){%>
+						<tr class="evenTr" style="height:  20px;text-indent: 4px;" >
+						<%}else{%>
+						<tr class="oddTr"  style="height:  20px;" style="text-indent: 4px">
+					<%}
+						
+					if(i<parkingSlotlist.size()){
+						ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotlist.get(i);									%>
+					<td><%=i+1%></td>
+					<td><%=parkingSlotVO.getParkingName()%></td>
+					<td><%=parkingSlotVO.getLocation()%></td>
+					<%}else{%>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>		
+					<%}}%>					 
+			    </table>
+			      </fieldset>
+		 		 </div>
 		<input type="hidden" name="event" value="addParkingSlotForProperty"/>
 		</form>
 		

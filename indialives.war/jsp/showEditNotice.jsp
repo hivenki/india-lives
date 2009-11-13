@@ -15,7 +15,6 @@
 </head>
 <%
 	 List noticeTypeList=(List)request.getAttribute(SetAttributeConstants.NOTICE__TYPE_LIST);
- 	 List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST);
 
 	 NoticeVO noticeVO=(NoticeVO)request.getAttribute(SetAttributeConstants.NOTICE__OBJ);
 	 String postDateString="";
@@ -23,7 +22,7 @@
 	 postDateString = dateFormat.format(noticeVO.getPostedDate());
 	 String updateMsg=(String)request.getAttribute(SetAttributeConstants.NOTICE__UPDATED_MSG);
 %>
-<body onload="showMsg('<%=updateMsg%>')">
+<body>
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
 	<tr>
@@ -64,30 +63,11 @@
 			<td><input type="text" name="subject" size="35" value="<%=noticeVO.getSubject()%>"></td>
 		</tr>
 		<tr>
-			<td>Description </td>
+			<td valign="top">Description </td>
 			<td>
-			<textarea rows="10" cols="27" name="description">
-			<%=noticeVO.getDescription()%>
-			</textarea>
+			<textarea class="indiaLivesFonts" rows="8" cols="27" name="description"><%=noticeVO.getDescription()%></textarea>
 			</td>
 		</tr>		
-		<tr>
-			<td>Posted By</td>
-			<td>
-			<select name="postedById" style="width: 235px" >
-			<option>--Select--</option>
-			<%if(postedByList!=null){
-			for(int i=0;i<postedByList.size();i++){
-				UsersVO usersVO=(UsersVO)postedByList.get(i);
-			%>	
-				<%if(usersVO.getId().equals(noticeVO.getPostedBy())){%>
-			<option value="<%=usersVO.getId()%>" selected="selected"><%=usersVO.getFirstName()%></option>
-			<%}else{%>
-			<option value="<%=usersVO.getId()%>"><%=usersVO.getFirstName()%></option>
-			<%}}}%>
-		 </select>		 
-		</td>
-		</tr>
 		<tr>
 		<td colspan="2">
 			<input style="margin-left: 255px" type="button"  value="Update" onclick="updateNotice()">
@@ -95,8 +75,8 @@
 		</tr>
 		</table>
 		<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Notice.class.getName()%>">
-		<input type="hidden" name="event" value="updateNotice">
-		<input type="hidden" name="noticeId" value="<%=noticeVO.getId()%>">
+		<input type="hidden" name="event" >
+		<input type="hidden" name="id" value="<%=noticeVO.getId()%>">
 		</form>
 		</fieldset>	
 	</td>

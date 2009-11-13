@@ -36,35 +36,23 @@ public class ShowComplaintsEventHandler implements EventHandler,SetAttributeCons
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		propertyList=PropertyTypeEnumDOFactory.getPropertyList();
+		propertyList=PropertyTypeEnumDOFactory.getPropertyListWithoutParking();
 		
 		Session session=SessionFactory.getSession(request);
 		int userId=session.getUser().getId();
-		String propertyTypeId=request.getParameter("propertyTypeId");
-		Integer propertyType=null;
+		String propertyTypeId=request.getParameter("propertyTypeIds");
+		
 		if(propertyTypeId==null){
-			propertyType=1;
+			propertyTypeId="1";
 		}
-		else{
-			propertyType=Integer.parseInt(propertyTypeId);
-		}
+		
+		request.setAttribute(PROPERTY_TYPE_ID,propertyTypeId);
 		HttpSession httpSession=request.getSession();
-		String communityId=request.getParameter("gatedCommunityId");
-
-		if(communityId==null){
-			communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
-		}
-	
-		httpSession.setAttribute(COMMUNITY_ID, communityId);
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
 		
-		
-		propertyNameList=PropertyOwnerDOFactory.getPropertiesNameList(userId,propertyType,communityId);
-		
+		propertyNameList=PropertyOwnerDOFactory.getPropertiesNameList(userId,propertyTypeId,communityId);
 		compliantTypeEnumList=ComplaintTypeEnumDOFactory.getComplaintTypes();
 		severityTypeList=SeverityEnumDOFactory.getSeverityTypeList();
-		
-		
-		
 		request.setAttribute(PROPERTY_ENUM_LIST,propertyList);
 		request.setAttribute(PROPERTY_NAME_LIST, propertyNameList);
 		request.setAttribute(COMPLAINT_TYPE_LIST, compliantTypeEnumList);

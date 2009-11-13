@@ -18,4 +18,11 @@ public class PropertyTypeEnumDOFactory  implements SQLConstants{
 		return list;
 	}
 
+	public static List<RowObject> getPropertyListWithoutParking() {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		List<RowObject> list=persistenceManager.findCollection(PropertyTypeEnumDO.class,GET_PROPERTY_ENUM_LIST_WITHOUT_PARKING, paramList);		
+		return list;
+	}
+
 }

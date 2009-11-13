@@ -10,7 +10,8 @@
 <%@page import="com.indialives.dataobjects.PropertyTypeEnumDO"%>
 <%@page import="com.indialives.voobjects.PropertiesVO"%>
 <%@page import="com.indialives.formbean.PropertyOwner"%>
-<%@page import="com.easymvc.Constants"%><html>			
+<%@page import="com.easymvc.Constants"%>
+<%@page import="com.indialives.dataobjects.PropertyOwnerDO"%><html>			
 <head>
 <title>Welcome to IndiaLives</title>
 
@@ -34,6 +35,7 @@
 	List propertyList=(List)session.getAttribute(SetAttributeConstants.PROPERTY_LIST_BASED_ON_TYPE);
 	List userForPropertyList=(List)session.getAttribute(SetAttributeConstants.USER_LIST_FOR_PROPERTY);
 	
+	List propertyOwnerList=(List)request.getAttribute(SetAttributeConstants.PROPERTY_OWNER_LIST);
 //	String uploadParkingSlotErrorMessage=(String)session.getAttribute(SetAttributeConstants.PARKING_ERROR_LIST);
 //	session.setAttribute(SetAttributeConstants.PARKING_ERROR_LIST,null);
 	
@@ -417,12 +419,12 @@
 				<td colspan="6" align="right"><input type="button" name="parkingSlot" value="Add" onclick="addParkingSlot()"></td>
 			</tr>
 			</table>
-			<div style="height: 288px" class="scroll">
+			<div style="height: 289px" class="scroll">
 		    <table class="tableBgColor"   width="100%"   cellpadding="1" cellspacing="1" >
 		    <tr class="trColor"  >
 				<th width="8%">S.No</th>
-				<th>Name</th>
-				<th>Description</th>				
+				<th>Parking Name</th>
+				<th>Location</th>				
 			</tr>	
 		    <%	
 				int parkingSlotrowSize=parkingSlotList.size();
@@ -463,67 +465,49 @@
 		    </fieldset>
 		    		    	    
 		  </div>
-		  
-		  <div class="tabbertab" title="Property Owners" id="villaTab" style="height: 428px" >
+		   <div class="tabbertab" title="Property Owner" id="villaTab" style="height: 428px" >
 		    <fieldset style="height: 100%" class="indiaLivesFonts" >
-		    <legend>Property Owners</legend>
-		   
-		   <table border="0" width="54%" align="center" style="margin-left: 50px;margin-top: 120px">
+		    <legend>Property Owner</legend>
+		   <table border="0" width="100%"> 
 		    <tr>
-				
-				<td>Property Type</td> 			
-				<td><select onchange="showProperty()" name="propertyTypeId" style="width: 250px">
-					<%if(propertTypeList!=null){
-							for(int i=0;i<propertTypeList.size();i++){
-								PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO)propertTypeList.get(i);
-								%>
-						
-							<%if(propertyType==propertyTypeEnumDO.getId().intValue()){ %>
-						<option value="<%=propertyTypeEnumDO.getId()%>" selected="selected"><%=propertyTypeEnumDO.getName()%></option>
+				<td colspan="6" align="right"><input type="button"  value="Add" onclick="addPropertyOwner()"></td>
+			</tr>
+			</table>
+			<div style="height: 289px" class="scroll">
+		    <table class="tableBgColor"   width="100%"   cellpadding="1" cellspacing="1" >
+		    <tr class="trColor"  >
+				<th width="8%">S.No</th>
+				<th>Property</th>
+				<th>Property Type</th>
+				<th>Owner</th>				
+			</tr>	
+		    <%	
+				int propertyOwnerRowSize=propertyOwnerList.size();
+		    	if(propertyOwnerRowSize<12){
+		    		propertyOwnerRowSize=12;
+		    	}
+		    	for(int i=0;i<propertyOwnerRowSize;i++){
+		    		if(i%2==0){%>
+						<tr class="evenTr" style="height:  20px;text-indent: 4px;" >
 						<%}else{%>
-						<option value="<%=propertyTypeEnumDO.getId()%>" ><%=propertyTypeEnumDO.getName()%></option>
-						<%}%>
-						<%}}%>	
-				</select>	
-				</td>	
-			</tr>
-				<tr>
-				<td>Property </td>			
-				<td><select name="propertyId" style="width: 250px">
-				<option>--Select--</option>
-					<%if(propertyList!=null){
-							for(int i=0;i<propertyList.size();i++){
-								PropertiesVO propertiesVO=(PropertiesVO)propertyList.get(i);
-								%>
+						<tr class="oddTr"  style="height:  20px;" style="text-indent: 4px">
+					<%}
 						
-						<option value="<%=propertiesVO.getPropertyId()%>"><%=propertiesVO.getPropertyName()%></option>
-															
-						<%}}%>	
-				</select>	
-				</td>	
-			</tr>
-			
-			<tr>
-				<td>Owner</td> 			
-				<td><select name="ownerId" style="width: 250px" >
-				<option>--Select--</option>
-					<%if(userForPropertyList!=null){
-							for(int i=0;i<userForPropertyList.size();i++){
-								UsersVO usersVO=(UsersVO)userForPropertyList.get(i);
-								%>
-						
-						<option value="<%=usersVO.getId()%>"><%=usersVO.getFirstName()%></option>
-															
-						<%}}%>	
-				</select>	
-				</td>	
-			</tr>
-			 <tr>
-				<td colspan="2" align="right"><input type="button"  value="Add" onclick="addPropertyOwner()"></td>
-			</tr>
-					   
-			 </table>
-			     <form name="uploadPropertyOwnerFrm"  enctype="multipart/form-data" action="/indialives/eventhandler" method="post"  >
+					if(i<propertyOwnerList.size()){
+						PropertiesVO propertiesVO =(PropertiesVO)propertyOwnerList.get(i);									%>
+					<td><%=i+1%></td>
+					<td><%=propertiesVO.getPropertyName()%></td>
+					<td><%=propertiesVO.getPropertyTypeName()%></td>
+					<td><%=propertiesVO.getOwnerName()%></td>
+					<%}else{%>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>	
+						<td>&nbsp;</td>		
+					<%}}%>					 
+			    </table>
+			    </div>
+			 <form name="uploadPropertyOwnerFrm"  enctype="multipart/form-data" action="/indialives/eventhandler" method="post"  >
 		    <table border="0" width="95%">
 			    <tr>
 			    	<td  align="right" width="30%" >Upload CSV file</td>
@@ -540,6 +524,7 @@
 		  </div>
 		  
 		  
+		  
 		
 	</div>
 	
@@ -548,10 +533,6 @@
 	<form name="communityAdmin" action="/indialives/eventhandler" method="get">
 	  <input type="hidden" name="event">
 	  <input type="hidden" name="deleteBlockIds">	
-	  <input type="hidden" name="propertyTypeIds">	
-	   <input type="hidden" name="pTypeId">
-	   <input type="hidden" name="pId">
-	        <input type="hidden" name="oId">
 	</form>		 
 	</td>
 	<td valign="top" width="15%">

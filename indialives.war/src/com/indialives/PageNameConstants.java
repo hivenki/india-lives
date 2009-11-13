@@ -24,8 +24,10 @@ public interface PageNameConstants {
 	String MESSAGE_LIST_PAGE="jsp/inboxMessagesList.jsp";
 	String SHOW_NOTICE="jsp/showNotice.jsp";
 	String SHOW_EDIT_NOTICE="jsp/showEditNotice.jsp";
-	String SHOW_EDIT__NOTICE_FOR_USER="jsp/showEditNoticeForUser.jsp";
+	String SHOW_NOTICE_DETAIL="jsp/showNoticeDetail.jsp";
 	String PARKING_LIST_PAGE="jsp/parkingList.jsp";
 	String MANAGEMENT_TASK_LIST_PAGE="jsp/managementTaskList.jsp";
+	String USER_SUCCESSFULL_PAGE="jsp/userSuccessful.jsp";
+	String ADD_PROPERTY_OWNER="jsp/addPropertyOwner.jsp";
 	
 }

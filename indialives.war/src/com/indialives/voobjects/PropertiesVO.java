@@ -10,6 +10,7 @@ public class PropertiesVO extends PropertyOwnerDO {
 	private static final long serialVersionUID = 1L;
 	private String propertyName;
 	private String propertyTypeName;
+	private String ownerName;
 	
 
 	public String getPropertyName() {
@@ -26,6 +27,14 @@ public class PropertiesVO extends PropertyOwnerDO {
 
 	public void setPropertyTypeName(String propertyTypeName) {
 		this.propertyTypeName = propertyTypeName;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 	
 }

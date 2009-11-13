@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.easymvc.Constants;
 import com.easymvc.eventhandler.EventHandler;
@@ -25,7 +26,11 @@ public class AddPropertyOwnerEventHandler implements EventHandler,Constants,SetA
 		String propertyTypeId=request.getParameter("pTypeId");
 		String propertyId=request.getParameter("pId");
 		String ownerId=request.getParameter("oId");
-		PropertyOwnerDOFactory.addPropertyToOwner(propertyId,propertyTypeId,ownerId);
+		
+		HttpSession httpSession = request.getSession();		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		
+		PropertyOwnerDOFactory.addPropertyToOwner(propertyId,propertyTypeId,ownerId,communityId);
 	}
 
 }

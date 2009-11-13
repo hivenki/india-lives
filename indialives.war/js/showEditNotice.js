@@ -3,7 +3,6 @@ function updateNotice(){
 	var postedDate=document.getElementById("postedDate").value;
 	var subject=document.getElementById("subject").value;	
 	var description=document.getElementById("description").value;	
-	var postedById=document.getElementById("postedById").selectedIndex;	
 	var msg="";
 	
 	if(noticeType!=null && noticeType=="0"){
@@ -18,20 +17,13 @@ function updateNotice(){
 	if(description!=null && description==""){
 		msg=msg+"Description \n";
 	}
-	if(postedById!=null && postedById=="0"){
-		msg=msg+"Posted By \n";
-	}
 	if(msg!=null && msg!=""){
 		alert(msg.substring(0,msg.length-1)+"\nThese fields are empty");
 	}else{
+		document.updateNoticeFrm.event.value="updateNotice"
 		document.updateNoticeFrm.submit();
 	}
 	
 }
 
-function showMsg(msg){
-	if(msg!='null'){
-		alert(msg);
-	}
-	
-}
+

@@ -23,14 +23,10 @@ List propertyEnumlist=(List)request.getAttribute(SetAttributeConstants.PROPERTY_
 
 List propertyNameList=(List)request.getAttribute(SetAttributeConstants.PROPERTY_NAME_LIST);
 
-String propertyTypeId=request.getParameter("propertyTypeId");
-int propertyType=1;
-if(propertyTypeId==null){
-	propertyType=1;
-}
-else{
-	propertyType=Integer.parseInt(propertyTypeId);
-}
+
+
+String propertyTypeId=(String)request.getAttribute(SetAttributeConstants.PROPERTY_TYPE_ID);
+int propertyType=Integer.parseInt(propertyTypeId);
 
 List complaintTypeEnumlist=(List)request.getAttribute(SetAttributeConstants.COMPLAINT_TYPE_LIST);
 
@@ -51,13 +47,17 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 	<td  valign="top"  height="100%">		
 	 <fieldset style="height: 99%;" >
 	  <legend class="indiaLivesFonts" style="font-size:16px ">Create Complaint</legend>
-	  <form name="showComplaintFrm" action="/indialives/eventhandler" method="post">
-		<table border="0" width="100%" height="76%">
+	  
+		<table border="0" width="100%" height="75%" style="margin-top: 50px">
+			<tr>
+			
+			 <td colspan="2" valign="top" align="center">	
+			 <form name="showComplaintFrm" action="/indialives/eventhandler" method="post">
+				<table style="font-size:16px;" class="indiaLivesFonts" border="0" width="65%" style="margin-left:40px" >
+				 <tr class="indiaLivesFonts" style="font-size:14px">
 				
-			<tr class="indiaLivesFonts" style="font-size:14px">
-				
-				<td width="50%" align="right">Property Type			
-				<select name="propertyTypeId" style="width: 150px">
+				<td>Property Type</td>			
+				<td><select name="propertyTypeId" onchange="createComplaint()"  style="width: 150px">
 					<%
 						if(propertyEnumlist!=null){
 							for(int i=0;i<propertyEnumlist.size();i++){
@@ -73,20 +73,8 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 						<%}}%>	
 				</select>	
 				</td>	
-				
-				<td><input type="button" name="create" value="Generate" onclick="createComplaint()"></td>
+				</tr>
 		
-			</tr>
-		
-			<tr>
-			<td colspan="2"></br></td>
-			</tr>
-		
-			<tr>
-			
-			 <td colspan="2" valign="top" align="center">	
-			 <fieldset style="width: 98%;">
-				<table style="font-size:14px;" class="indiaLivesFonts" border="0" width="60%" style="margin-left:40px" >
 				 <tr>
 					<td>Property Name</td>
 					<td>
@@ -125,8 +113,8 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 					</tr>
 				
 					<tr>
-						<td>Description</td>
-						<td><textarea rows="3" cols="16" name="description"></textarea>
+						<td valign="top">Description</td>
+						<td><textarea style="font-size:14px;" class="indiaLivesFonts" rows="5" cols="18" name="description"></textarea>
 						</td>
 						
 					</tr>
@@ -157,25 +145,22 @@ List severityTypeList=(List)request.getAttribute(SetAttributeConstants.SEVERITY_
 					</tr>
 									
 					<tr>
-						<td colspan="2">
-							<input type="button" name="create" value="Create" onclick="addComplaint()">
+						<td colspan="2" >
+							<input style="margin-left: 240px" type="button" name="create" value="Create" onclick="addComplaint()">
 						</td>
 					</tr>
-		
+				
 				</table>
-			
-				</fieldset>
-	
+				<input type="hidden" name="event">
+				<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Complaint.class.getName()%>">
+				<input type="hidden" name="propertyTypeIds"/>
+				</form>
 				</td>	
 		
 			</tr>
 		
 		
 	</table>
-	<input type="hidden" name="event">
-	<input type="hidden" name="<%=Constants.FORM_BEAN_CLASS_NAME%>"	value="<%=Complaint.class.getName()%>">
-	
-	</form>
 	</fieldset>
 	</td>
 	<td valign="top" width="15%">

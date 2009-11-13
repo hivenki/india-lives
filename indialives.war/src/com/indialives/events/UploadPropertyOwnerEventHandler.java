@@ -72,7 +72,7 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 							HashMap<String, Integer>propertyTypeMap=getPropertyTypeMap(propertyTypeList);
 							HashMap<Integer, Map<String, Integer>>propertyMap=getPropertyMap(propertyList);
 							HashMap<String, Integer>userMap=getUserMap(userList);
-							validateRowValues(row,i,propertyTypeMap,propertyMap,userMap);
+							validateRowValues(row,i,propertyTypeMap,propertyMap,userMap,communityId);
 							}
 						}
 					}
@@ -125,7 +125,7 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 		return propertyTypeMap;
 	}
 
-	public void  validateRowValues(List<?> row,Integer rowIndex, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap) {
+	public void  validateRowValues(List<?> row,Integer rowIndex, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap, String communityId) {
 		isValidRow(rowIndex);
 
     	if(propertyTypeMap.get(row.get(1))==null){
@@ -146,7 +146,7 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 				Map<String, Integer> propertyNameMap=propertyMap.get(propertyTypeId);
 				Integer propertyId=propertyNameMap.get(row.get(0).toString().trim());			
 				Integer ownerId=userMap.get(row.get(2).toString().trim());
-		    	PropertyOwnerDOFactory.addPropertyToOwner(propertyId,propertyTypeId,ownerId);
+		    	PropertyOwnerDOFactory.uploadPropertyToOwner(propertyId,propertyTypeId,ownerId,communityId);
 			}	   
 	}
 			

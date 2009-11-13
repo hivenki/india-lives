@@ -26,14 +26,18 @@ public class ParkingListEventHandler implements EventHandler,SetAttributeConstan
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher(ParkingListEventHandler.PARKING_LIST_PAGE);
+		RequestDispatcher dispatcher=request.getRequestDispatcher(PARKING_LIST_PAGE);
 		dispatcher.forward(request,response);
 	}
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		parkingSlotList=ParkingSlotDOFactory.getParkingSlotList();
+		HttpSession httpSession = request.getSession();		
+		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		
+		
+		parkingSlotList=ParkingSlotDOFactory.getParkingSlotList(communityId);
 		HashMap<Integer,List<ParkingSlotVO>> parkingMap=new HashMap<Integer, List<ParkingSlotVO>>();
 	
 		for(int i=0;i<parkingSlotList.size();i++){
@@ -47,8 +51,7 @@ public class ParkingListEventHandler implements EventHandler,SetAttributeConstan
 	        parkingMap.put(parkingId,list);
 		}	
 		
-		HttpSession httpSession = request.getSession();		
-		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+		
 		
 		
 		parkingList=ParkingDOFactory.getParkingList(communityId);
