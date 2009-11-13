@@ -19,7 +19,8 @@ public class PropertyOwnerDO  implements java.io.Serializable, com.easymvc.persi
      private FlatDO flatDO;
      private UserDO userDO;
      private PropertyTypeEnumDO propertyTypeEnumDO;
-
+     private Integer communityId;
+     
     public PropertyOwnerDO() {
     }
 
@@ -87,6 +88,14 @@ public class PropertyOwnerDO  implements java.io.Serializable, com.easymvc.persi
 
 	public void setOwnerId(Integer ownerId) {
 		this.ownerId = ownerId;
+	}
+
+	public Integer getCommunityId() {
+		return communityId;
+	}
+
+	public void setCommunityId(Integer communityId) {
+		this.communityId = communityId;
 	}
 
 

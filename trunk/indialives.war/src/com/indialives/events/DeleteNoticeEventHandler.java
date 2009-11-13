@@ -11,16 +11,22 @@ import com.indialives.dofactory.NoticeDOFactory;
 
 public class DeleteNoticeEventHandler implements EventHandler {
 
+	private String noticeTypeId="";
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.sendRedirect("eventhandler?event=noticeBoardList");
+		response.sendRedirect("eventhandler?event=noticeBoardList&noticeTypeId="+noticeTypeId);
 		
 	}
 
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		noticeTypeId=request.getParameter("noticeTypeId");
+	
+		if(noticeTypeId==null){
+			noticeTypeId="1";		
+		}
 		String deleteNoticeIds=request.getParameter("deleteNoticeIds");
 		String query="DELETE FROM NOTICES WHERE ID IN("+deleteNoticeIds+")";
 		NoticeDOFactory.deleteNotice(query);

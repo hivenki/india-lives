@@ -1,4 +1,6 @@
 function  createComplaint(){
+	var pTypeId=document.getElementById("propertyTypeId").value;
+	document.showComplaintFrm.propertyTypeIds.value=pTypeId;
 	document.showComplaintFrm.event.value="showComplaints";
 	document.showComplaintFrm.submit();
 }

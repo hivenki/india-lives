@@ -21,7 +21,7 @@ public class AddUserEventHandler implements NonAuthenticatedHandler,EventHandler
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher("eventhandler?event=createUser");
+		RequestDispatcher dispatcher=request.getRequestDispatcher(USER_SUCCESSFULL_PAGE);
 		dispatcher.forward(request,response);
 		
 	}

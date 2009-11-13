@@ -2,6 +2,7 @@ package com.indialives.formbean;
 
 public class Notice {
 	
+	private Integer id;
 	private Integer noticeTypeId;
 	private String postedDate;
 	private String subject;
@@ -37,6 +38,12 @@ public class Notice {
 	}
 	public void setPostedById(Integer postedById) {
 		this.postedById = postedById;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 }

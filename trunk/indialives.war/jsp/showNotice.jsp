@@ -16,7 +16,7 @@
 <body>
 <%
 	List noticeTypeList=(List)request.getAttribute(SetAttributeConstants.NOTICE__TYPE_LIST);
-	List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST);
+	
 %>
 <%@include file="header.jsp" %>
 <table border="0" width="100%" height="84%" style="margin-top: 5px">
@@ -40,7 +40,7 @@
 					NoticeBoardEnumDO noticeBoardEnumDO=(NoticeBoardEnumDO)noticeTypeList.get(i);
 				%>	
 				<option value="<%=noticeBoardEnumDO.getId()%>"><%=noticeBoardEnumDO.getName()%></option>
-				<%}}%>
+				<%}}%>				
 			 </select>		 
 			</td>
 			</tr>
@@ -53,23 +53,11 @@
 				<td><input type="text" name="subject" size="35"></td>
 			</tr>
 			<tr>
-				<td>Description </td>
-				<td><input type="text" name="description" size="35"></td>
-			</tr>		
-			<tr>
-				<td>Posted By</td>
+				<td valign="top">Description </td>
 				<td>
-				<select name="postedById" style="width: 235px" >
-				<option>--Select--</option>
-				<%if(postedByList!=null){
-				for(int i=0;i<postedByList.size();i++){
-					UsersVO usersVO=(UsersVO)postedByList.get(i);
-				%>	
-				<option value="<%=usersVO.getId()%>"><%=usersVO.getFirstName()%></option>
-				<%}}%>
-			 </select>		 
-			</td>
-			</tr>
+				<textarea class="indiaLivesFonts"  rows="8" cols="27" name="description"></textarea>
+				</td>
+			</tr>		
 			<tr>
 			<td colspan="2" >
 				<input style="margin-left: 285px" type="button" name="add" value="Add" onclick="addNotice()">

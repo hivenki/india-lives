@@ -21,7 +21,7 @@ public class NoticeDOFactory implements SQLConstants{
 		return list;		
 	}
 
-	public static void addNotice(Notice notice, String communityId) {
+	public static void addNotice(Notice notice, String communityId, int userId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(communityId);
@@ -29,7 +29,7 @@ public class NoticeDOFactory implements SQLConstants{
 		paramList.add(DateUtil.getDateFromString(notice.getPostedDate()));
 		paramList.add(notice.getSubject());
 		paramList.add(notice.getDescription());
-		paramList.add(notice.getPostedById());
+		paramList.add(userId);
 		persistenceManager.create(ADD_NOTICE, paramList);
 	}
 
@@ -42,15 +42,15 @@ public class NoticeDOFactory implements SQLConstants{
 		return noticeVO;
 	}
 
-	public static void updateNotice(Notice notice, String noticeId) {
+	public static void updateNotice(Notice notice, int userId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(notice.getNoticeTypeId());
 		paramList.add(DateUtil.getDateFromString(notice.getPostedDate()));
 		paramList.add(notice.getSubject());
 		paramList.add(notice.getDescription());
-		paramList.add(notice.getPostedById());
-		paramList.add(noticeId);
+		paramList.add(userId);
+		paramList.add(notice.getId());
 		persistenceManager.update(UPDATE_NOTICE, paramList);
 		
 	}
@@ -59,5 +59,33 @@ public class NoticeDOFactory implements SQLConstants{
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();	
 		persistenceManager.delete(query, paramList);		
+	}
+
+	public static List<RowObject> getNoticeListBasedOnType(String noticeTypeId,String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(noticeTypeId);
+		paramList.add(communityId);
+		List<RowObject> list=persistenceManager.findCollection(NoticeVO.class, NOTICE_LIST_BASED_ON_NOTICE_TYPE, paramList);
+		return list;
+	}
+
+	public static List<RowObject> getNoticeList(String noticeTypeId,String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(noticeTypeId);
+		paramList.add(communityId);
+		List<RowObject> list=persistenceManager.findCollection(NoticeVO.class, NOTICE_LIST_BASED_ON_NOTICE_TYPE, paramList);
+		return list;
+	}
+
+	public static NoticeVO findNoticeForDetails(String editNoticeId,
+			String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(communityId);
+		paramList.add(editNoticeId);
+		NoticeVO noticeVO=(NoticeVO) persistenceManager.find(NoticeVO.class,NOTICE_DETAIL, paramList);
+		return noticeVO;
 	}
 }

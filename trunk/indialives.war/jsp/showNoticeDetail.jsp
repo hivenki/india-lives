@@ -12,9 +12,6 @@
 <script type="text/javascript" src="/indialives/js/showEditNotice.js"></script>
 </head>
 <%
-	List noticeTypeList=(List)request.getAttribute(SetAttributeConstants.NOTICE__TYPE_LIST);
-	List postedByList=(List)request.getAttribute(SetAttributeConstants.GET_USER_LIST);
-	
 	NoticeVO noticeVO=(NoticeVO)request.getAttribute(SetAttributeConstants.NOTICE__OBJ);
 	String postDateString="";
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -30,36 +27,54 @@
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 99%;width: 100%">
 	   <legend style="font-size:16px;">Notice Detail</legend>
-	   	  <form name="updateNoticeFrmForUser" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="65%" align="center" style="margin-left: 50px;margin-top: 120px">
+	   	  	<table border="0" width="100%" >
+	    	<tr>
+	    	<td colspan="2">&nbsp;</td>
+	    	</tr>
 			<tr>
-				<td>Notice Type</td>
-				<td>&nbsp;</td>
-				<td><%=noticeVO.getNoticeTypeName()%></td>
-		
+				<td style="text-indent: 25px" colspan="2">
+					To
+				</td>
 			</tr>
 			<tr>
-				<td>Posted Date</td>
-				<td>&nbsp;</td>
-				<td><%=postDateString%></td>
+				<td colspan="2" style="text-indent: 75px"><%=noticeVO.getPostedByName()%>,</td>
 			</tr>
 			<tr>
-				<td>Subject </td>
-				<td>&nbsp;</td>
+				<td colspan="2" style="text-indent: 75px"><%=noticeVO.getCommunityName()%>,</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-indent: 75px"><%=noticeVO.getCommunityAddress()%>,</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-indent: 75px"><%=noticeVO.getCityName()%>-<%=noticeVO.getPincodeNo()%>.</td>
+			</tr>
+			
+			<tr>
+	    	<td colspan="2">&nbsp;</td>
+	    	</tr>
+			<tr>
+				<td style="text-indent: 25px" width="10%">Subject : </td>
 				<td><%=noticeVO.getSubject()%></td>
 			</tr>
 			<tr>
-				<td>Description </td>
-				<td>&nbsp;</td>
-				<td><%=noticeVO.getDescription()%></td>
-			</tr>		
+	    	<td colspan="2">&nbsp;</td>
+	    	</tr>
 			<tr>
-				<td>Posted By</td>
-				<td>&nbsp;</td>
-				<td><%=noticeVO.getPostedByName()%></td>
+				<td colspan="2" style="text-indent: 75px"><%=noticeVO.getDescription()%></td>
+			</tr>
+			<tr>
+	    	<td colspan="2">&nbsp;</td>
+	    	</tr>
+	    	<tr>
+	    	<td colspan="2">&nbsp;</td>
+	    	</tr>
+			<tr>
+				<td colspan="2" style="text-indent: 25px">Yours Truly,</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-indent: 25px">Community Admin.</td>
 			</tr>
 			</table>
-		</form>
 		</fieldset>	
 	</td>
 	<td valign="top" width="15%">

@@ -29,9 +29,10 @@ Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 			
 		  	<table border="0" width="100%" >
 				<tr>
-					<td  align="right" ><input  type="button" name="create" value="Create"  onclick="createNotice()"></td>
-					<td align="right" width="5%"><input type="button" name="editButton" value="Edit" onclick="editNotice('<%=messagesList.size()%>')"></td>
-					<td align="right" width="10%"><input type="button" name="deleteButton" value="Delete" onclick="deleteNotice('<%=messagesList.size()%>')"></td>
+					<td  align="right"  ><input  type="button"  value="Archive"  ></td>
+					<td align="right" width="7%" ><input type="button"  value="Delete" onclick="deleteNotice('<%=messagesList.size()%>')"></td>
+					<td  align="right" width="11%" ><input type="button"  value="Mark Read" ></td>
+					<td  align="right"  width="12%" ><input type="button"  value="Mark Unread" ></td>
 				</tr>
 			</table>	
 			
@@ -40,7 +41,7 @@ Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 				<tr id="complaintListOdd" class="trColor">
 				   	<th nowrap="nowrap"  width="5%"><input type="checkbox" name="selectall" onclick="doSelectAll('<%=messagesList.size()%>')" ></th>
 				   	<th width="20%" nowrap="nowrap">From</th>
-					<th             nowrap="nowrap">Subject</th>
+					<th nowrap="nowrap">Subject</th>
 					<th width="23%" nowrap="nowrap">Satus</th>			
 					<th width="20%" nowrap="nowrap">Date</th>
 					</tr>
@@ -72,6 +73,7 @@ Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
+						<td>&nbsp;</td>
 						<td>&nbsp;</td>						
 						<%}}%>
 			</tbody>
@@ -81,6 +83,7 @@ Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 			<%}else{%>
 				<table border="0" width="100%" >
 				<tr>
+					<td  align="right" >&nbsp;</td>
 					<td  align="right" >&nbsp;</td>
 					<td align="right" width="5%">&nbsp;</td>
 					<td align="right" width="10%">&nbsp;</td>
@@ -123,6 +126,7 @@ Integer roleId=(Integer)request.getAttribute(SetAttributeConstants.ROLE_ID);
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
+						<td>&nbsp;</td>	
 						<td>&nbsp;</td>						
 						<%}}%>
 			</tbody>

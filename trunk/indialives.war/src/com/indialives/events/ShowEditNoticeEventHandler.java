@@ -15,13 +15,11 @@ import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dofactory.NoticeBoardEnumDOFactory;
 import com.indialives.dofactory.NoticeDOFactory;
-import com.indialives.dofactory.UserDOFactory;
 import com.indialives.voobjects.NoticeVO;
 
 public class ShowEditNoticeEventHandler implements EventHandler,SetAttributeConstants,PageNameConstants{
 	
 	private List<RowObject> noticeBoardTypeList=null;
-	private List<RowObject> postedByList=null;
 	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -48,10 +46,8 @@ public class ShowEditNoticeEventHandler implements EventHandler,SetAttributeCons
 		NoticeVO noticeVO=NoticeDOFactory.findNotice(editNoticeId,communityId);
 		
 		noticeBoardTypeList=NoticeBoardEnumDOFactory.getNoticeBoardTypeList();
-		postedByList=UserDOFactory.getUserList(communityId);
 		
 		request.setAttribute(NOTICE__TYPE_LIST,noticeBoardTypeList);
-		request.setAttribute(GET_USER_LIST, postedByList);
 		request.setAttribute(NOTICE__OBJ, noticeVO);
 	}
 

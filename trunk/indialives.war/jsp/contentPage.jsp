@@ -18,7 +18,7 @@ String contentLink=(String)session.getAttribute(SetAttributeConstants.CURRENT_CO
 	<td width="25%">
 		<fieldset style="height: 100%;">
 		<legend>Contents</legend>
-		<table border="0" width="100%" height="50%">
+		<table border="0" width="100%" height="90%">
 			
 			<%if(rolePrivilegesList!=null){				
 				for(int i=0;i<rolePrivilegesList.size();i++){

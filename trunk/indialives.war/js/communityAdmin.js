@@ -17,6 +17,11 @@ function addBlock(){
 	
 }
 
+function addPropertyOwner(){
+	document.communityAdmin.event.value="showPropertyOwner";
+	document.communityAdmin.submit();
+}
+
 function uploadCSV(){
 	var fileString=document.uploadFlatFrm.Filedata.value;
 	if(fileString!='null' && fileString.length>0 ){
@@ -158,39 +163,6 @@ function addUser(){
 
 	document.communityAdmin.event.value="addUserForThisCommunity";
 	document.communityAdmin.submit();
-}
-
-function showProperty(){
-	var pTypeId=document.getElementById("propertyTypeId").value;
-	document.communityAdmin.propertyTypeIds.value=pTypeId;
-	document.communityAdmin.event.value="propertyOwners";
-	document.communityAdmin.submit();
-	
-}
-
-function addPropertyOwner(){
-	var propertyId=document.getElementById("propertyId").selectedIndex;
-	var ownerId=document.getElementById("ownerId").selectedIndex;
-	var msg="";
-	
-	if(propertyId!=null && propertyId=="0"){
-		msg=msg+"Property  \n";
-	}
-	if(ownerId!=null && ownerId=="0"){
-		msg=msg+"Owner \n";
-	}
-	if(msg!=null && msg!=""){
-		alert(msg.substring(0,msg.length-1)+"\nThese fields are empty");
-	}else{	
-		var proTyId=document.getElementById("propertyTypeId").value;
-		document.communityAdmin.pTypeId.value=proTyId;
-		var propId=document.getElementById("propertyId").value;
-		document.communityAdmin.pId.value=propId;
-		var ownId=document.getElementById("ownerId").value;
-		document.communityAdmin.oId.value=ownId;
-		document.communityAdmin.event.value="addPropertyOwner";
-		document.communityAdmin.submit();
-	}
 }
 
 function uploadPropertyOwner(){

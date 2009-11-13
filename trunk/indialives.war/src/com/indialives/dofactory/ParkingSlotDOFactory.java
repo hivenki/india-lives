@@ -19,9 +19,10 @@ public class ParkingSlotDOFactory implements SQLConstants {
 		return parkingSlotVO;
 	}
 
-	public static List<RowObject> getParkingSlotList() {
+	public static List<RowObject> getParkingSlotList(String communityId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(communityId);
 		List<RowObject> list=persistenceManager.findCollection(ParkingSlotVO.class,GET_PARKING_SLOT_LIST, paramList); 
 		return list;	
 	}
@@ -42,10 +43,11 @@ public class ParkingSlotDOFactory implements SQLConstants {
 		
 	}
 
-	public static List<RowObject> getParkingSlotListForAssigningProperty(String communityId) {
+	public static List<RowObject> getParkingSlotListForAssigningProperty(String propertyTypeId, String communityId, int userId) {
 		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(communityId);
+		paramList.add(userId);
 		List<RowObject> list=persistenceManager.findCollection(ParkingSlotVO.class,GET_PARKING_SLOT_LIST_FOR_ASSIGNING_PROPERTY, paramList); 
 		return list;
 	}

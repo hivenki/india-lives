@@ -45,11 +45,6 @@
 	 
 	
 		<table border="0" width="90%" height="80%" style="margin-left: 50px">
-		<tr class="indiaLivesFonts" valign="top">
-			<td>
-				Parking List,				
-			</td>
-		</tr>
 			<%		
 				if(parkingList!=null){
 				for(int i=0;i<parkingList.size();i++){				
@@ -67,7 +62,7 @@
 				<fieldset style="width: 95%;height: 100%;">
 					<legend><%=parkingDO.getName()%></legend>
 					 <div style="height: 107px" class="scroll">	
-						<table  width="100%"  border="1" cellpadding="0" cellspacing="0">						
+						<table  width="100%"  border="0" cellpadding="0" cellspacing="0">						
 								<%							
 									for(int j=0;j<parkingSlotList.size();j++){
 										ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotList.get(j);

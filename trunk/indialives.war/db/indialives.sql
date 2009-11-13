@@ -503,9 +503,9 @@ CREATE TABLE `notice_board_enum` (
 --
 
 /*!40000 ALTER TABLE `notice_board_enum` DISABLE KEYS */;
-INSERT INTO `notice_board_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES 
- (1,'Regual Notice Board','Regular notices will be displayed'),
- (2,'Emergency Notice Board','Emergency notices will be displayed');
+ INSERT INTO `notice_board_enum` (`ID`,`NAME`,`DESCRIPTION`) VALUES
+ (1,'Emergency Notice Board','Emergency notices will be displayed'),
+ (2,'Regual Notice Board','Regular notices will be displayed');
 /*!40000 ALTER TABLE `notice_board_enum` ENABLE KEYS */;
 
 
@@ -616,8 +616,8 @@ INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES
  (6,'Amenities','Amenities','eventhandler?event=handleAmenities'),
  (7,'Visitors','Visitors','eventhandler?event=handleVisitors'),
  (8,'Payments','Payments','eventhandler?event=handlePayments'),
- (9,'SocietyManagement','Society Management','eventhandler?event=handleSocietyManagement'),
- (10,'ValueAddedServices','Value Added Services','eventhandler?event=handleValueAddedServices'),
+ (9,'Society Management','Society Management','eventhandler?event=handleSocietyManagement'),
+ (10,'Value Added Services','Value Added Services','eventhandler?event=handleValueAddedServices'),
  (11,'Security','Gate Security','eventhandler?event=handleSecurity'),
  (12,'Inbox','Inbox','eventhandler?event=handleInbox');
 /*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
@@ -633,13 +633,15 @@ CREATE TABLE `property_owners` (
   `PROPERTY_ID` int(10) unsigned NOT NULL,
   `PROPERTY_TYPE_ID` int(10) unsigned NOT NULL,
   `OWNER_ID` int(10) unsigned NOT NULL,
+  `COMMUNITY_ID` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`ID`),
   KEY `FK_PROPERTY_OWNERS_1` (`PROPERTY_TYPE_ID`),
   KEY `FK_PROPERTY_OWNERS_2` (`OWNER_ID`),
   KEY `FK_PROPERTY_OWNERS_3` (`PROPERTY_ID`),
   CONSTRAINT `FK_PROPERTY_OWNERS_1` FOREIGN KEY (`PROPERTY_TYPE_ID`) REFERENCES `property_type_enum` (`ID`),
   CONSTRAINT `FK_PROPERTY_OWNERS_2` FOREIGN KEY (`OWNER_ID`) REFERENCES `users` (`ID`),
-  CONSTRAINT `FK_PROPERTY_OWNERS_3` FOREIGN KEY (`PROPERTY_ID`) REFERENCES `flats` (`ID`)
+  CONSTRAINT `FK_PROPERTY_OWNERS_3` FOREIGN KEY (`PROPERTY_ID`) REFERENCES `flats` (`ID`),
+  CONSTRAINT `FK_PROPERTY_OWNERS_4` FOREIGN KEY (`COMMUNITY_ID`) REFERENCES `communities` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -727,7 +729,7 @@ CREATE TABLE `role_privileges` (
 --
 
 /*!40000 ALTER TABLE `role_privileges` DISABLE KEYS */;
-INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES 
+INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES
  (1,1,1),
  (2,1,2),
  (3,1,3),
@@ -888,7 +890,7 @@ CREATE TABLE `villas` (
 
 DROP TABLE IF EXISTS `properties`;
 DROP VIEW IF EXISTS `properties`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `properties` AS select `f`.`ID` AS `PROPERTY_ID`,1 AS `PROPERTY_TYPE_ID`,`f`.`FLAT_NO` AS `PROPERTY_NAME`,`b`.`COMMUNITY_ID` AS `COMMUNITY_ID` from (`flats` `F` join `blocks` `B` on((`f`.`BLOCK_ID` = `b`.`ID`))) union all select `villas`.`ID` AS `PROPERTY_ID`,2 AS `PROPERTY_TYPE_ID`,`villas`.`NAME` AS `PROPERTY_NAME`,`villas`.`COMMUNITY_ID` AS `COMMUNITY_ID` from `villas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `properties` AS select `f`.`ID` AS `PROPERTY_ID`,1 AS `PROPERTY_TYPE_ID`,`f`.`FLAT_NO` AS `PROPERTY_NAME`,`b`.`COMMUNITY_ID` AS `COMMUNITY_ID` from (`flats` `F` join `blocks` `B` on((`f`.`BLOCK_ID` = `b`.`ID`))) union all select `villas`.`ID` AS `PROPERTY_ID`,2 AS `PROPERTY_TYPE_ID`,`villas`.`NAME` AS `PROPERTY_NAME`,`villas`.`COMMUNITY_ID` AS `COMMUNITY_ID` from `villas` union all select `ps`.`ID` AS `PROPERTY_ID`,3 AS `PROPERTY_TYPE_ID`,`ps`.`LOCATION` AS `PROPERTY_NAME`,`p`.`COMMUNITY_ID` AS `COMMUNITY_ID` from (`parking_slots` `PS` join `parkings` `P` on((`p`.`ID` = `ps`.`PARKING_ID`)));
 
 
 
