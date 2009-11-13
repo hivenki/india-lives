@@ -433,6 +433,60 @@ INSERT INTO `flats` (`ID`,`BLOCK_ID`,`FLOOR`,`FLAT_NO`,`FLAT_TYPE_ID`,`NO_OF_BED
 
 
 --
+-- Definition of table `inbox`
+--
+
+DROP TABLE IF EXISTS `inbox`;
+CREATE TABLE `inbox` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `USERID` int(10) unsigned NOT NULL,
+  `COMMUNITYID` int(10) unsigned NOT NULL,
+  PRIMARY KEY  USING BTREE (`ID`),
+  KEY `FK_inbox_1` (`USERID`),
+  KEY `FK_inbox_2` (`COMMUNITYID`),
+  CONSTRAINT `FK_inbox_1` FOREIGN KEY (`USERID`) REFERENCES `users` (`ID`),
+  CONSTRAINT `FK_inbox_2` FOREIGN KEY (`COMMUNITYID`) REFERENCES `communities` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='This table respresents the inbox of the user on IL';
+
+--
+-- Dumping data for table `inbox`
+--
+
+/*!40000 ALTER TABLE `inbox` DISABLE KEYS */;
+INSERT INTO `inbox` (`ID`,`USERID`,`COMMUNITYID`) VALUES 
+ (1,1,1);
+/*!40000 ALTER TABLE `inbox` ENABLE KEYS */;
+
+
+--
+-- Definition of table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `SENDER` varchar(45) NOT NULL,
+  `SUBJECT` varchar(45) NOT NULL,
+  `STATUS` varchar(45) NOT NULL,
+  `DATE` datetime NOT NULL,
+  `CONTENT` varchar(45) default NULL,
+  `INBOXID` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`ID`),
+  KEY `FK_messages_1` (`INBOXID`),
+  CONSTRAINT `FK_messages_1` FOREIGN KEY (`INBOXID`) REFERENCES `inbox` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='This table represents a messgae in inbox';
+
+--
+-- Dumping data for table `messages`
+--
+
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` (`ID`,`SENDER`,`SUBJECT`,`STATUS`,`DATE`,`CONTENT`,`INBOXID`) VALUES 
+ (1,'Venky Reddy','Membership Approval Request','Open','0009-11-11 00:00:00','I live in 202 Kaveri Block',1);
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+
+
+--
 -- Definition of table `notice_board_enum`
 --
 
@@ -564,7 +618,8 @@ INSERT INTO `privileges` (`ID`,`NAME`,`DESCRIPTION`,`URL`) VALUES
  (8,'Payments','Payments','eventhandler?event=handlePayments'),
  (9,'SocietyManagement','Society Management','eventhandler?event=handleSocietyManagement'),
  (10,'ValueAddedServices','Value Added Services','eventhandler?event=handleValueAddedServices'),
- (11,'Security','Gate Security','eventhandler?event=handleSecurity');
+ (11,'Security','Gate Security','eventhandler?event=handleSecurity'),
+ (12,'Inbox','Inbox','eventhandler?event=handleInbox');
 /*!40000 ALTER TABLE `privileges` ENABLE KEYS */;
 
 
@@ -693,8 +748,9 @@ INSERT INTO `role_privileges` (`ID`,`ROLE_ID`,`PRIVILEGE_ID`) VALUES
  (19,2,8),
  (20,2,9),
  (21,2,10),
- (22,2,11);
- 
+ (22,2,11),
+ (23,1,12),
+ (24,2,12);
 /*!40000 ALTER TABLE `role_privileges` ENABLE KEYS */;
 
 
