@@ -9,6 +9,8 @@ public class ParkingSlotVO  extends ParkingSlotDO{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private String propertyTypeName;
+	private String propertyName;
 	private String parkingSlotName;
 	private String parkingName;
 
@@ -26,6 +28,22 @@ public class ParkingSlotVO  extends ParkingSlotDO{
 
 	public void setParkingName(String parkingName) {
 		this.parkingName = parkingName;
+	}
+
+	public String getPropertyTypeName() {
+		return propertyTypeName;
+	}
+
+	public void setPropertyTypeName(String propertyTypeName) {
+		this.propertyTypeName = propertyTypeName;
+	}
+
+	public String getPropertyName() {
+		return propertyName;
+	}
+
+	public void setPropertyName(String propertyName) {
+		this.propertyName = propertyName;
 	}
 
 }

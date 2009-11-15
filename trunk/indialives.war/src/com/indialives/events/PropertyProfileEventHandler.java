@@ -7,12 +7,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.easymvc.eventhandler.EventHandler;
 import com.easymvc.persistence.RowObject;
-import com.easymvc.session.Session;
-import com.easymvc.session.SessionFactory;
 import com.indialives.PageNameConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dataobjects.VillaDO;
@@ -38,11 +35,11 @@ public class PropertyProfileEventHandler implements EventHandler,SetAttributeCon
 		String propertyId=request.getParameter("propertyId");
 		String propertyTypeId=request.getParameter("propertyTypeId");
 		
-		HttpSession httpSession=request.getSession();
+//		HttpSession httpSession=request.getSession();
 		
-		String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
-		Session session=SessionFactory.getSession(request);
-		int userId=session.getUser().getId();
+	//	String communityId=httpSession.getAttribute(COMMUNITY_ID).toString();
+	//	Session session=SessionFactory.getSession(request);
+	//	int userId=session.getUser().getId();
 		
 		if(propertyTypeId.equals("1")){
 			FlatVO flatVO=FlatDOFactory.getFlatDetails(propertyId);
@@ -54,7 +51,7 @@ public class PropertyProfileEventHandler implements EventHandler,SetAttributeCon
 			request.setAttribute(PROPERTY_OBJ, villaDO);
 		}		
 		
-		parkingSlotList=ParkingSlotDOFactory.getParkingSlotListForAssigningProperty(propertyTypeId,communityId,userId);
+		parkingSlotList=ParkingSlotDOFactory.getParkingSlotListForAssigningProperty(propertyId);
 		request.setAttribute(PARKING_SLOT_LIST,parkingSlotList);
 	}
 

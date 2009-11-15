@@ -23,15 +23,21 @@ import com.easymvc.reader.csv.CsvReader;
 import com.indialives.ApplicationConstants;
 import com.indialives.SetAttributeConstants;
 import com.indialives.dataobjects.ParkingDO;
+import com.indialives.dataobjects.ParkingSlotDO;
+import com.indialives.dataobjects.PropertyTypeEnumDO;
 import com.indialives.dofactory.ParkingDOFactory;
 import com.indialives.dofactory.ParkingSlotDOFactory;
+import com.indialives.dofactory.PropertyOwnerDOFactory;
+import com.indialives.dofactory.PropertyTypeEnumDOFactory;
+import com.indialives.formbean.ParkingSlot;
+import com.indialives.voobjects.PropertiesVO;
 
 public class UploadParkingSlotEventHandler implements EventHandler,Constants,MultipartConstants,ApplicationConstants,SetAttributeConstants {
 	
 	private Properties applicationProperties=null;
 	private String[] uploadColumnNameOrder;
 	private List<String> columnNames;
-	private List<String> row;
+	private List<String> rowValues;
 	String formatErrorString="";
 	
 	public void forward(HttpServletRequest request, HttpServletResponse response)
@@ -51,22 +57,34 @@ public class UploadParkingSlotEventHandler implements EventHandler,Constants,Mul
 		}
 		httpSession.setAttribute(COMMUNITY_ID, communityId);
 		List<RowObject> parkingList=ParkingDOFactory.getParkingList(communityId);
+		List<RowObject> propertyTypeList=PropertyTypeEnumDOFactory.getPropertyList();
+		List<RowObject> propertyList=PropertyOwnerDOFactory.getPropertiesList();
+		
+		
+		
 		CsvReader csvReader=getCsvReader(request);
 		 if(csvReader!=null){
 				columnNames=csvReader.getColumnNames();
-				if( (columnNames.size()==2) == false ){
-					formatErrorString="CSV File Must have 2 headers like this - Parking Name,Location";				
+				if( (columnNames.size()==4) == false ){
+					formatErrorString="CSV File Must have 4 headers like this - Property Type,Property Name,Parking Name,Location";				
 				}			
 				else{
 					isValidColumnOrder();					
 					if(formatErrorString.length()==0){
 						for(int i=1;i<csvReader.getNumberOfRows();i++){
-							row = (List<String>) csvReader.getRowValues(i);
-							row=updateRow(row);
-							if(row.size()==2){							
+							rowValues = (List<String>) csvReader.getRowValues(i);
+							rowValues=updateRow(rowValues);
+							if(rowValues.size()==4){	
+							HashMap<String, Integer>propertyTypeMap=getPropertyTypeMap(propertyTypeList);
+							HashMap<Integer, Map<String, Integer>>propertyMap=getPropertyMap(propertyList);	
 							HashMap<String,Integer> parkingHashMap=getParkingHashMap(parkingList);
-							validateParkingSlots(row,i,parkingHashMap,csvReader);
+							validateParkingSlots(rowValues,i,parkingHashMap,csvReader,propertyTypeMap,propertyMap);
 						   }
+							else{
+								if(rowValues.size()!=0){
+									formatErrorString=formatErrorString+"Row No :"+i+" is invalid row ,";
+								}
+							}
 						}
 					}		
 				}
@@ -93,21 +111,65 @@ public class UploadParkingSlotEventHandler implements EventHandler,Constants,Mul
 			}
 		return parkingHashMap;
 	}
-
-	public  void validateParkingSlots(List<String> row,Integer rowIndex, HashMap<String, Integer> hashMap,CsvReader csvReader) {		
-			isValidRow(rowIndex);
-			Integer parkingId=hashMap.get(row.get(0));
-			String location=(String)row.get(1);	
-			if(parkingId!=null && location!=null){
-				ParkingSlotDOFactory.addParkingSlot(parkingId, location);
-			}
-			else{
-				if(parkingId==null){
-					formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[0]+"' is not available in DB,";
+	
+	private HashMap<Integer, Map<String, Integer>> getPropertyMap(List<RowObject> propertyList) {
+		HashMap<Integer, Map<String, Integer>> propertyMap=new HashMap<Integer, Map<String,Integer>>();
+		 for(RowObject rowObject : propertyList){
+				PropertiesVO propertiesVO=(PropertiesVO) rowObject;
+				Map<String, Integer> map=propertyMap.get(propertiesVO.getPropertyTypeId());
+				if(map==null){
+					map=new HashMap<String, Integer>();
 				}
-				if(location==null){
-					formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[1]+"' is not available in DB,";
-				}	
+				map.put(propertiesVO.getPropertyName(), propertiesVO.getPropertyId());			
+				propertyMap.put(propertiesVO.getPropertyTypeId(),map);
+
+			}	
+		return propertyMap;
+	}
+
+	private HashMap<String, Integer> getPropertyTypeMap(List<RowObject> propertyTypeList) {
+		HashMap<String, Integer>propertyTypeMap=new HashMap<String, Integer>();
+		 for(RowObject rowObject : propertyTypeList){
+				PropertyTypeEnumDO propertyTypeEnumDO=(PropertyTypeEnumDO) rowObject;
+				propertyTypeMap.put(propertyTypeEnumDO.getName(),propertyTypeEnumDO.getId());
+			}
+		return propertyTypeMap;
+	}
+
+	public  void validateParkingSlots(List<String> row,Integer rowIndex, HashMap<String, Integer> hashMap,CsvReader csvReader, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap) {		
+			Integer parkingId=hashMap.get(row.get(2));
+			String location=(String)row.get(3);	
+				
+			if(propertyTypeMap.get(row.get(0))==null){
+	    		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[0]+"' is not available in DB,";
+	    	}
+	    	if(propertyTypeMap.get(row.get(0))!=null){
+	    		if(propertyMap.get(propertyTypeMap.get(row.get(0))).get(row.get(1))==null){
+	        		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[1]+"' is not available in DB,";
+	        	}
+	    	}
+	    	if(parkingId==null){
+				formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[2]+"' is not available in DB,";
+			}
+			if(location==null){
+				formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[3]+"' is not available in DB,";
+			}	
+			if (propertyTypeMap.get(row.get(0))!=null && propertyMap.get(propertyTypeMap.get(row.get(0))).get(row.get(1))!=null && parkingId!=null && location!=null){
+		    	Integer propertyTypeId=propertyTypeMap.get(row.get(0).toString().trim());
+				Map<String, Integer> propertyNameMap=propertyMap.get(propertyTypeId);
+				Integer propertyId=propertyNameMap.get(row.get(1).toString().trim());	
+				ParkingSlot parkingSlot=new ParkingSlot();
+				parkingSlot.setPropertyTypeId(propertyTypeId);
+				parkingSlot.setPropertyId(propertyId);
+				parkingSlot.setParkingId(parkingId);
+				parkingSlot.setLocation(location); 
+				ParkingSlotDO parkingSlotDO=ParkingSlotDOFactory.getParkingSlot(parkingSlot);
+				if(parkingSlotDO==null){
+					ParkingSlotDOFactory.addParkingSlot(parkingSlot);
+				}
+				else{
+					formatErrorString=formatErrorString+"Row No : "+rowIndex+" Parking Location already exists,";
+				}
 			}
 	}
 
@@ -140,19 +202,10 @@ public class UploadParkingSlotEventHandler implements EventHandler,Constants,Mul
 				break;
 			}
 			else if(item.equalsIgnoreCase(uploadColumnNameOrder[i])==false){
-				formatErrorString="CSV File headers should be this order - Parking Name,Location";
+				formatErrorString="CSV File headers should be this order - Property Type,Property Name,Parking Name,Location";
 				break;
 			}			
 		}		
 	}
-	private void isValidRow(int rowIndex) {
-		if(row.size()==2){
-			for(int i=0;i<row.size();i++){
-				String item=row.get(i);				
-				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
-					formatErrorString=formatErrorString+".Row No :"+rowIndex+"ColumnName - "+uploadColumnNameOrder[i]+" should not be empty,";
-				}
-			}
-	    }
-	}
+	
 }

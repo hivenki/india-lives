@@ -40,22 +40,22 @@
 				<%	for(int i=0;i<communityList.size();i++){
 				%>
 				
-				<tr class="indiaLivesFonts">
+				<tr>
 				<%		
 					CommunityVO communityVO=(CommunityVO)communityList.get(i);
 				%>
-				<td class="indiaLivesFonts" ><input type="radio"  name="gatedCommunityId" value="<%=communityVO.getId()%>" ><%=communityVO.getName()%></td>
+				<td class="formFonts" ><input type="radio"  name="gatedCommunityId" value="<%=communityVO.getId()%>" ><%=communityVO.getName()%></td>
 				</tr>
 					<% }%>
 			
 		
-					<tr class="indiaLivesFonts">
-						<td> 
+					<tr>
+						<td class="formFonts"> 
 							<input style="margin-left: 310px;font-size:14px" type="button" name="getIn" value="Get In" onclick="submitCommunity()">
 						</td>
 					</tr>
 			<%}else {%>
-				<tr class="indiaLivesFonts" style="font-size: 16px">
+				<tr class="formFonts">
 					<td>You don't have communities.</td>
 				</tr>
 			

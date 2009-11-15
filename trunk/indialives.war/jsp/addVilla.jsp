@@ -20,7 +20,7 @@
 	  <fieldset style="height: 99%;">
 	   <legend style="font-size:16px;">Create Villa</legend>
 	   	  <form name="addVillaFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="53%" align="center" style="margin-left: 50px;margin-top: 120px">
+	    	<table border="0" class="formFonts"  align="center" style="margin-left: 50px;margin-top: 120px">
 					
 		<tr>
 			<td>Plot No</td>

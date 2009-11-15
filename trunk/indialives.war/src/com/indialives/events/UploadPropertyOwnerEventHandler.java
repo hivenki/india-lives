@@ -74,6 +74,11 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 							HashMap<String, Integer>userMap=getUserMap(userList);
 							validateRowValues(row,i,propertyTypeMap,propertyMap,userMap,communityId);
 							}
+							else{
+								if(row.size()!=0){
+									formatErrorString=formatErrorString+"Row No :"+i+" is invalid row ,";
+								}
+							}
 						}
 					}
 				}
@@ -126,7 +131,6 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 	}
 
 	public void  validateRowValues(List<?> row,Integer rowIndex, HashMap<String, Integer> propertyTypeMap, HashMap<Integer, Map<String, Integer>> propertyMap, HashMap<String, Integer> userMap, String communityId) {
-		isValidRow(rowIndex);
 
     	if(propertyTypeMap.get(row.get(1))==null){
     		formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[1]+"' is not available in DB,";
@@ -183,16 +187,6 @@ public class UploadPropertyOwnerEventHandler implements EventHandler,Constants,M
 				break;
 			}			
 		}		
-	}
-	private void isValidRow(int rowIndex) {
-		if(row.size()==3){
-			for(int i=0;i<row.size();i++){
-				String item=row.get(i);				
-				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
-					formatErrorString=formatErrorString+".Row No :"+rowIndex+"ColumnName - "+uploadColumnNameOrder[i]+" should not be empty,";
-				}
-			}
-	    }		
 	}
 
 }

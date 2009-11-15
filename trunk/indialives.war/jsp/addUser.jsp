@@ -47,9 +47,9 @@
 	<fieldset style="height: 100%;width: 100%">
 	 <legend style="font-size:16px;">Create User</legend>
 	
-	 	<table border="0"  width="90%" style="margin-left: 15px;margin-top: 20px">
+	 	<table border="0"   width="90%" style="margin-left: 15px;margin-top: 20px">
 		<tr>
-		<td  class="indiavlives" style="text-indent: 100px;font-size: 20px">Hi there!
+		<td  class="indiavlives" style="text-indent: 100px;font-size: 18px">Hi there!
 		</td>
 		</tr> 
 		<tr>
@@ -65,12 +65,12 @@
 		</table>
 		<table border="0" width="90%"  style="margin-left: 15px;margin-top: 60px">
 		<tr>
-			<td  class="indiavlives" style="text-indent: 100px;font-size: 17px" >Tell us about yourself...</td>
+			<td  class="indiavlives" style="text-indent: 100px;font-size: 16px" >Tell us about yourself...</td>
 		</tr>
 		<tr>
 			<td  class="indiavlives"  >
 				<form name="addUserFrm" action="/indialives/eventhandler" method="post">	
-				<table border="0" width="50%"  style="margin-left:250px; margin-top: 20px" >		
+				<table border="0" class="formFonts" width="50%"  style="margin-left:250px; margin-top: 20px" >		
 				<tr>
 					<td>First Name</td>
 					<td><input type="text" name="firstName" size="35" maxlength="20" value="<%=firstName%>"></td>
