@@ -27,7 +27,7 @@
 	   <legend style="font-size:16px;">Property  Profile</legend>
 	   	  	
 	   	  <form name="propertyProfileFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 30px">
+	    	<table border="0" class="formFonts" width="50%" align="center" style="margin-left: 50px;margin-top: 30px">
 			
 			<%if(object instanceof FlatVO){
 				

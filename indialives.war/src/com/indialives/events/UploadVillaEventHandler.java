@@ -67,6 +67,11 @@ public class UploadVillaEventHandler implements EventHandler,Constants,Multipart
 								if(row.size()==5){							
 									ValidateVillasCSV(row,i,communityId);
 								}
+								else{
+									if(row.size()!=0){
+										formatErrorString=formatErrorString+"Row No :"+i+" is invalid row ,";
+									}
+								}
 								
 						}
 					}
@@ -96,7 +101,7 @@ public  void ValidateVillasCSV(List<String> row,Integer rowIndex, String communi
 	String name=row.get(2).toString();
 	String noOfBedRooms=row.get(3).toString();
 	String noOfParkings=row.get(4).toString();
-	if(plotNo!=null && noOfFloors!=null && name!=null && noOfBedRooms!=null && noOfParkings!=null){
+	if(plotNo!=null && noOfFloors.matches(INT_SEQ) && name!=null && noOfBedRooms.matches(INT_SEQ) && noOfParkings.matches(INT_SEQ)){
 		 VillaDOFactory.addBulkVillas(communityId,plotNo,noOfFloors,name,noOfBedRooms,noOfParkings);
 	 }
 	/*else{
@@ -157,10 +162,8 @@ public  void ValidateVillasCSV(List<String> row,Integer rowIndex, String communi
 		if(row.size()==5){
 			for(int i=0;i<row.size();i++){
 				String item=row.get(i);				
-				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
-					formatErrorString=formatErrorString+".Row No :"+rowIndex+"ColumnName - "+uploadColumnNameOrder[i]+" should not be empty,";
-				}else if((i==1 || i==3)&& isNumber(item)==false){					   					
-					formatErrorString=formatErrorString+".Row No :"+rowIndex+"ColumnName -"+uploadColumnNameOrder[i]+" should be integer value,";
+				if((i==1 || i==3 || i==4 )&& isNumber(item)==false){					   					
+					formatErrorString=formatErrorString+"Row No :"+rowIndex+"ColumnName -"+uploadColumnNameOrder[i]+" should be integer value,";
 			}
 			}
 		}

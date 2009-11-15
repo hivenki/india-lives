@@ -542,13 +542,15 @@ CREATE TABLE `notices` (
 --
 -- Definition of table `parking_slots`
 --
-
-DROP TABLE IF EXISTS `parking_slots`;
-CREATE TABLE `parking_slots` (
+DROP TABLE IF EXISTS `indialives`.`parking_slots`;
+CREATE TABLE  `indialives`.`parking_slots` (
   `ID` int(10) unsigned NOT NULL auto_increment,
+  `PROPERTY_TYPE_ID` int(10) unsigned NOT NULL,
+  `PROPERTY_ID` int(10) unsigned NOT NULL,
   `PARKING_ID` int(10) unsigned NOT NULL,
   `LOCATION` varchar(10) NOT NULL,
   PRIMARY KEY  (`ID`),
+  UNIQUE KEY `Index_3` (`PROPERTY_TYPE_ID`,`PROPERTY_ID`,`PARKING_ID`,`LOCATION`),
   KEY `FK_PARKING_SLOTS_1` (`PARKING_ID`),
   CONSTRAINT `FK_PARKING_SLOTS_1` FOREIGN KEY (`PARKING_ID`) REFERENCES `parkings` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

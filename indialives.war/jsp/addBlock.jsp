@@ -29,7 +29,7 @@
 	   <legend style="font-size:16px;">Create Block</legend>
 	   	  
 	   	  <form name="addBlockFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
+	    	<table class="formFonts"  border="0"  align="center" style="margin-left: 50px;margin-top: 120px;">
 					
 		<tr>
 			<td>Block Name</td>

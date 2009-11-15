@@ -29,7 +29,7 @@
 	   <legend style="font-size:16px;">Create Flat Type</legend>
 	   	  
 	   	  <form name="addFlatTypeFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
+	    	<table border="0" class="formFonts" align="center" style="margin-left: 50px;margin-top: 120px;">
 					
 		<tr>
 			<td>Name</td>

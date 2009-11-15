@@ -69,6 +69,11 @@ public class UploadFlatEventHandler implements EventHandler,Constants,Applicatio
 									HashMap<String, Integer> flatTypehashMap=getFlatHashMap(flatTypeEnumList);
 									addFlatsIfValid(row,i,blockHashMap,flatTypehashMap);
 								}
+								else{
+									if(row.size()!=0){
+										formatErrorString=formatErrorString+"Row No :"+i+" is invalid row ,";
+									}
+								}
 						 }
 					}
 				}
@@ -165,10 +170,7 @@ public class UploadFlatEventHandler implements EventHandler,Constants,Applicatio
 		if(row.size()==5){
 			for(int i=0;i<row.size();i++){
 				String item=row.get(i);				
-				if(item.equalsIgnoreCase(Constants.EMPTY_STRING)){
-					formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[i]+"' should not be empty,";
-				}
-				else if((i==1 || i==4)&& isNumber(item)==false){					   					
+				 if((i==1 || i==4)&& isNumber(item)==false){					   					
 						formatErrorString=formatErrorString+"Row No : "+rowIndex+" '"+uploadColumnNameOrder[i]+"' should be integer value,";
 				}
 		}

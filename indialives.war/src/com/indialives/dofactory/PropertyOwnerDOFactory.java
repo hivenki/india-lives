@@ -93,4 +93,14 @@ public class PropertyOwnerDOFactory implements SQLConstants{
 	}
 
 
+	public static List<RowObject> getPropertiesForParkingSlot(String propertyTypeId, String communityId) {
+		PersistenceManager persistenceManager=PersistenceManagerFactory.getJDBCManager();
+		List<Object> paramList=new ArrayList<Object>();	
+		paramList.add(propertyTypeId);
+		paramList.add(communityId);
+		List<RowObject> propertyOwnerList=persistenceManager.findCollection(PropertiesVO.class,GET_PROPERTIES_LIST_FOR_PARKING_SLOT, paramList);
+		return propertyOwnerList;
+	}
+
+
 }

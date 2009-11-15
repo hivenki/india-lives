@@ -27,7 +27,7 @@
 	 <td valign="top"  class="indiaLivesFonts" style="font-size:14px;">	
 	  <fieldset style="height: 99%;width: 100%">
 	   <legend style="font-size:16px;">Notice Detail</legend>
-	   	  	<table border="0" width="100%" >
+	   	  	<table border="0" width="100%" class="formFonts" >
 	    	<tr>
 	    	<td colspan="2">&nbsp;</td>
 	    	</tr>

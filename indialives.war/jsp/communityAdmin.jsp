@@ -423,6 +423,8 @@
 		    <table class="tableBgColor"   width="100%"   cellpadding="1" cellspacing="1" >
 		    <tr class="trColor"  >
 				<th width="8%">S.No</th>
+				<th>Property Type</th>
+				<th>Property</th>
 				<th>Parking Name</th>
 				<th>Location</th>				
 			</tr>	
@@ -441,10 +443,14 @@
 					if(i<parkingSlotList.size()){
 						ParkingSlotVO parkingSlotVO=(ParkingSlotVO)parkingSlotList.get(i);									%>
 					<td><%=i+1%></td>
-					<td><%=parkingSlotVO.getParkingSlotName()%></td>
+					<td><%=parkingSlotVO.getPropertyTypeName()%></td>
+					<td><%=parkingSlotVO.getPropertyName()%></td>
+					<td><%=parkingSlotVO.getParkingName()%></td>
 					<td><%=parkingSlotVO.getLocation()%></td>
 					<%}else{%>
 						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>	
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>		
 					<%}}%>					 

@@ -7,6 +7,11 @@
 	font-size: 16px;
 }
 
+.formFonts{
+	font-family:calibri,Arial;
+	font-size: 14px;
+}
+
 a.ContenthLink:link {
 		color: RGB(50,50,50);
 		cursor: hand;

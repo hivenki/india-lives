@@ -21,7 +21,7 @@
 	   <legend style="font-size:16px;">User Profile</legend>
 	   	  
 	   	  <form name="userProfileFrm" action="/indialives/eventhandler" method="post">
-	    	<table border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
+	    	<table class="formFonts" border="0" width="50%" align="center" style="margin-left: 50px;margin-top: 120px">
 			<tr>
 				<td>First Name</td>
 				<td><input type="text" name="firstName" size="35" value="<%=userDO.getFirstName() %>"></td>
