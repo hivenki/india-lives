@@ -42,8 +42,8 @@ public class LoginEventHandler implements NonAuthenticatedHandler,EventHandler,P
 		Session session;
 		try {
 			session=SessionFactory.createSession(request);
-			if(session!=null){
-				validationFlag=true;
+			if(session  != null) {
+				validationFlag = true;
 			}
 		} catch (AuthenticationException e) {
 			Logger.infoMessage(e.getMessage());
