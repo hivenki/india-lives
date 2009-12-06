@@ -29,5 +29,9 @@ public interface PageNameConstants {
 	String MANAGEMENT_TASK_LIST_PAGE="jsp/managementTaskList.jsp";
 	String USER_SUCCESSFULL_PAGE="jsp/userSuccessful.jsp";
 	String ADD_PROPERTY_OWNER="jsp/addPropertyOwner.jsp";
-	
+	String VAS_LIST_PAGE="jsp/vasList.jsp";
+	String AMENETIES_PAGE="jsp/ameneties.jsp";
+	String PAYMENTS_PAGE="jsp/payments.jsp";
+	String VISITORS_PAGE="jsp/visitors.jsp";
+	String SECURITY_PAGE="jsp/security.jsp";
 }
