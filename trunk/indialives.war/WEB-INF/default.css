@@ -1,0 +1,530 @@
+
+body {
+	margin: 0px;
+	padding: 0;
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #696969;
+}
+a:link {color:#3399ff; text-decoration:none;}
+a:visited {color:#0066cc; text-decoration:none;}
+a:hover {font-size:20; color:#003366; text-decoration:none;}
+a:active {color:#0066cc; text-decoration:none;} 
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+ul {
+}
+
+a {
+	text-decoration: none;
+	color: #696969;
+}
+
+a:hover {
+	border-bottom: none;
+}
+
+a img {
+	border: none;
+}
+
+
+cursor {
+	cursor: hand;
+	cursor: pointer;
+
+}
+/* form elements */
+form {
+	margin:5px; padding: 5px;
+	background-color: #;
+	padding: 5px 0px 0px 10px;
+}
+label {
+	width:10%;
+	font-family:Arial;
+        font-size: 90%;
+	display:block;
+	font-weight:bold;
+	margin:8px 0px;
+	color: #666666;
+} 
+
+
+#header {
+  width:100%; 
+  height:90px; 
+  line-height:90px;
+  background: url() repeat-y top right;
+  color: #999999;
+  border-bottom-style:solid;border-width:2px;border-bottom-color:#3399ff;
+	
+}
+
+#header #nav{ float:left; font:12px Arial, Helvetica, sans-serif; padding-left:20px;padding-top:60px; word-spacing:5px; }
+#header #nav a:link,#nav a:visited{color:#0067CA;}
+
+#ILlogo {
+  float:left;
+  width:200px; 
+  height:80px; 
+  top:5px; 
+  margin-left:30px; 
+  background: url(images/KC-logo2.jpg) repeat-y top left;
+  color: #999999;
+  padding: 0px 0px 0px 0px;
+
+}
+
+
+#mainbg {
+  
+  width:100%; 
+  height:400px; 
+  background: url(images/mainbg.jpg) repeat-x top left;
+  color: #999999;
+  padding: 0px 0px 0px 0px;
+  margin:auto;
+  
+}
+
+.clear{clear:both}
+.topad{
+padding-top:20px;
+
+}
+
+#bulletspoints {
+  float:left;
+  width:400; 
+  margin-top:30px;
+  padding-left:20%; 
+  font-family: arial;
+  font-size:13px; 
+  color: #4590d6;
+  font-weight: 900;
+  line-height:30px;
+}
+
+#mainbg_rightgradiation {
+  width:100%; 
+  height:400px; 
+  background: url(images/mainbg_right_gradiation.jpg) no-repeat top right;
+  background-position:100% 1px;
+  color: #999999;
+  padding: 0px 0px 0px 0px;
+}
+
+#signinfields {
+  width:305px;
+  font-family: arial;
+  font-size:13px; 
+  color: #4590d6; 
+  float:right; 
+  padding:90px 30px 0px 0px;
+}
+
+
+.signbutton {
+  background: url(../images/button.gif);
+  width:64px; 
+  padding:5px 0px 4px 0px;
+  font-family:Arial;
+  font-size: 11px;
+  font-weight: Bold ;	
+  text-align:center; 
+  border:none;
+  cursor:hand;
+}
+
+.joinbutton {
+  background: url(../images/button_join.gif);
+  width:64px; 
+  height:24px;
+  padding:5px 0px 4px 0px;
+  font-family:Arial;
+  font-size: 11px;
+  font-weight: Bold ;	
+  text-align:center; 
+  border:none;
+  cursor:hand;
+}
+
+
+#signintext {
+  height:25px;
+  font-family:Arial;
+  font-size: 12px;
+  font-weight: Bold ;	
+  color: #96db4;
+  margin-left:90px;
+}
+
+#signintext p{padding-bottom:5px;margin:0px;}
+#signintext a:link,#signintext a:visited{color:#96db4;}
+
+
+#ILaccount {
+  z-index: 4;    
+  position: absolute;
+  top:58%; 
+  left:78%;
+  font-family:Arial;
+  font-size: 76%;
+  font-weight: Bold ;	
+  color: #96db4;
+
+
+}
+
+
+/* Content */
+
+#content {
+	float: left;
+	width: 56%;
+	margin: 0px 35px 20px 0px;
+}
+.titlebenifits{
+ 	font-family: font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #0099ff;
+}
+
+
+/* Sidebars */
+
+#sidebar1 {
+	float: left;
+	width: 20%;
+	
+}
+
+#sidebar2 {
+	float: left;
+	width: 172px;
+	height: 300px;
+	border-left-style:solid;border-width:1px;border-bottom-color:#cccccc;
+	word-wrap: break-word;
+	white-space:-moz-pre-wrap;
+	white-space: normal;
+	min-height: 400px;
+	overflow:hidden;
+	
+
+}
+
+.sidebar {
+	float: right;
+	height: 300px;
+	padding:0px 5px 10px 5px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #666666;
+}
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar li {
+	padding: 0 0 10px 0;
+}
+
+.sidebar li ul {
+	background: none;
+	padding-bottom: 20px;
+}
+
+.sidebar li li {
+	margin: 0px 15px;
+	padding: 8px 0px;
+	background: url(images/img04.gif) repeat-x left bottom;
+}
+
+
+.sidebar li h2 {
+	height: 26px;
+	margin: 0 0 0 0;
+	padding: 14px 15px 14px 15px;
+	text-transform: capitalize;
+	font-size: 22px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: #454545;
+}
+
+.sidebar h2 a {
+}
+
+.sidebar a {
+	padding-left: 1px;
+}
+
+
+
+#addbanner {
+	
+	position:absolute; 
+	background: url(images/asian-paints-colour-world-ad.jpg);
+	background-position:center;
+	width: 170px;
+	height: 350px;
+
+}
+
+/* Search */
+
+#searchform {
+	margin: 0;
+	padding: 0 0 20px 0;
+}
+
+#searchform br {
+	display: none;
+}
+
+#searchform h2 {
+}
+
+#s {
+	margin: 10px 0px 0 15px;
+	padding: 2px 2px;
+	width: 165px;
+	height: 18px;
+	border: 1px solid #CCCCCC;
+	background: #FFFFFF;
+	font-size: 10px;
+	color: #000000;
+}
+
+#x {
+	margin: 0;
+	padding: 2px 5px;
+	height: 25px;
+	background: #CA8186;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #CCCCCC;
+}
+
+
+/* footer elements */
+
+#footer-wrapper {
+	width: 100%;
+	height: 50px;
+}
+
+
+#footer{
+clear: left;
+width: 100%;
+height:50px;
+text-align: center;
+padding: 0px 0;
+font-family:Arial;
+font-size: 80%; 
+color: #0066FF;
+padding: 0px 0px 0px 0px;
+text-align:center;
+
+}
+
+#footertext{
+  border-top:1px solid #CBDCEC;
+  width:100%; 
+  height:20px; 
+  text-align:center;
+  
+  
+  font-family: arial;
+  font-size:11px; 
+  color: #3399ff;
+  word-spacing:7px;
+
+}
+
+#copyrighttext{
+width: 100%;
+text-align: center;
+font-family:Arial;
+font-size: 110%; 
+color: #cccccc;
+
+}
+
+#footer p {
+	margin: 0;
+	padding: 10px 0 0 0;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+#footer a {
+	color: #EDE7DB;
+}
+
+#footer .link {
+}
+
+#footer .copyright {
+}
+
+.fcolumn{width:230px;float:left; color:#000; }
+.fcolumn .hd{color:#379AFF;font:bold 12px tahoma; padding:0px;margin:0px; }
+
+
+.list
+{
+margin-left: 0;
+padding-left: 0;
+list-style: none;
+}
+
+.list li 
+{
+padding-left: 20px;
+background-image: url(images/list.gif);
+background-repeat: no-repeat;
+background-position: 0 .5em;
+font:11px Tahoma, Arial, Verdana;
+line-height:20px;
+}
+
+.hplist
+{
+margin-left: 0;
+padding-left: 0;
+list-style: none;
+}
+
+.hplist li 
+{
+padding-left: 20px;
+background-image: url(images/list.gif);
+background-repeat: no-repeat;
+background-position: 0 .5em;
+font:bold 14px Arial, Verdana;
+line-height:25px;
+
+
+}
+
+table { 
+  border: 0; 
+  font-family: arial; 
+  font-size:13px;
+  	 
+} 
+th { 
+  background-color:yellow; 
+} 
+td { 
+  border-bottom:1 solid #000000; 
+} 
+.fail { 
+  color:#FF0000; 
+}
+/* content-specific */
+
+ .group p{padding:0px;margin:0px;clear:both; color:#000;}
+ .group label {width:100px;float:left; display:block; font:bold 11px Tahoma, Arial, Verdana}
+ .group .verify {border:1px solid #D5DEE3;background:#E8F3F9;}
+
+
+
+/* round corner*/
+
+.dialog {
+float:left;
+ width:300px;
+ margin:0px auto;
+
+ color:#fff;
+}
+
+.dialog .hd .c,
+.dialog .ft .c {
+ font-size:1px; 
+ height:13px;
+ 
+}
+
+.dialog .ft .c {
+ height:14px;
+}
+
+.dialog .hd {
+ background:transparent url(images/tl.gif) no-repeat 0px 0px;
+}
+
+.dialog .hd .c {
+ background:transparent url(images/tr.gif) no-repeat right 0px;
+ height:25px;
+ color:#fff;
+ font:bold 11px tahoma;
+ line-height:25px;
+ padding-left:15px;
+}
+
+.dialog .bd {
+ background:transparent url(images/ml.gif) repeat-y 0px 0px;
+}
+
+.dialog .bd .c {
+ background:transparent url(images/mr.gif) repeat-y right 0px;
+}
+
+.dialog .bd .c .s {
+ margin:0px 8px 0px 4px;
+ 
+ padding:1em;
+}
+
+.dialog .ft {
+ background:transparent url(images/bl.gif) no-repeat 0px 0px;
+}
+
+.dialog .ft .c {
+ background:transparent url(images/br.gif) no-repeat right 0px;
+}
+
+
+
+/* content-specific */
+
+ .group p{padding:0px;margin:0px;clear:both; color:#000;}
+ .group label {width:100px;float:left; display:block; font:bold 11px Tahoma, Arial, Verdana}
+.group .verify {border:1px solid #D5DEE3;background:#E8F3F9;}
+
+
+
+ 
