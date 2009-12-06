@@ -1,0 +1,509 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 5px 0;
+	background: #FFFFFF url(../images/img01.jpg) repeat-x left top;
+	text-align: left;
+	font-family: 'Trebuchet MS', "Times New Roman", Times, serif;
+	font-size: 13px;
+	color: #666666;
+}
+
+form {
+}
+
+form br {
+}
+
+input, textarea {
+	padding: 4px;
+	font: bold 1em Georgia, "Times New Roman", Times, serif;
+	color: #333333;
+	background: #F0F9FC;
+	border-top: 1px solid #7594AD;
+	border-right: 1px solid #7594AD;
+	border-bottom: 1px solid #7594AD;
+	border-left: 1px solid #7594AD;
+}
+
+h1, h2, h3 {
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+	text-transform: ;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #06A3E4;
+}
+
+h1 {
+	font-size: 1.4em;
+}
+
+h2 {
+	font-size: 1.4em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+p, ul, ol {
+	margin-top: 1.5em;
+}
+
+ul, ol {
+	margin-left: 3em;
+}
+
+blockquote {
+	margin-left: 3em;
+	margin-right: 3em;
+	font-style: italic;
+}
+
+a {
+	text-decoration: none;
+	color: #1275D1;
+}
+
+a:hover {
+	border: none;
+	color: #3399FF;
+
+
+}
+
+
+/* Header */
+
+#header {
+	width: 800px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+#logo {
+	float: left;
+	height: 40px;
+}
+
+#logo h1, #logo h2 {
+	float: left;
+	margin-top: 0px;
+	text-transform: ;
+	font-weight: normal;
+}
+
+#logo h1 {
+	padding: 5px 0 0 0px;
+	font-size: 2.6em;
+}
+
+#logo h2 {
+	padding: 17px 0 0 6px;
+	font-size: 1.2em;
+}
+
+
+#logo a {
+	border: none;
+	text-decoration: none;
+	
+}
+
+#menu {
+	float: right;
+	height: 40px;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 30px 0px 0 0;
+	list-style: none;
+}
+
+#menu li {
+	float: left;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	border-left: 1px solid #82B7D8;
+	margin-right: 3px;
+	padding: 5px 18px 5px 18px;
+	text-transform: lowercase;
+	text-decoration: none;
+	font-size: 1.0em;
+	color: #FFFFFF;
+}
+
+#menu a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#menu .last a {
+	margin: 0;
+	padding-right: 0;
+}
+
+/* Page */
+
+#page {
+	width: 800px;
+	margin: 0 auto;
+	padding: 30px 0 0 0;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 270px;
+	padding: 0 30px;
+}
+
+.post {
+}
+
+.post .title {
+	margin: 0;
+	background: url(../images/img03.jpg) repeat-x left bottom;
+}
+
+.post .title h1, .post .title h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.post .title a {
+	border: none;
+	color: #666666;
+}
+
+.post .meta {
+	margin: 0;
+	padding: 3px 0 0 0;
+	font: bold 10px Arial, Helvetica, sans-serif;
+	color: #CCCCCC;
+}
+
+.post .entry {
+	padding-bottom: 10px;
+}
+
+.post .entry p, .post .entry ol, .post .entry ul {
+	line-height: 150%;
+}
+
+.post .tags {
+	margin: 0;
+	padding: 10px;
+	border-top: 1px solid #DEDEDE;
+	font-size: smaller;
+	text-align: center;
+}
+
+.post .tags a {
+	margin-left: 10px;
+}
+
+.post .links {
+	text-align: center;
+	margin: 0;
+	padding: 5px 10px;
+	border: 1px solid #8C9FB3;
+	font-size: smaller;
+	text-transform: ;
+}
+
+.post .links a {
+	font-weight: bold;
+}
+
+.post ul {
+	padding-bottom: 25px;
+}
+
+.post h2, .post h3 {
+	padding-top: 20px;
+}
+
+#recent-posts {
+}
+
+#recent-posts h3 {
+	margin: 0;
+	padding: 20px 0 0 0;
+	border-bottom: 1px solid #8C9FB3;
+}
+
+#recent-posts ul {
+	margin: 0;
+	padding: 0;
+}
+
+#recent-posts li {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Sidebars */
+
+.sidebar {
+	float: left;
+}
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar li {
+	padding-bottom: 10px;
+}
+
+.sidebar li ul {
+}
+
+.sidebar li li {
+	padding: 5px 0;
+}
+
+.sidebar h2 {
+	background: url(../images/img03.jpg) repeat-x left bottom;
+	letter-spacing: -1px;
+	color: #666666;
+}
+.line {
+	text-align: center;
+	margin: 0;
+	padding: 4px 10px;
+	border: 1px solid #8C9FB3;
+	font-size: 12px;
+	text-transform: ;
+	height:250px;
+
+
+}
+
+/* Sidebar1 */
+
+#sidebar1 {
+	width: 200px;
+}
+
+.sidebar1 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar1 li {
+	padding-bottom: 10px;
+}
+
+.sidebar1 li ul {
+}
+
+#sidebar1 li  {
+	background: url(../images/img05.gif) no-repeat left 50%;
+	margin-left: 10px;
+	padding-left: 20px;
+	background-position: 0 .5em;
+	font:bold 14px Arial, Verdana;
+	line-height:20px;
+	color: #6699CC;
+}
+
+#sidebar1 h2 {
+}
+
+/* Sidebar2 */
+
+#sidebar2 {
+	width: 260px;
+	height:380px;
+}
+
+
+
+#pinkblock { 
+  z-index: 1; 
+  position: absolute; 
+  width:270px; 
+  height:225px; 
+  border: 0px solid #000; 
+  background-color: #;
+  padding: 0px 0px;
+  margin-top: 70px;
+  margin-left: 15px;
+}
+
+
+#signinproblem {
+  text-align: center;
+  font-family: arial, verdana, sans-serif;
+  font-size: 10pt;
+  color: #003399;
+  margin-top: 30px;
+}
+
+#ILaccount {
+  text-align: center;
+  font-family: arial, verdana, sans-serif;
+  font-size: 10pt;
+  color: #003399;
+  margin-top: 70px;
+  font-weight: bold;
+
+}
+
+
+#ILaccount a img{
+	border: none;
+	text-decoration: none;
+	
+}
+
+#fieldset {
+  font-size: 12px;
+  padding: 10px;
+  width: 270px;
+  font-family: arial, verdana, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+}
+
+.formPrompt {
+  text-align: right;
+  padding: 8px 0px;
+}
+
+input {
+  border-style: solid;
+  border-color: #507B99;
+  border-width: 1px;
+  background-color: #FFF;
+  font-family: arial, verdana, sans-serif;
+  font-weight: normal;
+} 
+
+/* Search */
+
+#search {
+}
+
+#search form {
+	margin: 0;
+	padding: 0;
+}
+
+#search #s {
+	width: 50%;
+	border: 1px #8C9FB3 solid;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+#search #submit {
+	padding: 3px 10px;
+	margin: 5px 0 0 0;
+	background: url(../images/img04.jpg) repeat-x left top; 
+	border: none;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+
+/* Footer */
+
+
+#aboutus{
+  z-index: 2;
+  width:100%; 
+  height:30px;
+  border: 0px solid #000; 
+  font-family: arial;
+  font-size:12px; 
+  
+}
+
+#aboutustext{
+  width:800px; 
+  height:15px;
+  border: 0px solid #0066CC; 
+  font-family: arial;
+  font-size:12px; 
+  text-align:left;
+  word-spacing:6px;
+  margin-top: 10px;
+}
+
+
+#footer {
+	clear: both;
+	width:100%;
+	height: 20px;
+	background: url(../images/img02.jpg) repeat-x left top;
+	 
+
+}
+
+#footer p {
+	margin: 0;
+	padding: 3px 0px;
+	font-size: 10px;
+	width: 800px;
+	
+
+
+	
+}
+
+#footer .legal {
+	float: left;
+	height: 20px;
+	width: 800px;
+
+	
+}
+
+#bottomtext {
+	width: 800px;
+	height: 20px;
+	float: left;
+	font-size: 12px;
+	 
+}
+
+#copyrite {
+	font-family: arial;
+  	font-size:12px; 
+  	text-align:left;
+  	margin-top: 2px;
+	color: #B4BBBE;
+	
+	
+}
+
+#footer .credit {
+	float: right;
+	height: 40px;
+}
+
